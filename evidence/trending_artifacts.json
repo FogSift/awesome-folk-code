@@ -1,40 +1,40 @@
 {
-  "captured_at": "2026-02-25 15:26",
+  "captured_at": "2026-02-25 15:27",
   "artifacts": [
     {
-      "description": "Profile README.md",
-      "fullName": "3bsalam-1/3bsalam-1",
-      "stargazersCount": 9,
-      "updatedAt": "2026-02-25T23:25:50Z",
-      "url": "https://github.com/3bsalam-1/3bsalam-1"
+      "description": "\ud83d\udd0d Discover and utilize RyExploit, a comprehensive tool for security research on the Ry framework, focusing on Thymeleaf-bypass and command execution.",
+      "fullName": "Deracz/RyExploit",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:26:32Z",
+      "url": "https://github.com/Deracz/RyExploit"
     },
     {
-      "description": "\ud83d\udd12 Build a trustless, metadata-free anonymity network with ZKS, advancing privacy beyond Tor through innovative triple-blind architecture.",
-      "fullName": "nicosplit/zks",
+      "description": "\ud83c\udf4c Explore LowLevelBanana, a comprehensive evaluation tool for low-level vision tasks across 14 tasks and 40 datasets in AI research.",
+      "fullName": "mpahlevi64/LowLevelBanana",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:25:24Z",
-      "url": "https://github.com/nicosplit/zks"
+      "updatedAt": "2026-02-25T23:26:31Z",
+      "url": "https://github.com/mpahlevi64/LowLevelBanana"
     },
     {
-      "description": "\ud83d\udcca Predict suitable academic minors for students using machine learning based on their skills, interests, and career goals.",
-      "fullName": "fabriad/Student-Minor-Prediction",
+      "description": "\ud83d\udee0\ufe0f Enable seamless collaboration between Claude and multiple models/tools with the Agent Skills collection for efficient coding and AI integration.",
+      "fullName": "dali-raki/skills",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:25:17Z",
-      "url": "https://github.com/fabriad/Student-Minor-Prediction"
+      "updatedAt": "2026-02-25T23:26:22Z",
+      "url": "https://github.com/dali-raki/skills"
     },
     {
-      "description": "\ud83c\udfae Enhance your HarmonyOS apps with OHBridge SDK for features like sharing, media access, and sensor integration, simplifying native development.",
-      "fullName": "OoufA123456/HarmonyOS-Inno",
+      "description": "\ud83c\udf7d\ufe0f Explore a sample iOS app using SwiftUI and MVVM with coordinators, designed for learning and understanding practical implementation.",
+      "fullName": "Sushiii24/Recipes",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:25:11Z",
-      "url": "https://github.com/OoufA123456/HarmonyOS-Inno"
+      "updatedAt": "2026-02-25T23:26:26Z",
+      "url": "https://github.com/Sushiii24/Recipes"
     },
     {
-      "description": "\ud83c\udf0d Explore diverse cultures through engaging mini-programs that foster learning and connection across communities.",
-      "fullName": "supratim1020/Cultural-Mini-Program",
+      "description": "\ud83e\udd16 Explore essential AI tools for building, automating, and monetizing projects across content, video, e-commerce, and more.",
+      "fullName": "foodman1227/awesome-ai-tools",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:25:11Z",
-      "url": "https://github.com/supratim1020/Cultural-Mini-Program"
+      "updatedAt": "2026-02-25T23:26:27Z",
+      "url": "https://github.com/foodman1227/awesome-ai-tools"
     }
   ]
 }

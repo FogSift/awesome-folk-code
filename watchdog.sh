@@ -1,36 +1,28 @@
 #!/bin/bash
-# 🐕 FogSift Autonomous Watchdog v2.1
-# Logic: Sense -> Guard -> Actuate -> Research -> Log
-
-INTERVAL=900 
+# 🐕 FogSift Autonomous Watchdog v2.2
+# Logic: Sense -> Guard -> Actuate -> Research & Score -> Log
 
 run_cycle() {
     TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
     echo "🐕 [$TIMESTAMP] Watchdog Cycle Initiated..."
 
-    # 1. SENSE (Physical prioritize, then simulated)
+    # 1. Environment & Safety
     python3 sensors/probe_serial.py || python3 sensors/bridge.py
-
-    # 2. GUARD (Safety Check)
     python3 sensors/guard.py
-
-    # 3. ACTUATE (Logic + Safety Interlock)
     python3 actuate.py
 
-    # 4. RESEARCH (Intelligence Sifting)
+    # 2. Intelligence Gathering
     python3 trend-sifter.py
+    python3 extract-context.py
+    
+    # Small buffer to ensure file writes are complete
+    sleep 1
+
+    # 3. Artifact Curation
     python3 artifact-harvester.py
 
-    # 5. HEARTBEAT
     echo "$TIMESTAMP" > evidence/watchdog_heartbeat.txt
-    echo "🐕 Cycle Complete. Sleeping."
+    echo "🐕 Cycle Complete. Intelligence Secured."
 }
 
-if [[ "$1" == "--daemon" ]]; then
-    while true; do
-        run_cycle
-        sleep $INTERVAL
-    done
-else
-    run_cycle
-fi
+run_cycle
