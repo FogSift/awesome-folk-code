@@ -90,3 +90,8 @@
 * **Vibe:** Automated
 * **Entry:** The node now predicts hardware requirements for new discoveries.
 ---
+
+## 2026-02-25 15:18
+* **Vibe:** Automated
+* **Entry:** System now prioritizes USB serial data over simulation.
+---

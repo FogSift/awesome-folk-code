@@ -34,7 +34,8 @@ echo -e "\n${GREEN}[ SYSTEM STATUS ]${RESET}"
 if [ -f "evidence/live_moisture.json" ]; then
     MOISTURE=$(cat evidence/live_moisture.json | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
     printf "  • Soil Moisture: ["
-    BAR_SIZE=$(( MOISTURE / 5 ))
+    SOURCE=$(python3 -c "import json; print(json.load(open("evidence/live_moisture.json"))["sensor_id"])") 
+    echo -e "  • Signal Source:  ${CYAN}$SOURCE${RESET}"    BAR_SIZE=$(( MOISTURE / 5 ))
     for ((i=0; i<BAR_SIZE; i++)); do printf "#"; done
     for ((i=BAR_SIZE; i<20; i++)); do printf "."; done
     printf "] ${MOISTURE}%%\n"
