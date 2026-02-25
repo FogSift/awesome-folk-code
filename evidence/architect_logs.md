@@ -85,3 +85,8 @@
 * **Vibe:** Automated
 * **Entry:** Node is now summarizing setup requirements for trending discoveries.
 ---
+
+## 2026-02-25 15:17
+* **Vibe:** Automated
+* **Entry:** The node now predicts hardware requirements for new discoveries.
+---

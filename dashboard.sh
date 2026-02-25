@@ -1,5 +1,5 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard v3.3
+# 🖥️ FogSift Mission Control Dashboard v3.4 (BOM Aware)
 
 # Colors
 GREEN='\033[0;32m'
@@ -26,37 +26,31 @@ echo -e "${CYAN}====================================================${RESET}"
 # 1. Local Weather
 if [ -f "evidence/local_weather.json" ]; then
     TEMP=$(python3 -c "import json; print(json.load(open('evidence/local_weather.json'))['temp'])")
-    DESC=$(python3 -c "import json; print(json.load(open('evidence/local_weather.json'))['desc'])")
-    echo -e "${YELLOW}[ WEATHER ]${RESET} $DESC | $TEMP"
+    echo -e "${YELLOW}[ WEATHER ]${RESET} Chico: $TEMP"
 fi
 
 # 2. System Status
 echo -e "\n${GREEN}[ SYSTEM STATUS ]${RESET}"
 if [ -f "evidence/live_moisture.json" ]; then
     MOISTURE=$(cat evidence/live_moisture.json | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
-    printf "  • Soil Moisture: [${GREEN}"
+    printf "  • Soil Moisture: ["
     BAR_SIZE=$(( MOISTURE / 5 ))
     for ((i=0; i<BAR_SIZE; i++)); do printf "#"; done
     for ((i=BAR_SIZE; i<20; i++)); do printf "."; done
-    printf "${RESET}] ${MOISTURE}%%\n"
+    printf "] ${MOISTURE}%%\n"
 fi
 
-if [ -f "evidence/watchdog_heartbeat.txt" ]; then
-    echo -e "  • Watchdog Pulse: ${CYAN}ACTIVE ($(cat evidence/watchdog_heartbeat.txt))${RESET}"
-fi
-
-# 3. Technical Discovery Context
+# 3. Research & BOM Insight
 if [ -f "evidence/trending_artifacts.json" ]; then
     TOP_REPO=$(python3 -c "import json; print(json.load(open('evidence/trending_artifacts.json'))['artifacts'][0]['fullName'])")
     echo -e "  • Top Discovery:  ${YELLOW}$TOP_REPO${RESET}"
     
-    if [ -f "evidence/last_validation.txt" ]; then
-        HEALTH=$(cat evidence/last_validation.txt | cut -d: -f2)
-        echo -e "  • Project Health: ${CYAN}$HEALTH${RESET}"
+    if [ -f "evidence/tech_context.txt" ]; then
+        echo -e "  • Tech Found:     ${BLUE}$(cat evidence/tech_context.txt)${RESET}"
     fi
     
-    if [ -f "evidence/tech_context.txt" ]; then
-        echo -e "  • Tech Context:   ${BLUE}$(cat evidence/tech_context.txt)${RESET}"
+    if [ -f "evidence/shopping_list.txt" ]; then
+        echo -e "  • BOM Estimate:   ${GREEN}$(cat evidence/shopping_list.txt | tr '\n' ',' | sed 's/,$//')${RESET}"
     fi
 fi
 
@@ -66,4 +60,4 @@ HARVEST_DATE=$(python3 forecast-harvest.py | grep "Chickpea" | awk '{print $5}')
 echo -e "  • ${YELLOW}Chico Chickpea:${RESET} 99 Days until Harvest ($HARVEST_DATE)"
 
 echo -e "${CYAN}====================================================${RESET}"
-echo -e "COMMANDS: [ status ] [ ./claim-victory.sh ] [ ./watchdog.sh ]"
+echo -e "COMMANDS: [ status ] [ ./watchdog.sh ]"

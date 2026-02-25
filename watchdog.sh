@@ -20,7 +20,7 @@ run_cycle() {
     python3 curate-intel.py    
     python3 validate-discovery.py    # 4. Record Heartbeat
     python3 extract-context.py    echo "$TIMESTAMP" > evidence/watchdog_heartbeat.txt
-    echo "🐕 Cycle Complete. Sleeping for $INTERVAL seconds."
+    python3 extract-bom.py    echo "🐕 Cycle Complete. Sleeping for $INTERVAL seconds."
 }
 
 # Check if flag --daemon is passed
