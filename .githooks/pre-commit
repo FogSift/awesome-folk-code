@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Check if the user is trying to commit a .env file or private key
+if git diff --cached --name-only | grep -i -E "(\.env|id_rsa|\.pem|secret)"; then
+  echo ""
+  echo "🛑 STOP! VIBE CHECK FAILED: You are trying to commit a hidden file, password, or key."
+  echo "Remove it from your staging area before committing."
+  echo ""
+  exit 1
+fi
+
+# Otherwise, allow the commit
+exit 0
