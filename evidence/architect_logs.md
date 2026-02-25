@@ -65,3 +65,8 @@
 * **Vibe:** Automated
 * **Entry:** The node now attempts to verify the quality of trending discoveries.
 ---
+
+## 2026-02-25 15:11
+* **Vibe:** Automated
+* **Entry:** The node now distinguishes between standard Python and MicroPython hardware projects.
+---

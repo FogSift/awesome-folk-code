@@ -51,7 +51,9 @@ fi
 if [ -f "evidence/trending_artifacts.json" ]; then
     TOP_REPO=$(python3 -c "import json; print(json.load(open('evidence/trending_artifacts.json'))['artifacts'][0]['fullName'])")
     echo -e "  • Top Discovery:  ${YELLOW}$TOP_REPO${RESET}"
-fi
+    if [ -f "evidence/last_validation.txt" ]; then 
+        echo -e "  • Project Health: $(cat evidence/last_validation.txt | cut -d: -f2)" 
+    fifi
 
 # 4. Biological Assets
 echo -e "\n${GREEN}[ BIOLOGICAL ASSETS ]${RESET}"
