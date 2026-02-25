@@ -4,3 +4,4 @@ python3 scripts/pipeline/trend-sifter.py
 python3 scripts/pipeline/extract-context.py
 python3 scripts/pipeline/curate-intel.py
 echo "✅ Cycle complete. Run ./status"
+python3 scripts/pipeline/sync-readme.py

@@ -1,40 +1,40 @@
 {
-  "captured_at": "2026-02-25 15:51",
+  "captured_at": "2026-02-25 15:52",
   "artifacts": [
     {
-      "description": "\ud83d\udcbb Showcase skills that reflect my programming style and philosophy for better coding practices and improved collaboration.",
-      "fullName": "iiMooDY9/skills",
-      "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:50:46Z",
-      "url": "https://github.com/iiMooDY9/skills"
+      "description": "\ud83c\udfa8 Display system theme colors and their references easily with this Lua Plugin for GrandMA3, simplifying your color selection process.",
+      "fullName": "Hardpanther/UI-Color-List-Reference",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:52:13Z",
+      "url": "https://github.com/Hardpanther/UI-Color-List-Reference"
     },
     {
-      "description": "\ud83d\udee0\ufe0f Debug React Native apps easily with rn-remote-debugger, a lightweight tool tailored for Hermes engine support and streamlined development.",
-      "fullName": "Sardorbek2802/rn-remote-debugger",
+      "description": "\ud83e\ude9c Enhance AI agent performance with VueUse Skills\u2014essential Vue Composition Utilities that minimize token use and support offline access.",
+      "fullName": "syw-afk/skills",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:50:19Z",
-      "url": "https://github.com/Sardorbek2802/rn-remote-debugger"
+      "updatedAt": "2026-02-25T23:52:02Z",
+      "url": "https://github.com/syw-afk/skills"
     },
     {
-      "description": "\ud83d\udee0\ufe0f Exploit Shiro deserialization vulnerabilities with this comprehensive tool, ensuring dynamic gadget generation and stealthy memory execution.",
-      "fullName": "Shedo11/ShiroExploit",
+      "description": "\ud83d\udee0\ufe0f Simplify coding tasks with natural language using OpenAI Codex, enhancing productivity and collaboration seamlessly.",
+      "fullName": "ThukuElvis/codex-assistant",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:49:29Z",
-      "url": "https://github.com/Shedo11/ShiroExploit"
+      "updatedAt": "2026-02-25T23:52:00Z",
+      "url": "https://github.com/ThukuElvis/codex-assistant"
     },
     {
-      "description": "\ud83e\udd16 Discover top-quality AI Telegram bots for ChatGPT, art generation, automation, and translation tailored for Chinese users.",
-      "fullName": "hackingggbydaarknes/awesome-telegram-bots-ai",
+      "description": "\ud83d\udd27 Enhance your macro experience with 198m v1.4.0, designed for precision and reliability in a competitive gaming environment.",
+      "fullName": "LadyPatricia/198macros-v1.4.0",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:49:25Z",
-      "url": "https://github.com/hackingggbydaarknes/awesome-telegram-bots-ai"
+      "updatedAt": "2026-02-25T23:51:44Z",
+      "url": "https://github.com/LadyPatricia/198macros-v1.4.0"
     },
     {
-      "description": "\ud83d\udc3e Discover essential resources for caring for dogs, cats, fish, horses, and more, compiled from years of experience with pets and street animals.",
-      "fullName": "breead1/awesome-animal-care",
-      "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:49:15Z",
-      "url": "https://github.com/breead1/awesome-animal-care"
+      "description": "\ud83c\udf10 Develop WebGPU-enabled Three.js applications with TSL for advanced shading, materials, and post-processing effects in your projects.",
+      "fullName": "Shubhs1303/webgpu-claude-skill",
+      "stargazersCount": 2,
+      "updatedAt": "2026-02-25T23:51:44Z",
+      "url": "https://github.com/Shubhs1303/webgpu-claude-skill"
     }
   ]
 }

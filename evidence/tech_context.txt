@@ -1,20 +1,20 @@
-REPO: iiMooDY9/skills [🛠️ MED]
+REPO: Hardpanther/UI-Color-List-Reference [🛠️ MED]
 TASK: Check README for setup
-LINK: https://github.com/iiMooDY9/skills
+LINK: https://github.com/Hardpanther/UI-Color-List-Reference
 ---
-REPO: Sardorbek2802/rn-remote-debugger [🛠️ MED]
+REPO: syw-afk/skills [🛠️ MED]
 TASK: Check README for setup
-LINK: https://github.com/Sardorbek2802/rn-remote-debugger
+LINK: https://github.com/syw-afk/skills
 ---
-REPO: Shedo11/ShiroExploit [🛠️ MED]
+REPO: ThukuElvis/codex-assistant [🛠️ MED]
 TASK: Check README for setup
-LINK: https://github.com/Shedo11/ShiroExploit
+LINK: https://github.com/ThukuElvis/codex-assistant
 ---
-REPO: hackingggbydaarknes/awesome-telegram-bots-ai [🛠️ MED]
+REPO: LadyPatricia/198macros-v1.4.0 [🛠️ MED]
 TASK: Check README for setup
-LINK: https://github.com/hackingggbydaarknes/awesome-telegram-bots-ai
+LINK: https://github.com/LadyPatricia/198macros-v1.4.0
 ---
-REPO: breead1/awesome-animal-care [🛠️ MED]
+REPO: Shubhs1303/webgpu-claude-skill [🛠️ MED]
 TASK: Check README for setup
-LINK: https://github.com/breead1/awesome-animal-care
+LINK: https://github.com/Shubhs1303/webgpu-claude-skill
 ---
