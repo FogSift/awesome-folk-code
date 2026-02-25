@@ -38,3 +38,6 @@ graph TD
 
 ## Git for Vibe Coders
 Want to skip the confusing GitHub web interface? Read the [Git for Vibe Coders Guide](GIT_FOR_VIBE_CODERS.md) to learn how to use the terminal.
+
+## Git for Vibe Coders
+Want to skip the confusing GitHub web interface? Read the [Git for Vibe Coders Guide](GIT_FOR_VIBE_CODERS.md) to learn how to use the terminal.
