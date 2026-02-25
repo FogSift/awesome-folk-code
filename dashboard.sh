@@ -1,5 +1,5 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard v3.2
+# 🖥️ FogSift Mission Control Dashboard v3.3
 
 # Colors
 GREEN='\033[0;32m'
@@ -30,30 +30,33 @@ if [ -f "evidence/local_weather.json" ]; then
     echo -e "${YELLOW}[ WEATHER ]${RESET} $DESC | $TEMP"
 fi
 
-# 2. System Status & Heartbeat
+# 2. System Status
 echo -e "\n${GREEN}[ SYSTEM STATUS ]${RESET}"
 if [ -f "evidence/live_moisture.json" ]; then
     MOISTURE=$(cat evidence/live_moisture.json | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
+    printf "  • Soil Moisture: [${GREEN}"
     BAR_SIZE=$(( MOISTURE / 5 ))
-    printf "  • Soil Moisture: ["
-    for ((i=0; i<20; i++)); do
-        if [ $i -lt $BAR_SIZE ]; then printf "${GREEN}#${RESET}"; else printf "."; fi
-    done
-    printf "] ${MOISTURE}%%\n"
+    for ((i=0; i<BAR_SIZE; i++)); do printf "#"; done
+    for ((i=BAR_SIZE; i<20; i++)); do printf "."; done
+    printf "${RESET}] ${MOISTURE}%%\n"
 fi
 
 if [ -f "evidence/watchdog_heartbeat.txt" ]; then
     echo -e "  • Watchdog Pulse: ${CYAN}ACTIVE ($(cat evidence/watchdog_heartbeat.txt))${RESET}"
 fi
 
-# 3. Discovery & Health Signal
+# 3. Technical Discovery Context
 if [ -f "evidence/trending_artifacts.json" ]; then
     TOP_REPO=$(python3 -c "import json; print(json.load(open('evidence/trending_artifacts.json'))['artifacts'][0]['fullName'])")
     echo -e "  • Top Discovery:  ${YELLOW}$TOP_REPO${RESET}"
     
     if [ -f "evidence/last_validation.txt" ]; then
-        HEALTH_SIG=$(cat evidence/last_validation.txt | cut -d: -f2)
-        echo -e "  • Project Health: ${CYAN}$HEALTH_SIG${RESET}"
+        HEALTH=$(cat evidence/last_validation.txt | cut -d: -f2)
+        echo -e "  • Project Health: ${CYAN}$HEALTH${RESET}"
+    fi
+    
+    if [ -f "evidence/tech_context.txt" ]; then
+        echo -e "  • Tech Context:   ${BLUE}$(cat evidence/tech_context.txt)${RESET}"
     fi
 fi
 
