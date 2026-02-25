@@ -14,12 +14,12 @@ echo -e "${CYAN}====================================================${RESET}"
 
 # 1. System Status & Visual Trend
 if [ -f "$DIR/evidence/live_moisture.json" ]; then
-    MOISTURE=$(cat "$DIR/evidence/live_moisture.json" | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
+    MOISTURE=$(cat "$DIR/evidence/live_moisture.json" | python3 ../scripts/pipeline/-c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
     echo -e "${GREEN}[ SYSTEM ]${RESET} Soil: ${MOISTURE}%"
     
     if [ -f "$DIR/evidence/moisture_history.txt" ]; then
         # Map numbers to ASCII bars: 1-25: , 26-50: ▃, 51-75: ▆, 76-100: █
-        SPARK=$(tail -n 5 "$DIR/evidence/moisture_history.txt" | python3 -c "
+        SPARK=$(tail -n 5 "$DIR/evidence/moisture_history.txt" | python3 ../scripts/pipeline/-c "
 import sys
 for line in sys.stdin:
     v = int(line.strip())
@@ -43,7 +43,7 @@ else
 fi
 
 echo -e "\n${GREEN}[ BIOLOGICAL ASSETS ]${RESET}"
-HARVEST_DATE=$(python3 forecast-harvest.py | grep "Chickpea" | awk '{print $5}' 2>/dev/null)
+HARVEST_DATE=$(python3 ../scripts/pipeline/forecast-harvest.py | grep "Chickpea" | awk '{print $5}' 2>/dev/null)
 echo -e "  • Chico Chickpea: 99 Days until Harvest ($HARVEST_DATE)"
 
 echo -e "${CYAN}====================================================${RESET}"
