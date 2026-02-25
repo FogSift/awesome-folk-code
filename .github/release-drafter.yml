@@ -1,0 +1,21 @@
+name-template: 'Volume $RESOLVED_VERSION 🚀'
+tag-template: 'v$RESOLVED_VERSION'
+categories:
+  - title: '🏠 Home & Family'
+    labels:
+      - 'home-family'
+  - title: '🛠️ Work & Trade'
+    labels:
+      - 'work-trade'
+  - title: '🎨 Hobbies & Crafts'
+    labels:
+      - 'hobbies-crafts'
+change-template: '- $TITLE by @$AUTHOR (#$NUMBER)'
+template: |
+  ## What's New in Folk Code
+  Welcome to the latest volume of Awesome Folk Code! Here are the newest vibe-coded tools added by the community:
+  
+  $CHANGES
+  
+  ---
+  *Want to add your tool? Read our Newcomers Guide and pass The Trial.*
