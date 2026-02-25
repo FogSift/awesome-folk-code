@@ -1,6 +1,20 @@
 {
-  "captured_at": "2026-02-25 15:30",
+  "captured_at": "2026-02-25 15:31",
   "artifacts": [
+    {
+      "description": "\ud83d\udce6 Optimize tokenization in C++ for HuggingFace models with a fast, production-ready library supporting BPE, WordPiece, and Unigram methods.",
+      "fullName": "Mbeeee111/tokenizer.cpp",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:30:52Z",
+      "url": "https://github.com/Mbeeee111/tokenizer.cpp"
+    },
+    {
+      "description": "\ud83d\udcca Analyze and visualize Model Context Protocol (MCP) traffic with RETICLE, your Wireshark-like tool for better network insights.",
+      "fullName": "azerzeki/mcp-reticle",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:30:33Z",
+      "url": "https://github.com/azerzeki/mcp-reticle"
+    },
     {
       "description": "Profile README.md",
       "fullName": "3bsalam-1/3bsalam-1",
@@ -16,25 +30,11 @@
       "url": "https://github.com/Beriberi12/awesome-tigerstyle"
     },
     {
-      "description": "\ud83d\udda5\ufe0f Configure and customize your development environment with these dotfiles for macOS, Arch Linux, and Fedora, optimizing aesthetics and functionality.",
-      "fullName": "yaafi183307/dotfiles",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:30:05Z",
-      "url": "https://github.com/yaafi183307/dotfiles"
-    },
-    {
-      "description": "\ud83c\udfb6 Discover and access a curated collection of GitHub repositories featuring MIDI files for your music projects and experiments.",
-      "fullName": "NouilleOrque/awesome-midi-repos",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:29:42Z",
-      "url": "https://github.com/NouilleOrque/awesome-midi-repos"
-    },
-    {
-      "description": "\ud83e\udde0 Discover and evaluate advanced benchmark datasets for Large Language Model agents to enhance performance assessment in real-world tasks.",
-      "fullName": "axxafo/awesome-agent-benchmarks",
+      "description": "\ud83d\ude80 Explore modular agent skills for dynamic AI development, enabling on-demand knowledge injection through standardized `SKILL.md` packages.",
+      "fullName": "jrmapa/awesome-agent-skills",
       "stargazersCount": 3,
-      "updatedAt": "2026-02-25T23:29:14Z",
-      "url": "https://github.com/axxafo/awesome-agent-benchmarks"
+      "updatedAt": "2026-02-25T23:30:33Z",
+      "url": "https://github.com/jrmapa/awesome-agent-skills"
     }
   ]
 }

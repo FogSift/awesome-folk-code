@@ -1,19 +1,20 @@
 #!/bin/bash
-# 🏆 FogSift Intel Publisher
-echo "🏆 Publishing Intelligence to README..."
+# 🏆 FogSift Victory Publisher v2.0
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-REPORT="evidence/INTEL_REPORT.md"
+echo "🏆 Syncing Node Intelligence to Public README..."
 
-if [ ! -f "$REPORT" ]; then
-    echo "❌ No curated report found. Running Sifter first..."
-    python3 trend-sifter.py && python3 curate-intel.py
-fi
+# 1. Gather Data
+MOISTURE=$(cat "$DIR/evidence/live_moisture.json" | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
+INTEL=$(cat "$DIR/evidence/tech_context.txt" | head -n 1)
 
-# Use a temporary file to rebuild the README
-# We keep the header and replace the Intel section
-cat README.md | sed '/### 📡 Latest Intelligence/,$d' > README.tmp
-cat "$REPORT" >> README.tmp
-mv README.tmp README.md
+# 2. Update README (Maintain header, replace footer)
+sed -i '' '/### 📡 Node Intelligence/,$d' README.md
 
-echo "✅ README updated with latest trending artifacts."
-./shutdown.sh -y -m "Auto-curation: Sync latest GitHub trending artifacts" -v "Sovereign research cycle complete."
+echo -e "### 📡 Node Intelligence\n" >> README.md
+echo -e "**Current Moisture:** $MOISTURE%  " >> README.md
+echo -e "**Latest Discovery:** $INTEL  " >> README.md
+echo -e "**Last Sync:** $(date)  " >> README.md
+
+echo "✅ README updated."
+./shutdown.sh -y -m "Auto-Sync: Node Intelligence Update" -v "Published latest moisture and research stats."
