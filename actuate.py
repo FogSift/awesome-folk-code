@@ -2,38 +2,39 @@ import json
 import os
 from datetime import datetime
 
+# Files
 GUARD_FILE = "evidence/guard_status.json"
 MOISTURE_FILE = "evidence/live_moisture.json"
-WEATHER_FILE = "evidence/local_weather.json"
-THRESHOLD = 70
+HARVEST_FILE = "evidence/harvest_forecast.json" # We'll ensure this exists
+
+def get_dynamic_threshold():
+    # Default baseline
+    days_left = 99
+    if os.path.exists(HARVEST_FILE):
+        with open(HARVEST_FILE, 'r') as f:
+            days_left = json.load(f).get('days_to_harvest', 99)
+    
+    # 🧬 Biological Logic
+    if days_left > 85:
+        return 75  # Germination: Keep it wet
+    elif days_left > 40:
+        return 65  # Vegetative: Let roots hunt
+    else:
+        return 55  # Ripening: Stress the plant for better yield
 
 def decide():
-    # 1. Check Safety Guard
+    threshold = get_dynamic_threshold()
+    
     with open(GUARD_FILE, 'r') as f:
         if json.load(f)['state'] == "PANIC": return
 
-    # 2. Time-of-Day Check (Night Overrule)
-    # Evaporation is high between 10 AM and 6 PM
-    current_hour = datetime.now().hour
-    is_peak_sun = 10 <= current_hour <= 18
-
-    # 3. Weather Overrule
-    if os.path.exists(WEATHER_FILE):
-        with open(WEATHER_FILE, 'r') as f:
-            weather = json.load(f)['desc'].lower()
-            if "rain" in weather or "drizzle" in weather:
-                print("🌧️ WEATHER OVERRULE: Rain detected. Pump inhibited.")
-                return
-
-    # 4. Final Decision Logic
     with open(MOISTURE_FILE, 'r') as f:
         moisture = json.load(f)['moisture_pct']
 
-    if moisture < THRESHOLD:
-        if is_peak_sun:
-            print(f"☀️ SUN OVERRULE: Moisture is {moisture}%, but peak sun detected. Waiting for evening.")
-        else:
-            print(f"🌊 MOISTURE LOW ({moisture}%). TRIGGERING PUMP.")
+    print(f"🌱 Life Stage Check: {threshold}% Threshold required.")
+    
+    if moisture < threshold:
+        print(f"🌊 MOISTURE LOW ({moisture}%). TRIGGERING PUMP.")
     else:
         print(f"✅ MOISTURE OPTIMAL ({moisture}%). IDLE.")
 

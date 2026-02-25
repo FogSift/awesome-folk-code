@@ -1,40 +1,40 @@
 {
-  "captured_at": "2026-02-25 15:33",
+  "captured_at": "2026-02-25 15:35",
   "artifacts": [
     {
-      "description": "\ud83d\udcda Discover top JavaScript books for all skill levels, with curated recommendations to enhance your programming knowledge and skills.",
-      "fullName": "Sairix5/JSBooks",
+      "description": "\ud83d\udcfa Enable OWNIT IPTV over Wi-Fi with OpenWrt, bypassing the ISP router for a reliable and efficient viewing experience without Ethernet connections.",
+      "fullName": "KhPathouba/ownit-iptv-wifi",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:33:16Z",
-      "url": "https://github.com/Sairix5/JSBooks"
+      "updatedAt": "2026-02-25T23:34:56Z",
+      "url": "https://github.com/KhPathouba/ownit-iptv-wifi"
     },
     {
-      "description": "\ud83d\ude80 Build a containerized data engineering workflow for NYC Yellow Taxi Trip Data using Apache Spark, Airflow, MinIO, and DuckDB, fully reproducible with Docker.",
-      "fullName": "Codex56799/dataengineering",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:33:13Z",
-      "url": "https://github.com/Codex56799/dataengineering"
+      "description": "Collection of AI-related utilities. Welcome to submit pull requests /\u6536\u85cfAI\u76f8\u5173\u7684\u5b9e\u7528\u5de5\u5177\uff0c\u6b22\u8fce\u63d0\u4ea4pull requests",
+      "fullName": "ikaijua/Awesome-AITools",
+      "stargazersCount": 5640,
+      "updatedAt": "2026-02-25T23:34:56Z",
+      "url": "https://github.com/ikaijua/Awesome-AITools"
     },
     {
-      "description": "\ud83c\udf96\ufe0f Create and customize GitHub badges effortlessly to enhance your project's visibility and showcase its achievements.",
-      "fullName": "Shadowware/github-badge",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:32:43Z",
-      "url": "https://github.com/Shadowware/github-badge"
+      "description": "\ud83d\ude80 Discover and explore the 100 GitHub projects that shaped the tech landscape of 2025, enhancing your development toolkit and knowledge.",
+      "fullName": "mitsou55/100-GitHub-Projects-That-Defined-2025",
+      "stargazersCount": 2,
+      "updatedAt": "2026-02-25T23:34:45Z",
+      "url": "https://github.com/mitsou55/100-GitHub-Projects-That-Defined-2025"
     },
     {
-      "description": "Another Awesome List for Social Chess",
-      "fullName": "brisbanesocialchess/awesome-social-chess",
-      "stargazersCount": 10,
-      "updatedAt": "2026-02-25T23:32:04Z",
-      "url": "https://github.com/brisbanesocialchess/awesome-social-chess"
+      "description": "\ud83d\udcbb Discover essential AI-driven tools, frameworks, and resources to enhance your development process and streamline your projects.",
+      "fullName": "arpita612/Awesome-AI-resources",
+      "stargazersCount": 2,
+      "updatedAt": "2026-02-25T23:34:34Z",
+      "url": "https://github.com/arpita612/Awesome-AI-resources"
     },
     {
-      "description": "\ud83d\udd18 Enhance your README with a stylish set of deploy buttons for major cloud platforms, streamlining your projects and improving aesthetics.",
-      "fullName": "kbkgk1/deploy-buttons",
+      "description": "\ud83d\udce1 Stream OWNIT IPTV directly over Wi-Fi using OpenWrt, bypassing ISP routers for a seamless and reliable viewing experience.",
+      "fullName": "Alex1986-hue/ownit-iptv-wifi",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:32:02Z",
-      "url": "https://github.com/kbkgk1/deploy-buttons"
+      "updatedAt": "2026-02-25T23:34:22Z",
+      "url": "https://github.com/Alex1986-hue/ownit-iptv-wifi"
     }
   ]
 }
