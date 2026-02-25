@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350" style="background-color: #f5f0e6; border-radius: 12px; font-family: ui-monospace, 'JetBrains Mono', monospace;">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#d4c4a8" stroke-width="0.5" opacity="0.6"/>
+    </pattern>
+    <style>
+      .line-anim { stroke-dasharray: 8 8; animation: flow 1.5s linear infinite; }
+      .pulse-node { animation: pulse 3s infinite; }
+      @keyframes flow { to { stroke-dashoffset: -16; } }
+      @keyframes pulse { 0% { r: 6; opacity: 1; } 50% { r: 14; opacity: 0.3; } 100% { r: 6; opacity: 1; } }
+    </style>
+  </defs>
+  <rect width="100%" height="100%" fill="#f5f0e6" />
+  <rect width="100%" height="100%" fill="url(#grid)" />
+  <rect x="10" y="10" width="780" height="330" fill="none" stroke="#4a2c2a" stroke-width="3" rx="6" />
+  <path d="M 150 175 L 350 175" fill="none" stroke="#e07b3c" stroke-width="3" class="line-anim" />
+  <path d="M 450 175 C 550 175 550 100 650 100" fill="none" stroke="#4a2c2a" stroke-width="2" class="line-anim" />
+  <path d="M 450 175 C 550 175 550 250 650 250" fill="none" stroke="#e07b3c" stroke-width="3" class="line-anim" />
+  <rect x="50" y="135" width="100" height="80" rx="4" fill="#fff" stroke="#4a2c2a" stroke-width="2" />
+  <circle cx="100" cy="160" r="12" fill="none" stroke="#4a2c2a" stroke-width="2" />
+  <path d="M 88 180 Q 100 165 112 180" fill="none" stroke="#4a2c2a" stroke-width="2" />
+  <text x="100" y="200" fill="#4a2c2a" font-size="11" font-weight="bold" text-anchor="middle">HUMAN INTENT</text>
+  <rect x="350" y="125" width="100" height="100" rx="4" fill="#fff" stroke="#e07b3c" stroke-width="3" />
+  <circle cx="400" cy="165" r="8" fill="#e07b3c" class="pulse-node" />
+  <text x="400" y="205" fill="#4a2c2a" font-size="14" font-weight="bold" text-anchor="middle">LOCAL AI</text>
+  <text x="400" y="220" fill="#e07b3c" font-size="10" text-anchor="middle">SYNTHESIS</text>
+  <rect x="610" y="70" width="100" height="60" rx="4" fill="#fff" stroke="#4a2c2a" stroke-width="2" stroke-dasharray="4 4" />
+  <text x="660" y="105" fill="#4a2c2a" font-size="12" font-weight="bold" text-anchor="middle">DATA LAYER</text>
+  <text x="660" y="120" fill="#a09280" font-size="9" text-anchor="middle">(Global Sync)</text>
+  <rect x="610" y="220" width="100" height="60" rx="4" fill="#e07b3c" stroke="#4a2c2a" stroke-width="2" />
+  <text x="660" y="255" fill="#fff" font-size="12" font-weight="bold" text-anchor="middle">HARDWARE</text>
+  <text x="660" y="270" fill="#fff" font-size="9" text-anchor="middle" opacity="0.8">(Local Actuation)</text>
+</svg>
