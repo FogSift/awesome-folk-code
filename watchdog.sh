@@ -12,7 +12,7 @@ run_cycle() {
     python3 sensors/weather_bridge.py
     
     # 2. Update Soil Data (Sense)
-    python3 sensors/bridge.py
+    python3 sensors/probe_serial.py    python3 sensors/bridge.py
     
     # 3. Decision Logic (Actuate)
     python3 actuate.py
