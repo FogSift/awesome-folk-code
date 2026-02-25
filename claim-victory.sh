@@ -1,18 +1,14 @@
 #!/bin/bash
+# 🏆 FogSift Manual Actuation Override
+echo "🏆 ARCHITECT OVERRIDE: Forcing Actuation..."
 
-# 🏆 The Champion's Rite
-echo "🛡️ Initiating Victory Protocol..."
+TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
+MOISTURE_VAL=$(cat evidence/live_moisture.json | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
 
-read -p "Enter your Champion Title (e.g., The Architect): " TITLE
-USER_HANDLE=$(gh api user -q .login)
-DATE_STAMP=$(date +%Y-%m-%d)
+# Log the manual override
+echo "| $TIMESTAMP | $MOISTURE_VAL% | 🏆 MANUAL OVERRIDE (Victory) |" >> evidence/actuation_history.md
 
-# Automate the Git Flow
-git checkout -b victory-$USER_HANDLE
-echo "| @$USER_HANDLE | $DATE_STAMP | $TITLE |" >> LEADERBOARD.md
-git add LEADERBOARD.md
-git commit -m "🏆 New Champion: @$USER_HANDLE"
-git push -u origin victory-$USER_HANDLE
-
-# Open the PR automatically
-gh pr create --title "🏆 Hall of Champions: @$USER_HANDLE" --body "I have navigated the Labyrinth and secured the core."
+echo "--------------------------------------"
+echo "✅ Override logged. Pump Relay (Conceptual) Pulsed."
+echo "📊 Current Status:"
+./dashboard.sh | grep -A 2 "SYSTEM STATUS"

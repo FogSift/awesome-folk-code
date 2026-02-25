@@ -1,1 +1,1 @@
-{"sensor_id": "SOIL_SYNC_BETA_01", "moisture_pct": 50, "status": "ONLINE"}
+{"sensor_id": "SOIL_SYNC_BETA_01", "moisture_pct": 35, "status": "LOW_WATER"}
