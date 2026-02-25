@@ -1,40 +1,40 @@
 {
-  "captured_at": "2026-02-25 15:47",
+  "captured_at": "2026-02-25 15:51",
   "artifacts": [
     {
-      "description": "\ud83c\udfe2 Manage employee data efficiently with this RESTful API featuring full CRUD operations using Node.js, Express.js, and Azure SQL Database.",
-      "fullName": "OzoneAnim/employee-api",
+      "description": "\ud83d\udcbb Showcase skills that reflect my programming style and philosophy for better coding practices and improved collaboration.",
+      "fullName": "iiMooDY9/skills",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:46:31Z",
-      "url": "https://github.com/OzoneAnim/employee-api"
+      "updatedAt": "2026-02-25T23:50:46Z",
+      "url": "https://github.com/iiMooDY9/skills"
     },
     {
-      "description": "\ud83d\udd0d Filter Facebook Marketplace listings easily by finding new sellers with shipping, while removing duplicates and non-qualifying entries.",
-      "fullName": "mhr0007/G-SORTER",
+      "description": "\ud83d\udee0\ufe0f Debug React Native apps easily with rn-remote-debugger, a lightweight tool tailored for Hermes engine support and streamlined development.",
+      "fullName": "Sardorbek2802/rn-remote-debugger",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:45:59Z",
-      "url": "https://github.com/mhr0007/G-SORTER"
+      "updatedAt": "2026-02-25T23:50:19Z",
+      "url": "https://github.com/Sardorbek2802/rn-remote-debugger"
     },
     {
-      "description": "",
-      "fullName": "Jayden-HH/Birth-of-a-Mind",
+      "description": "\ud83d\udee0\ufe0f Exploit Shiro deserialization vulnerabilities with this comprehensive tool, ensuring dynamic gadget generation and stealthy memory execution.",
+      "fullName": "Shedo11/ShiroExploit",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:45:58Z",
-      "url": "https://github.com/Jayden-HH/Birth-of-a-Mind"
+      "updatedAt": "2026-02-25T23:49:29Z",
+      "url": "https://github.com/Shedo11/ShiroExploit"
     },
     {
-      "description": "\ud83e\udd16 Explore and manage skills in the open agent ecosystem with this powerful CLI tool, supporting multiple agents including Opencode and Codex.",
-      "fullName": "Apolinariolanga/skills",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:45:39Z",
-      "url": "https://github.com/Apolinariolanga/skills"
+      "description": "\ud83e\udd16 Discover top-quality AI Telegram bots for ChatGPT, art generation, automation, and translation tailored for Chinese users.",
+      "fullName": "hackingggbydaarknes/awesome-telegram-bots-ai",
+      "stargazersCount": 0,
+      "updatedAt": "2026-02-25T23:49:25Z",
+      "url": "https://github.com/hackingggbydaarknes/awesome-telegram-bots-ai"
     },
     {
-      "description": "\ud83d\udcc8 Calculate rewards efficiently for yield farming and liquidity mining platforms with DeFiYield Farming. Optimize your returns seamlessly.",
-      "fullName": "toji-lang/DeFiYield-Farming",
+      "description": "\ud83d\udc3e Discover essential resources for caring for dogs, cats, fish, horses, and more, compiled from years of experience with pets and street animals.",
+      "fullName": "breead1/awesome-animal-care",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:44:41Z",
-      "url": "https://github.com/toji-lang/DeFiYield-Farming"
+      "updatedAt": "2026-02-25T23:49:15Z",
+      "url": "https://github.com/breead1/awesome-animal-care"
     }
   ]
 }
