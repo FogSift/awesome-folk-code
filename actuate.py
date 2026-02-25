@@ -1,33 +1,41 @@
-import time
-import random
+import json
+import os
+from datetime import datetime
 
-# 🌫️ FogSift Actuation Bridge (Template)
-# This script simulates an AI-supported irrigation decision loop.
+# 💧 FogSift Actuation Bridge v1.0
+MOISTURE_FILE = "evidence/live_moisture.json"
+ACTUATION_LOG = "evidence/actuation_history.md"
+THRESHOLD = 40  # Trigger pump if moisture drops below 40%
 
-def get_soil_moisture():
-    # In a real build, replace this with ESP32/Serial data
-    return random.randint(20, 80)
+def check_and_actuate():
+    if not os.path.exists(MOISTURE_FILE):
+        print("⚠️ No moisture data detected. Actuation suspended.")
+        return
 
-def ask_claude_for_decision(level):
-    print(f"📡 Transmitting signal to Upstream Bridge (Moisture: {level}%)...")
-    if level < 35:
-        return "ACTUATE: OPEN_VALVE"
+    with open(MOISTURE_FILE, 'r') as f:
+        data = json.load(f)
+    
+    moisture = data['moisture_pct']
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    print(f"🔍 Analyzing Moisture: {moisture}% (Threshold: {THRESHOLD}%)")
+
+    if moisture < THRESHOLD:
+        trigger_pump(moisture, timestamp)
     else:
-        return "STANDBY: SUFFICIENT_HYDRATION"
+        print("✅ Moisture optimal. Pump remains IDLE.")
 
-def main():
-    print("🔧 FogSift Actuator Node initialized.")
-    while True:
-        level = get_soil_moisture()
-        decision = ask_claude_for_decision(level)
-        
-        print(f"🤖 Decision: {decision}")
-        
-        if "OPEN_VALVE" in decision:
-            print("💧 ACTUATING: Pump engaged for 5 seconds.")
-        
-        print("--- Sleeping for 10 seconds ---")
-        time.sleep(10)
+def trigger_pump(val, time):
+    log_entry = f"| {time} | {val}% | 🌊 PUMP TRIGGERED |"
+    print(f"🌊 ALERT: {log_entry}")
+    
+    # Write to local history
+    if not os.path.exists(ACTUATION_LOG):
+        with open(ACTUATION_LOG, 'w') as f:
+            f.write("# 🌊 FogSift Actuation History\n| Timestamp | Moisture | Action |\n| :--- | :--- | :--- |\n")
+    
+    with open(ACTUATION_LOG, 'a') as f:
+        f.write(log_entry + "\n")
 
 if __name__ == "__main__":
-    main()
+    check_and_actuate()
