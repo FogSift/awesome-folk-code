@@ -36,3 +36,12 @@ If you want to officially submit your code to the list yourself:
 6. Click **Propose changes**, and then click **Create pull request**. 
 
 Boom. You just contributed to open-source software.
+
+## Check Your Setup
+Not sure if your terminal is ready? Download this repository and run 
+🔮 Checking your FogSift Vibe 🔮
+--------------------------------
+✅ Git is installed. You are ready to time-travel.
+✅ GitHub CLI (gh) is installed. No web UI needed!
+--------------------------------
+Run this anytime to ensure your workbench is ready. in your terminal to find out.
