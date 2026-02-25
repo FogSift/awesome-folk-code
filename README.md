@@ -9,7 +9,14 @@
 - [Work & Trade](#work--trade)
 - [Hobbies & Crafts](#hobbies--crafts)
 
+
+## 🧪 Tactical Training Simulation
+*Think you are ready for the field? Launch the terminal simulator to practice your navigation and logic.*
+
+[**🎮 START: THE LABYRINTH OF LOGIC**](https://fogsift.github.io/awesome-folk-code/games/minotaur-labyrinth/)
+
 ---
+
 
 ## Home & Family
 - [Toddler Translation Matrix](https://github.com/FogSift/awesome-folk-code) - An iOS shortcut that logs toddler babble, runs it through Claude, and guesses what they actually want for a snack. Built by a tired dad.

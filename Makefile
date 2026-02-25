@@ -34,3 +34,7 @@ submit:
 
 stats:
 	@python3 update-stats.py
+
+game:
+	@echo "🚀 Launching local preview of the game..."
+	@open games/minotaur-labyrinth/index.html

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FOGSIFT // LABYRINTH_OF_LOGIC.v1</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f0e6; --crt: #4a2c2a; --highlight: #e07b3c; --text: #4a2c2a;
+        }
+        body {
+            background-color: var(--bg); color: var(--text);
+            font-family: 'JetBrains Mono', monospace;
+            display: flex; flex-direction: column; height: 100vh; margin: 0; padding: 20px; box-sizing: border-box;
+            overflow: hidden;
+        }
+        #terminal {
+            flex-grow: 1; background: #fff; border: 3px solid var(--crt);
+            border-radius: 8px; padding: 20px; overflow-y: auto;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.1), 5px 5px 0 var(--crt);
+            position: relative;
+        }
+        #terminal::before {
+            content: " "; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none;
+        }
+        .input-line { display: flex; align-items: center; margin-top: 10px; }
+        .prompt { color: var(--highlight); font-weight: bold; margin-right: 10px; }
+        input {
+            background: transparent; border: none; color: var(--text);
+            font-family: inherit; font-size: 1rem; outline: none; flex-grow: 1;
+        }
+        .output { white-space: pre-wrap; margin-bottom: 5px; line-height: 1.4; }
+        .error { color: #dc2626; }
+        .success { color: #2a9d8f; font-weight: bold; }
+        .header { font-weight: bold; border-bottom: 2px solid var(--crt); margin-bottom: 10px; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <div class="header">FOGSIFT TACTICAL SYSTEMS // SUBJECT: LABYRINTH_ORIENTATION</div>
+    <div id="terminal">
+        <div id="output-container">
+            <div class="output">Initializing Labyrinth Protocol...</div>
+            <div class="output">Welcome, Initiate. You are at the entrance of the Logic Maze.</div>
+            <div class="output">A Minotaur guards the core data. Use terminal commands to find him.</div>
+            <div class="output">Type 'help' if your vibe is lost.</div>
+        </div>
+        <div class="input-line">
+            <span class="prompt">initiate@fogsift:~$</span>
+            <input type="text" id="cmd-input" autofocus autocomplete="off">
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('cmd-input');
+        const container = document.getElementById('output-container');
+        const term = document.getElementById('terminal');
+
+        let state = {
+            location: 'entrance',
+            hasScroll: false,
+            minotaurHealth: 100,
+            gitInitialized: false
+        };
+
+        const map = {
+            'entrance': { desc: 'The air is damp. Stone walls rise high.', exits: ['corridor'] },
+            'corridor': { desc: 'A long hall. Ancient blueprints are taped to the wall.', exits: ['entrance', 'archive', 'chamber'] },
+            'archive': { desc: 'Stacks of binary punch cards. A glowing scroll sits on a pedestal.', exits: ['corridor'] },
+            'chamber': { desc: 'The floor shakes. A massive shadow looms. THE MINOTAUR IS HERE.', exits: ['corridor'] }
+        };
+
+        function print(msg, cls = '') {
+            const div = document.createElement('div');
+            div.className = 'output ' + cls;
+            div.textContent = msg;
+            container.appendChild(div);
+            term.scrollTop = term.scrollHeight;
+        }
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const raw = input.value.trim();
+                const [cmd, ...args] = raw.toLowerCase().split(' ');
+                input.value = '';
+                print(`> ${raw}`);
+
+                switch(cmd) {
+                    case 'help':
+                        print('COMMANDS: ls (look around), cd [loc] (move), cat [file] (read), status (check self), attack (only in chamber)');
+                        break;
+                    case 'ls':
+                        print(`Location: ${state.location}`);
+                        print(`Visible paths: ${map[state.location].exits.join(', ')}`);
+                        if (state.location === 'archive' && !state.hasScroll) print('File found: scroll.txt');
+                        break;
+                    case 'cd':
+                        if (map[state.location].exits.includes(args[0])) {
+                            state.location = args[0];
+                            print(`Moved to ${args[0]}.`);
+                            print(map[args[0]].desc);
+                        } else {
+                            print('Error: Path blocked or non-existent.', 'error');
+                        }
+                        break;
+                    case 'cat':
+                        if (args[0] === 'scroll.txt' && state.location === 'archive') {
+                            state.hasScroll = true;
+                            print('--- ANCIENT DATA ---');
+                            print('To defeat the Beast, you must COMMIT your intent.');
+                            print('The beast fears the hash: git commit -m "kill"');
+                            print('--------------------', 'success');
+                        } else {
+                            print('Error: File not found.', 'error');
+                        }
+                        break;
+                    case 'status':
+                        print(`Subject: Initiate | Gear: ${state.hasScroll ? 'Logic Scroll' : 'Empty Hands'} | Health: 100`);
+                        break;
+                    case 'git':
+                        if (args[0] === 'commit' && state.location === 'chamber') {
+                            print('CRYPTO-STRIKE! You stamp a permanent record into the beast.', 'success');
+                            print('THE MINOTAUR HAS BEEN DEFEATED.', 'success');
+                            print('CONGRATULATIONS. YOU ARE NO LONGER AN INITIATE. YOU ARE A VIBE CODER.');
+                        } else {
+                            print('Error: This is not the place for time-travel.', 'error');
+                        }
+                        break;
+                    default:
+                        print(`Unknown command: ${cmd}`, 'error');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
