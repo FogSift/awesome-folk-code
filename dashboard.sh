@@ -1,5 +1,5 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard v2.9
+# 🖥️ FogSift Mission Control Dashboard v3.2
 
 # Colors
 GREEN='\033[0;32m'
@@ -43,17 +43,19 @@ if [ -f "evidence/live_moisture.json" ]; then
 fi
 
 if [ -f "evidence/watchdog_heartbeat.txt" ]; then
-    LAST_PULSE=$(cat evidence/watchdog_heartbeat.txt)
-    echo -e "  • Watchdog Pulse: ${CYAN}ACTIVE ($LAST_PULSE)${RESET}"
+    echo -e "  • Watchdog Pulse: ${CYAN}ACTIVE ($(cat evidence/watchdog_heartbeat.txt))${RESET}"
 fi
 
-# 3. Research Intelligence
+# 3. Discovery & Health Signal
 if [ -f "evidence/trending_artifacts.json" ]; then
     TOP_REPO=$(python3 -c "import json; print(json.load(open('evidence/trending_artifacts.json'))['artifacts'][0]['fullName'])")
     echo -e "  • Top Discovery:  ${YELLOW}$TOP_REPO${RESET}"
-    if [ -f "evidence/last_validation.txt" ]; then 
-        echo -e "  • Project Health: $(cat evidence/last_validation.txt | cut -d: -f2)" 
-    fifi
+    
+    if [ -f "evidence/last_validation.txt" ]; then
+        HEALTH_SIG=$(cat evidence/last_validation.txt | cut -d: -f2)
+        echo -e "  • Project Health: ${CYAN}$HEALTH_SIG${RESET}"
+    fi
+fi
 
 # 4. Biological Assets
 echo -e "\n${GREEN}[ BIOLOGICAL ASSETS ]${RESET}"

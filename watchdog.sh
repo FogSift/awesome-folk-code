@@ -19,7 +19,7 @@ run_cycle() {
     python3 trend-sifter.py 
     python3 curate-intel.py    
     python3 validate-discovery.py    # 4. Record Heartbeat
-    echo "$TIMESTAMP" > evidence/watchdog_heartbeat.txt
+    python3 extract-context.py    echo "$TIMESTAMP" > evidence/watchdog_heartbeat.txt
     echo "🐕 Cycle Complete. Sleeping for $INTERVAL seconds."
 }
 

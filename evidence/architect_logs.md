@@ -75,3 +75,8 @@
 * **Vibe:** Automated
 * **Entry:** Node is now identifying garage-ready hardware projects.
 ---
+
+## 2026-02-25 15:15
+* **Vibe:** Automated
+* **Entry:** Node is now summarizing discovery setup requirements.
+---
