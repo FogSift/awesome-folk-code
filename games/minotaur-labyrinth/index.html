@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FOGSIFT // TACTICAL_SIMULATOR_v3.3</title>
+    <title>FOGSIFT // TACTICAL_SIMULATOR_v3.4</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #f5f0e6; --crt: #4a2c2a; --highlight: #e07b3c; --text: #4a2c2a; --success: #2a9d8f; --error: #dc2626; }
@@ -13,6 +13,7 @@
         .prompt { color: var(--highlight); font-weight: bold; margin-right: 10px; white-space: nowrap; }
         input { background: transparent; border: none; color: var(--text); font-family: inherit; font-size: 1rem; outline: none; flex-grow: 1; }
         .output { white-space: pre-wrap; margin-bottom: 8px; line-height: 1.4; animation: fadeIn 0.1s ease-out; }
+        .ascii { color: var(--crt); font-size: 10px; line-height: 1; margin-bottom: 15px; font-weight: bold; }
         .boss-art { color: var(--error); font-size: 14px; line-height: 1.1; text-align: center; margin: 20px 0; font-weight: 900; white-space: pre; }
         .error { color: var(--error); font-weight: bold; }
         .success { color: var(--success); font-weight: bold; }
@@ -23,14 +24,14 @@
 </head>
 <body>
     <div class="header">
-        <span>FOGSIFT TACTICAL SYSTEMS // v3.3_DIAG_MOD</span>
+        <span>FOGSIFT TACTICAL SYSTEMS // v3.4_ULTIMATE</span>
         <button class="demo-btn" onclick="startDemo()">[ SYSTEM_OVERRIDE / DEMO ]</button>
         <span id="status-display">INITIATE_STATUS: ACTIVE</span>
     </div>
     <div id="terminal">
         <div id="output-container">
-            <div class="output">Labyrinth re-initialized. Remote tunnel detected.</div>
-            <div class="output">Type <span class="success">'diag'</span> to check upstream connectivity.</div>
+            <div class="output">Labyrinth re-initialized. <span class="error">Upstream tunnel reset.</span></div>
+            <div class="output">Type <span class="success">'diag'</span> to analyze or <span class="success">'repair'</span> to re-sync.</div>
         </div>
         <div id="boss-display" class="boss-art"></div>
         <div class="input-line">
@@ -46,7 +47,7 @@
         const prompt = document.getElementById('current-prompt');
         const bossDiv = document.getElementById('boss-display');
 
-        let state = { location: 'entrance', history: ['entrance'], inventory: [], meshPinging: false, sshKeyFound: false, gameWon: false };
+        let state = { location: 'entrance', history: ['entrance'], inventory: [], tunnelRepaired: false, gameWon: false, sshKeyFound: false, meshPinging: false };
 
         const minotaurFrames = [`      /\\____/\\\n     /  o  o  \\\n    (    --    )\n     \\  \\__/  /\n      \\______/`,`      /\\____/\\\n     /  >  <  \\\n    (   O  O   )\n     \\  \\AA/  /\n      \\______/\n       HA HA HA!`];
 
@@ -79,11 +80,16 @@
 
             switch(cmd) {
                 case 'diag':
-                    print('FETCHING UPSTREAM STATUS...');
-                    await new Promise(r => setTimeout(r, 1000));
-                    print('ERROR: Connection refused.', 'error');
-                    print('REASON: Remote connection failure / Delayed connect.', 'error');
-                    print('FIX: Verify tunnel logic. Re-sync local actuate-node.');
+                    print('ANALYZING UPSTREAM...');
+                    await new Promise(r => setTimeout(r, 800));
+                    print('ERROR: upstream connect error or disconnect/reset before headers.', 'error');
+                    print('REASON: delayed connect error: Connection refused.');
+                    break;
+                case 'repair':
+                    print('INITIATING CLOUDFLARE TUNNEL RE-SYNC...');
+                    await new Promise(r => setTimeout(r, 1500));
+                    state.tunnelRepaired = true;
+                    print('SUCCESS: Local actuation node back online.', 'success');
                     break;
                 case 'ls':
                     print(`NODE: ${state.location.toUpperCase()} | PATHS: ${map[state.location].exits.join(', ')}`);
@@ -100,19 +106,32 @@
                 case 'git':
                     if (state.location === 'core' && raw.includes('"sync"')) {
                         toggleBoss(false);
+                        state.gameWon = true;
                         print('CRITICAL HIT! MINOTAUR PURGED.', 'success');
-                        print('REWARD: Use code VIBECODE26 at fogsift.com');
+                        print('-----------------------------------------');
+                        print('🏆 MISSION ACCOMPLISHED.');
+                        print('Type <span class="success">"submit"</span> to enter the Hall of Champions.');
                         document.getElementById('status-display').textContent = 'STATUS: VIBE CODER';
                     } else { print('HA HA! WRONG LOGIC.', 'error'); }
                     break;
-                case 'help': print('diag, ls, cd, cat, grep, ping, git commit'); break;
+                case 'submit':
+                    if (!state.gameWon) { print('ERROR: You must defeat the beast first.', 'error'); }
+                    else {
+                        print('--- HALL OF CHAMPIONS SUBMISSION ---');
+                        print('To add your name, run this in your real terminal:');
+                        print('<span class="success">git checkout -b champ-yourname</span>');
+                        print('<span class="success">echo "| @yourname | $(date +%Y-%m-%d) | Legend |" >> LEADERBOARD.md</span>');
+                        print('<span class="success">gh pr create --title "New Champion"</span>');
+                    }
+                    break;
+                case 'help': print('diag, repair, ls, cd, cat, grep, ping, git commit, submit'); break;
                 default: print('Unknown command.', 'error');
             }
         }
         input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { processCmd(input.value.trim()); input.value = ''; } });
         async function startDemo() {
-            const steps = ['diag', 'cd corridor', 'cd core', 'git commit -m "sync"'];
-            for (let s of steps) { input.value = s; await new Promise(r => setTimeout(r, 800)); processCmd(s); input.value = ''; }
+            const steps = ['diag', 'repair', 'cd corridor', 'cd core', 'git commit -m "sync"', 'submit'];
+            for (let s of steps) { input.value = s; await new Promise(r => setTimeout(r, 1000)); processCmd(s); input.value = ''; }
         }
     </script>
 </body>
