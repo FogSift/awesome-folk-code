@@ -2,28 +2,51 @@ import csv
 import os
 from datetime import datetime, timedelta
 
-# 📈 FogSift Supply Chain Forecaster
-# This script generates a projection based on historical harvest data.
+# 📈 FogSift Supply Chain Forecaster v2.3
+SEED_LOG = "evidence/seed_inventory.csv"
 
-LOG_FILE = "evidence/harvest_log.csv"
+# Days to Maturity (DTM) dictionary
+DTM_MAP = {
+    "Chickpea": 100,
+    "Tomato": 80,
+    "Basil": 45,
+    "Default": 60
+}
 
-def initialize_log():
-    if not os.path.exists(LOG_FILE):
-        with open(LOG_FILE, 'w', newline='') as f:
-            writer = csv.writer(f)
-            writer.writerow(["Date", "Artifact", "Yield_Grams", "Health_Score"])
-        print(f"✅ Initialized new harvest log at {LOG_FILE}")
+def get_projections():
+    if not os.path.exists(SEED_LOG):
+        return "❌ Error: No seed inventory found."
 
-def get_forecast():
-    # Placeholder logic: In Phase 2, this will analyze historical CSV trends
-    prediction_date = (datetime.now() + timedelta(days=14)).strftime('%Y-%m-%d')
-    return f"PROJECTION: Next harvest expected near {prediction_date} | EST_YIELD: +15%"
+    projections = []
+    with open(SEED_LOG, mode='r') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            # Explicit mapping to prevent column shifting errors
+            # We strip whitespace from keys and values
+            clean_row = {str(k).strip(): str(v).strip() for k, v in row.items() if k is not None}
+            
+            variety = clean_row.get('Variety')
+            plant_date_str = clean_row.get('Plant_Date')
+            
+            if not variety or not plant_date_str:
+                continue
+
+            dtm = int(DTM_MAP.get(variety, DTM_MAP["Default"]))
+            
+            try:
+                # Attempt to parse the date
+                plant_date = datetime.strptime(plant_date_str, '%Y-%m-%d')
+                harvest_date = plant_date + timedelta(days=dtm)
+                projections.append(f"🌿 {variety}: Expected Harvest {harvest_date.strftime('%Y-%m-%d')} (DTM: {dtm})")
+            except ValueError:
+                projections.append(f"⚠️ {variety}: Invalid date format found: '{plant_date_str}'")
+    
+    return "\n".join(projections) if projections else "📭 No valid entries found."
 
 def main():
-    initialize_log()
-    print("--- FOGSIFT YIELD INTELLIGENCE ---")
-    print(get_forecast())
-    print("----------------------------------")
+    print("\n--- FOGSIFT YIELD INTELLIGENCE ---")
+    print(get_projections())
+    print("----------------------------------\n")
 
 if __name__ == "__main__":
     main()
