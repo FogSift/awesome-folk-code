@@ -1,5 +1,5 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard v2.1 (Mac Native)
+# 🖥️ FogSift Mission Control Dashboard v2.4 (Open-Meteo)
 
 # Colors
 GREEN='\033[0;32m'
@@ -22,36 +22,40 @@ echo -e "${CYAN}====================================================${RESET}"
 echo -e "${CYAN}             ENVIRONMENTAL INTELLIGENCE             ${RESET}"
 echo -e "${CYAN}====================================================${RESET}"
 
-# 1. Local Weather (Chico, CA)
+# 1. Local Weather via Open-Meteo Bridge
 echo -e "${YELLOW}[ LOCAL WEATHER ]${RESET}"
-# Using a slightly different format to ensure it displays on one line
-curl -s "wttr.in/Chico?format=%l:+%c+%t+%w" || echo "  • Weather signal lost."
-
-# 2. Biological Countdown
-echo -e "\n${GREEN}[ BIOLOGICAL ASSETS ]${RESET}"
-if [ -f "evidence/seed_inventory.csv" ]; then
-    # Grab the date from the 5th column of the forecaster output
-    HARVEST_DATE=$(python3 forecast-harvest.py | grep "Chickpea" | awk '{print $5}')
-    if [ -n "$HARVEST_DATE" ]; then
-        # Mac-specific date math
-        TARGET=$(date -j -f "%Y-%m-%d" "$HARVEST_DATE" +%s)
-        TODAY=$(date +%s)
-        DIFF=$(( (TARGET - TODAY) / 86400 ))
-        echo -e "  • ${YELLOW}Chico Chickpea:${RESET} $DIFF Days until Harvest ($HARVEST_DATE)"
-    fi
+python3 sensors/weather_bridge.py
+if [ -f "evidence/local_weather.json" ]; then
+    TEMP=$(python3 -c "import json; print(json.load(open('evidence/local_weather.json'))['temp'])")
+    HUM=$(python3 -c "import json; print(json.load(open('evidence/local_weather.json'))['humidity'])")
+    DESC=$(python3 -c "import json; print(json.load(open('evidence/local_weather.json'))['desc'])")
+    echo "  • Chico, CA: $DESC | $TEMP | Humidity: $HUM"
 else
-    echo "  • No biological signals detected."
+    echo "  • Weather signal lost."
+fi
+
+# 2. Live Sensor Gauge
+echo -e "\n${GREEN}[ LIVE SENSOR DATA ]${RESET}"
+python3 sensors/bridge.py > /dev/null
+if [ -f "evidence/live_moisture.json" ]; then
+    MOISTURE=$(cat evidence/live_moisture.json | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
+    BAR_SIZE=$(( MOISTURE / 5 ))
+    printf "  • Soil Moisture: ["
+    for ((i=0; i<20; i++)); do
+        if [ $i -lt $BAR_SIZE ]; then printf "${GREEN}#${RESET}"; else printf "."; fi
+    done
+    printf "] ${MOISTURE}%%\n"
+fi
+
+# 3. Biological Countdown
+echo -e "\n${GREEN}[ BIOLOGICAL ASSETS ]${RESET}"
+HARVEST_DATE=$(python3 forecast-harvest.py | grep "Chickpea" | awk '{print $5}')
+if [ -n "$HARVEST_DATE" ]; then
+    TARGET=$(date -j -f "%Y-%m-%d" "$HARVEST_DATE" +%s)
+    TODAY=$(date +%s)
+    DIFF=$(( (TARGET - TODAY) / 86400 ))
+    echo -e "  • ${YELLOW}Chico Chickpea:${RESET} $DIFF Days until Harvest ($HARVEST_DATE)"
 fi
 
 echo -e "${CYAN}----------------------------------------------------${RESET}"
-
-# 3. Registry Health
-echo -e "${GREEN}[ REGISTRY HEALTH ]${RESET}"
-UNTRACKED=$(git status --porcelain | wc -l | xargs)
-STATUS=$([ "$UNTRACKED" -eq "0" ] && echo -e "${GREEN}OPTIMAL${RESET}" || echo -e "${YELLOW}DIRTY ($UNTRACKED changes)${RESET}")
-echo -e "  • Node Status: $STATUS"
-echo "  • Architecture Map: $([ -f ARCHITECTURE.md ] && echo "LOCKED" || echo "MISSING")"
-echo "  • Last Transmit: $(git log -1 --format=%cr)"
-
-echo -e "${CYAN}====================================================${RESET}"
-echo -e "LOGS: [ status ] [ vibe-log ] [ ./map-registry.sh ]"
+echo -e "LOGS: [ status ] [ vibe-log ] [ shutdown -y -m '...' ]"
