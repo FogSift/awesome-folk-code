@@ -1,13 +1,14 @@
 import subprocess
 import json
 import os
+import re
 
 INTEL_FILE = "evidence/trending_artifacts.json"
-BRIEF_FILE = "evidence/tech_context.txt"
+TEMP_BRIEF = "evidence/tech_context.tmp"
+FINAL_BRIEF = "evidence/tech_context.txt"
 
-def generate_brief():
-    if not os.path.exists(INTEL_FILE):
-        return
+def generate_actionable_brief():
+    if not os.path.exists(INTEL_FILE): return
         
     with open(INTEL_FILE, 'r') as f:
         data = json.load(f)
@@ -17,26 +18,29 @@ def generate_brief():
 
     print(f"📖 Sifting Vitals for {repo_name}...")
     
-    cmd = ["gh", "repo", "view", repo_name, "--json", "stargazersCount,forkCount,openIssuesCount,description,url"]
+    cmd = ["gh", "repo", "view", repo_name, "--json", "stargazersCount,openIssuesCount,description,url,readme"]
     result = subprocess.run(cmd, capture_output=True, text=True)
     
     if result.returncode == 0:
         s = json.loads(result.stdout)
+        score = s['stargazersCount'] / (s['openIssuesCount'] + 1)
+        rank = "🔥 HIGH" if score > 50 else "🛠️ MED"
         
-        # 🧪 Scoring Logic
-        health_score = s['stargazersCount'] / (s['openIssuesCount'] + 1)
-        status = "🔥 HIGH SIGNAL" if health_score > 50 else "🛠️ ACTIVE DEV" if health_score > 10 else "⚠️ UNSTABLE"
+        readme = s.get('readme', "")
+        install_match = re.search(r'(pip install \S+|npm install \S+|docker pull \S+)', readme)
+        action = install_match.group(0) if install_match else "Check README for setup"
 
         brief = [
-            f"NAME: {repo_name}",
-            f"RANK: {status} (Score: {health_score:.1f})",
-            f"DESC: {s['description'][:80]}...",
+            f"REPO: {repo_name} [{rank}]",
+            f"TASK: {action}",
             f"LINK: {s['url']}"
         ]
         
-        with open(BRIEF_FILE, "w") as f:
+        # Atomic Write Pattern
+        with open(TEMP_BRIEF, "w") as f:
             f.write("\n".join(brief))
-        print(f"✅ Research Brief Secured for {repo_name}")
+        os.replace(TEMP_BRIEF, FINAL_BRIEF)
+        print(f"✅ Actionable Brief Secured.")
 
 if __name__ == "__main__":
-    generate_brief()
+    generate_actionable_brief()

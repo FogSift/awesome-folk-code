@@ -1,40 +1,40 @@
 {
-  "captured_at": "2026-02-25 15:27",
+  "captured_at": "2026-02-25 15:28",
   "artifacts": [
     {
-      "description": "\ud83d\udd0d Discover and utilize RyExploit, a comprehensive tool for security research on the Ry framework, focusing on Thymeleaf-bypass and command execution.",
-      "fullName": "Deracz/RyExploit",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:26:32Z",
-      "url": "https://github.com/Deracz/RyExploit"
+      "description": "\ud83d\ude80 Build and scale reliable Retrieval-Augmented Generation (RAG) systems with this curated collection of tools, frameworks, and best practices.",
+      "fullName": "mowael07/Awesome-RAG-Production",
+      "stargazersCount": 2,
+      "updatedAt": "2026-02-25T23:28:00Z",
+      "url": "https://github.com/mowael07/Awesome-RAG-Production"
     },
     {
-      "description": "\ud83c\udf4c Explore LowLevelBanana, a comprehensive evaluation tool for low-level vision tasks across 14 tasks and 40 datasets in AI research.",
-      "fullName": "mpahlevi64/LowLevelBanana",
+      "description": "\ud83d\udcda Build a modern exam practice system with features like question management, smart exercises, and performance analysis for effective learning.",
+      "fullName": "Barbarossada/Practice_Review",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:26:31Z",
-      "url": "https://github.com/mpahlevi64/LowLevelBanana"
+      "updatedAt": "2026-02-25T23:27:48Z",
+      "url": "https://github.com/Barbarossada/Practice_Review"
     },
     {
-      "description": "\ud83d\udee0\ufe0f Enable seamless collaboration between Claude and multiple models/tools with the Agent Skills collection for efficient coding and AI integration.",
-      "fullName": "dali-raki/skills",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:26:22Z",
-      "url": "https://github.com/dali-raki/skills"
+      "description": "\ud83d\ude80 Build production-tested Claude Code skills for B2B SaaS using TypeScript, enhancing workflows and ensuring GDPR compliance in AI development.",
+      "fullName": "freitasp1/claude-code-skills",
+      "stargazersCount": 6,
+      "updatedAt": "2026-02-25T23:27:44Z",
+      "url": "https://github.com/freitasp1/claude-code-skills"
     },
     {
-      "description": "\ud83c\udf7d\ufe0f Explore a sample iOS app using SwiftUI and MVVM with coordinators, designed for learning and understanding practical implementation.",
-      "fullName": "Sushiii24/Recipes",
+      "description": "\ud83d\udcc4 Create, share, and discover code snippets effortlessly with Gist, your go-to tool for managing short pieces of code and notes.",
+      "fullName": "XXDBOXY/Gist",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:26:26Z",
-      "url": "https://github.com/Sushiii24/Recipes"
+      "updatedAt": "2026-02-25T23:27:37Z",
+      "url": "https://github.com/XXDBOXY/Gist"
     },
     {
-      "description": "\ud83e\udd16 Explore essential AI tools for building, automating, and monetizing projects across content, video, e-commerce, and more.",
-      "fullName": "foodman1227/awesome-ai-tools",
+      "description": "\ud83d\udee0\ufe0f Reverse engineer Cursor's Tab complete to integrate its top features seamlessly into other IDEs, enhancing user efficiency and experience.",
+      "fullName": "Kanis04/cursor-unchained",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:26:27Z",
-      "url": "https://github.com/foodman1227/awesome-ai-tools"
+      "updatedAt": "2026-02-25T23:27:01Z",
+      "url": "https://github.com/Kanis04/cursor-unchained"
     }
   ]
 }

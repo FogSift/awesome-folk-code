@@ -1,23 +1,23 @@
 # 📚 FogSift Hardware Index
-Last updated: Wed Feb 25 15:27:04 PST 2026
+Last updated: Wed Feb 25 15:28:49 PST 2026
 
-## Deracz/RyExploit
-- **URL:** https://github.com/Deracz/RyExploit
-- **Description:** 🔍 Discover and utilize RyExploit, a comprehensive tool for security research on the Ry framework, focusing on Thymeleaf-bypass and command execution.
+## mowael07/Awesome-RAG-Production
+- **URL:** https://github.com/mowael07/Awesome-RAG-Production
+- **Description:** 🚀 Build and scale reliable Retrieval-Augmented Generation (RAG) systems with this curated collection of tools, frameworks, and best practices.
 
-## mpahlevi64/LowLevelBanana
-- **URL:** https://github.com/mpahlevi64/LowLevelBanana
-- **Description:** 🍌 Explore LowLevelBanana, a comprehensive evaluation tool for low-level vision tasks across 14 tasks and 40 datasets in AI research.
+## Barbarossada/Practice_Review
+- **URL:** https://github.com/Barbarossada/Practice_Review
+- **Description:** 📚 Build a modern exam practice system with features like question management, smart exercises, and performance analysis for effective learning.
 
-## dali-raki/skills
-- **URL:** https://github.com/dali-raki/skills
-- **Description:** 🛠️ Enable seamless collaboration between Claude and multiple models/tools with the Agent Skills collection for efficient coding and AI integration.
+## freitasp1/claude-code-skills
+- **URL:** https://github.com/freitasp1/claude-code-skills
+- **Description:** 🚀 Build production-tested Claude Code skills for B2B SaaS using TypeScript, enhancing workflows and ensuring GDPR compliance in AI development.
 
-## Sushiii24/Recipes
-- **URL:** https://github.com/Sushiii24/Recipes
-- **Description:** 🍽️ Explore a sample iOS app using SwiftUI and MVVM with coordinators, designed for learning and understanding practical implementation.
+## XXDBOXY/Gist
+- **URL:** https://github.com/XXDBOXY/Gist
+- **Description:** 📄 Create, share, and discover code snippets effortlessly with Gist, your go-to tool for managing short pieces of code and notes.
 
-## foodman1227/awesome-ai-tools
-- **URL:** https://github.com/foodman1227/awesome-ai-tools
-- **Description:** 🤖 Explore essential AI tools for building, automating, and monetizing projects across content, video, e-commerce, and more.
+## Kanis04/cursor-unchained
+- **URL:** https://github.com/Kanis04/cursor-unchained
+- **Description:** 🛠️ Reverse engineer Cursor's Tab complete to integrate its top features seamlessly into other IDEs, enhancing user efficiency and experience.
 

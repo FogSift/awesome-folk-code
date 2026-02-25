@@ -1,5 +1,5 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard v3.8 (Scoring Integrated)
+# 🖥️ FogSift Mission Control Dashboard v4.0 (Action Oriented)
 
 # Colors
 GREEN='\033[0;32m'
@@ -20,14 +20,13 @@ if [ -f "evidence/live_moisture.json" ]; then
     echo -e "${GREEN}[ SYSTEM ]${RESET} Soil: ${MOISTURE}% | Guard: ${GUARD}"
 fi
 
-# 2. Intel Briefing
-echo -e "\n${YELLOW}[ TOP DISCOVERY BRIEF ]${RESET}"
+# 2. Intel Action Brief
+echo -e "\n${YELLOW}[ TOP RESEARCH ACTION ]${RESET}"
 if [ -f "evidence/tech_context.txt" ]; then
-    while IFS= read -r line; do
-        echo -e "  • $line"
-    done < evidence/tech_context.txt
+    # Cat the file directly to avoid pulse-lost timing issues
+    cat evidence/tech_context.txt | sed 's/^/  • /'
 else
-    echo "  • Pulse lost. Re-run watchdog."
+    echo "  • [!] Researcher is still sifting GitHub..."
 fi
 
 # 3. Biological Assets

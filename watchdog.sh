@@ -1,28 +1,23 @@
 #!/bin/bash
-# 🐕 FogSift Autonomous Watchdog v2.2
-# Logic: Sense -> Guard -> Actuate -> Research & Score -> Log
+# 🐕 FogSift Autonomous Watchdog v2.3
+# Logic: Sense -> Guard -> Actuate -> Atomic Research
 
 run_cycle() {
     TIMESTAMP=$(date "+%Y-%m-%d %H:%M:%S")
     echo "🐕 [$TIMESTAMP] Watchdog Cycle Initiated..."
 
-    # 1. Environment & Safety
+    # 1. Physical/Simulated Loop
     python3 sensors/probe_serial.py || python3 sensors/bridge.py
     python3 sensors/guard.py
     python3 actuate.py
 
-    # 2. Intelligence Gathering
+    # 2. Atomic Intelligence Gathering
     python3 trend-sifter.py
     python3 extract-context.py
-    
-    # Small buffer to ensure file writes are complete
-    sleep 1
-
-    # 3. Artifact Curation
     python3 artifact-harvester.py
 
     echo "$TIMESTAMP" > evidence/watchdog_heartbeat.txt
-    echo "🐕 Cycle Complete. Intelligence Secured."
+    echo "🐕 Cycle Complete."
 }
 
 run_cycle
