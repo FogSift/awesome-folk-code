@@ -1,40 +1,40 @@
 {
-  "captured_at": "2026-02-25 15:24",
+  "captured_at": "2026-02-25 15:25",
   "artifacts": [
     {
-      "description": "\ud83d\ude80 Build a full-stack application quickly with Next.js. Explore features, optimize performance, and get started with ease.",
-      "fullName": "brayanvelasque/fullstackweekend-aparatus-v2",
-      "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:24:13Z",
-      "url": "https://github.com/brayanvelasque/fullstackweekend-aparatus-v2"
-    },
-    {
-      "description": "\ud83c\udfa8 Explore and compare SwiftUI animations interactively, adjusting parameters in real-time to enhance your app's visual appeal and understand animation behavior.",
-      "fullName": "CharlotteJV/SwiftAnimPlayground",
+      "description": "\ud83c\udfae Enhance your HarmonyOS apps with OHBridge SDK for features like sharing, media access, and sensor integration, simplifying native development.",
+      "fullName": "OoufA123456/HarmonyOS-Inno",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:23:50Z",
-      "url": "https://github.com/CharlotteJV/SwiftAnimPlayground"
+      "updatedAt": "2026-02-25T23:25:11Z",
+      "url": "https://github.com/OoufA123456/HarmonyOS-Inno"
     },
     {
-      "description": "\ud83d\ude80 Build high-performance applications with Paimon C++, a native implementation for efficient access to the Paimon datalake format.",
-      "fullName": "i-Greque/paimon-cpp",
-      "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:23:14Z",
-      "url": "https://github.com/i-Greque/paimon-cpp"
-    },
-    {
-      "description": "\ud83e\udd16 Scrape Reddit posts and comments effortlessly with this full-featured tool, offering an analytics dashboard, REST API, and no API keys needed.",
-      "fullName": "ji-mi-alice/reddit-universal-scraper",
+      "description": "\ud83c\udf0d Explore diverse cultures through engaging mini-programs that foster learning and connection across communities.",
+      "fullName": "supratim1020/Cultural-Mini-Program",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:22:46Z",
-      "url": "https://github.com/ji-mi-alice/reddit-universal-scraper"
+      "updatedAt": "2026-02-25T23:25:11Z",
+      "url": "https://github.com/supratim1020/Cultural-Mini-Program"
     },
     {
-      "description": "\ud83c\udfa8 Create and customize Discord badges effortlessly with BadgeForge, leveraging the power of discord.py for a seamless user experience.",
-      "fullName": "tututdwitoto2703/BadgeForge",
-      "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:22:28Z",
-      "url": "https://github.com/tututdwitoto2703/BadgeForge"
+      "description": "\ud83d\ude97 Develop autonomous vehicle technologies for visual-based navigation in competitive environments. Enhance efficiency and safety in transportation.",
+      "fullName": "Puppleo/Autonomous-Vehicle-Visual-Cruise-Competition",
+      "stargazersCount": 2,
+      "updatedAt": "2026-02-25T23:25:07Z",
+      "url": "https://github.com/Puppleo/Autonomous-Vehicle-Visual-Cruise-Competition"
+    },
+    {
+      "description": "\ud83d\udee0\ufe0f Discover and manage personal Codex CLI skills with ease, organizing them in a simple catalog for quick access and efficient use.",
+      "fullName": "lancenunes/codex-skills",
+      "stargazersCount": 4,
+      "updatedAt": "2026-02-25T23:25:01Z",
+      "url": "https://github.com/lancenunes/codex-skills"
+    },
+    {
+      "description": "\ud83d\ude93 Search surveillance footage offline using AI. Analyze videos with natural language queries for enhanced privacy and security.",
+      "fullName": "gaga84700/police",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:24:53Z",
+      "url": "https://github.com/gaga84700/police"
     }
   ]
 }

@@ -3,31 +3,38 @@ import json
 import os
 
 INTEL_FILE = "evidence/trending_artifacts.json"
+BRIEF_FILE = "evidence/tech_context.txt"
 
-def get_readme_summary():
+def generate_brief():
     if not os.path.exists(INTEL_FILE):
         return
         
     with open(INTEL_FILE, 'r') as f:
         data = json.load(f)
-        repo = data['artifacts'][0]['fullName']
+        # Handle the list whether it's under 'artifacts' or 'repos'
+        repo_data = data.get('artifacts', data.get('repos', []))[0]
+        repo_name = repo_data['fullName']
 
-    print(f"📖 Extracting context for {repo}...")
+    print(f"📖 Sifting Vitals for {repo_name}...")
     
-    # Use gh to view the readme
-    cmd = ["gh", "repo", "view", repo, "--json", "readme"]
+    # Pull statistical data + README snippet
+    cmd = ["gh", "repo", "view", repo_name, "--json", "stargazersCount,forkCount,openIssuesCount,description,url,readme"]
     result = subprocess.run(cmd, capture_output=True, text=True)
     
     if result.returncode == 0:
-        readme_content = json.loads(result.stdout)['readme']
-        # Search for key technical terms
-        tech_keywords = ["install", "pip", "setup", "esp32", "pins"]
-        found = [kw for kw in tech_keywords if kw in readme_content.lower()]
+        stats = json.loads(result.stdout)
         
-        summary = f"Found Tech: {', '.join(found) if found else 'Conceptual Only'}"
-        with open("evidence/tech_context.txt", "w") as f:
-            f.write(summary)
-        print(f"✅ Context saved: {summary}")
+        # Format the terminal readout
+        brief = [
+            f"NAME: {repo_name}",
+            f"STATS: ⭐ {stats['stargazersCount']} | 🍴 {stats['forkCount']} | 🛠️ {stats['openIssuesCount']} Issues",
+            f"DESC: {stats['description'][:100]}...",
+            f"LINK: {stats['url']}"
+        ]
+        
+        with open(BRIEF_FILE, "w") as f:
+            f.write("\n".join(brief))
+        print(f"✅ Research Brief Secured.")
 
 if __name__ == "__main__":
-    get_readme_summary()
+    generate_brief()

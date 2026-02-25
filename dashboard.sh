@@ -1,11 +1,11 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard v3.6 (Safety Guarded)
+# 🖥️ FogSift Mission Control Dashboard v3.7 (Intel Briefing)
 
 # Colors
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 YELLOW='\033[1;33m'
-RED='\033[0;31m'
+BLUE='\033[0;34m'
 RESET='\033[0m'
 
 clear
@@ -13,37 +13,24 @@ echo -e "${CYAN}====================================================${RESET}"
 echo -e "${CYAN}             ENVIRONMENTAL INTELLIGENCE             ${RESET}"
 echo -e "${CYAN}====================================================${RESET}"
 
-# 1. Weather & Biology
-if [ -f "evidence/local_weather.json" ]; then
-    TEMP=$(python3 -c "import json; print(json.load(open('evidence/local_weather.json'))['temp'])")
-    echo -e "${YELLOW}[ WEATHER ]${RESET} Chico: $TEMP"
-fi
-
-# 2. System Status & Guard
-echo -e "\n${GREEN}[ SYSTEM STATUS ]${RESET}"
+# 1. System Status
 if [ -f "evidence/live_moisture.json" ]; then
     MOISTURE=$(cat evidence/live_moisture.json | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
-    printf "  • Soil Moisture: ["
-    BAR_SIZE=$(( MOISTURE / 5 ))
-    for ((i=0; i<BAR_SIZE; i++)); do printf "#"; done
-    for ((i=BAR_SIZE; i<20; i++)); do printf "."; done
-    printf "] ${MOISTURE}%%\n"
+    echo -e "${GREEN}[ SYSTEM ]${RESET} Soil: ${MOISTURE}% | Status: $(cat evidence/guard_status.json | python3 -c "import json; print(json.load(open('evidence/guard_status.json'))['state'])")"
 fi
 
-if [ -f "evidence/guard_status.json" ]; then
-    STATE=$(python3 -c "import json; print(json.load(open('evidence/guard_status.json'))['state'])")
-    if [ "$STATE" == "PANIC" ]; then
-        echo -e "  • Safety Guard:   ${RED}🚨 PANIC (LOCKOUT ACTIVE)${RESET}"
-    else
-        echo -e "  • Safety Guard:   ${GREEN}✅ CLEAR (OPERATIONAL)${RESET}"
-    fi
+# 2. Latest Discovery Briefing
+echo -e "\n${YELLOW}[ LATEST INTEL BRIEF ]${RESET}"
+if [ -f "evidence/tech_context.txt" ]; then
+    cat evidence/tech_context.txt | sed 's/^/  • /'
+else
+    echo "  • No intel gathered yet."
 fi
 
-# 3. Research & Discovery
-if [ -f "evidence/trending_artifacts.json" ]; then
-    TOP_REPO=$(python3 -c "import json; print(json.load(open('evidence/trending_artifacts.json'))['artifacts'][0]['fullName'])")
-    echo -e "  • Top Discovery:  ${YELLOW}$TOP_REPO${RESET}"
-fi
+# 3. Biological Assets
+echo -e "\n${GREEN}[ BIOLOGICAL ASSETS ]${RESET}"
+HARVEST_DATE=$(python3 forecast-harvest.py | grep "Chickpea" | awk '{print $5}')
+echo -e "  • Chico Chickpea: 99 Days until Harvest ($HARVEST_DATE)"
 
-echo -e "\n${CYAN}====================================================${RESET}"
-echo -e "LOGS: [ status ] [ ./watchdog.sh ]"
+echo -e "${CYAN}====================================================${RESET}"
+echo -e "COMMANDS: [ status ] [ ./watchdog.sh ] [ ./claim-victory.sh ]"
