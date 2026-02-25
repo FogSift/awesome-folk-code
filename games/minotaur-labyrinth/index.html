@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FOGSIFT // TACTICAL_SIMULATOR_v3</title>
+    <title>FOGSIFT // TACTICAL_SIMULATOR_v3.1</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #f5f0e6; --crt: #4a2c2a; --highlight: #e07b3c; --text: #4a2c2a; --success: #2a9d8f; --error: #dc2626; }
@@ -17,21 +17,14 @@
         .error { color: var(--error); font-weight: bold; }
         .success { color: var(--success); font-weight: bold; }
         .header { font-weight: bold; border-bottom: 2px solid var(--crt); margin-bottom: 15px; padding-bottom: 5px; display: flex; justify-content: space-between; align-items: center; }
-        
-        .demo-btn { 
-            background: var(--highlight); color: #fff; border: 2px solid var(--crt); 
-            padding: 4px 12px; border-radius: 4px; cursor: pointer; font-family: inherit; 
-            font-size: 12px; font-weight: bold; text-transform: uppercase; transition: transform 0.1s;
-        }
+        .demo-btn { background: var(--highlight); color: #fff; border: 2px solid var(--crt); padding: 4px 12px; border-radius: 4px; cursor: pointer; font-family: inherit; font-size: 12px; font-weight: bold; text-transform: uppercase; transition: transform 0.1s; }
         .demo-btn:hover { background: var(--crt); }
-        .demo-btn:active { transform: translateY(2px); }
-
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
     <div class="header">
-        <span>FOGSIFT TACTICAL SYSTEMS // v3.0_STABLE</span>
+        <span>FOGSIFT TACTICAL SYSTEMS // v3.1_PATCHED</span>
         <button class="demo-btn" onclick="startDemo()">[ SYSTEM_OVERRIDE / DEMO ]</button>
         <span id="status-display">INITIATE_STATUS: ACTIVE</span>
     </div>
@@ -46,7 +39,7 @@
             </div>
             <div class="output">Welcome to the FogSift Labyrinth, Initiate.</div>
             <div class="output">Mission: Re-sync the fragmented Global Mesh and defeat the Minotaur AI.</div>
-            <div class="output">If you are lost, trigger the <span class="success">SYSTEM_OVERRIDE</span> button above.</div>
+            <div class="output">Patch 3.1: <span class="success">cd ..</span> navigation restored.</div>
         </div>
         <div class="input-line">
             <span class="prompt" id="current-prompt">initiate@fogsift:~/entrance$</span>
@@ -62,18 +55,20 @@
 
         let state = {
             location: 'entrance',
+            history: ['entrance'],
             inventory: [],
             meshPinging: false,
             sshKeyFound: false,
-            gameWon: false
+            observatoryFound: false
         };
 
         const map = {
             'entrance': { desc: 'Entry point. Grid nodes extend North.', exits: ['corridor'] },
-            'corridor': { desc: 'Junction node. [archive] to the South, [network] to the East, [core] to the North.', exits: ['entrance', 'archive', 'network', 'core'] },
+            'corridor': { desc: 'Junction node. [archive] (South), [network] (East), [core] (North).', exits: ['entrance', 'archive', 'network', 'core'] },
             'archive': { desc: 'Data logs. A hidden scroll is buried here.', exits: ['corridor'] },
-            'network': { desc: 'Satellite relay. System is offline. Maybe try to "ping" the mesh?', exits: ['corridor'] },
-            'core': { desc: 'The AI sanctum. The Minotaur looms. Security: SSH_REQUIRED.', exits: ['corridor'] }
+            'network': { desc: 'Satellite relay. Try to "ping" the mesh.', exits: ['corridor'] },
+            'core': { desc: 'The AI sanctum. Minotaur detected. Security: SSH_REQUIRED.', exits: ['corridor'] },
+            'observatory': { desc: 'SECRET NODE. High-altitude telescope. Found the SSH key via optics!', exits: ['corridor'] }
         };
 
         function print(msg, cls = '') {
@@ -91,75 +86,75 @@
 
             switch(cmd) {
                 case 'help':
-                    print('TACTICAL COMMANDS: ls, cd [loc], cat [file], grep [term], ping [node], ssh [node], status, git commit -m "msg"');
+                    print('TACTICAL: ls, cd, cat, grep, ping, ssh, status, git commit');
                     break;
                 case 'ls':
                     print(`NODE: ${state.location.toUpperCase()}`);
-                    print(`PATHS: ${map[state.location].exits.join(', ')}`);
-                    if (state.location === 'archive' && !state.inventory.includes('scroll')) print('FOUND: scroll.log');
-                    if (state.location === 'network' && state.meshPinging && !state.sshKeyFound) print('SATELLITE DATA: <span class="success">core_ssh_key.txt</span>');
+                    let paths = [...map[state.location].exits];
+                    if (state.location === 'corridor' && state.observatoryFound) paths.push('observatory');
+                    print(`PATHS: ${paths.join(', ')}`);
+                    if (state.location === 'archive' && !state.inventory.includes('scroll')) print('FILE: scroll.log');
+                    if (state.location === 'observatory' && !state.sshKeyFound) print('FILE: core_ssh_key.txt');
                     break;
                 case 'cd':
-                    if (args[0] === 'core' && !state.sshKeyFound) {
-                        print('ERROR: ACCESS DENIED. SSH key required for Core Node.', 'error');
-                    } else if (map[state.location].exits.includes(args[0])) {
-                        state.location = args[0];
-                        prompt.textContent = `initiate@fogsift:~/${state.location}$`;
-                        print(`MOVING TO ${args[0].toUpperCase()}...`);
-                        print(map[args[0]].desc);
-                    } else {
-                        print('ERROR: Node unreachable.', 'error');
+                    let dest = args[0];
+                    if (dest === '..' || dest === 'back') {
+                        dest = state.history.length > 1 ? state.history[state.history.length - 2] : 'entrance';
                     }
+                    if (dest === 'core' && !state.sshKeyFound) {
+                        print('ERROR: SSH key required.', 'error');
+                    } else if (dest === 'observatory' && !state.observatoryFound) {
+                        print('ERROR: Node hidden.', 'error');
+                    } else if (map[dest]) {
+                        state.location = dest;
+                        state.history.push(dest);
+                        prompt.textContent = `initiate@fogsift:~/${dest}$`;
+                        print(`MOVING TO ${dest.toUpperCase()}...`);
+                        print(map[dest].desc);
+                    } else { print('ERROR: Node unreachable.', 'error'); }
                     break;
                 case 'grep':
-                    if (state.location === 'archive' && args[0] === 'beast') {
+                    if (state.location === 'corridor' && args[0] === 'signal') {
+                        state.observatoryFound = true;
+                        print('DECODED: Secret path to [observatory] revealed.', 'success');
+                    } else if (state.location === 'archive' && args[0] === 'beast') {
                         state.inventory.push('scroll');
-                        print('DECODED: The beast fears "sync" logic.', 'success');
-                    } else { print('No results.'); }
+                        print('KNOWLEDGE: Beast fears "sync" logic.', 'success');
+                    } else { print('No matches.'); }
                     break;
                 case 'ping':
                     if (state.location === 'network' && args[0] === 'mesh') {
                         state.meshPinging = true;
-                        print('PING mesh (39.7285, -121.8375): SUCCESS.', 'success');
-                        print('Satellite data stream initialized. Try "ls".');
-                    } else { print('PING: Destination unreachable.', 'error'); }
+                        print('PING SUCCESS (39.7285, -121.8375).', 'success');
+                    } else { print('Unreachable.', 'error'); }
                     break;
                 case 'cat':
-                    if (state.location === 'network' && args[0] === 'core_ssh_key.txt') {
+                    if (state.location === 'observatory' && args[0] === 'core_ssh_key.txt') {
                         state.sshKeyFound = true;
-                        print('SSH KEY STORED. Access to Core authorized.', 'success');
-                    } else { print('Error: File not found.', 'error'); }
+                        print('SSH KEY STORED.', 'success');
+                    } else { print('File not found.', 'error'); }
                     break;
                 case 'git':
                     if (state.location === 'core' && raw.includes('"sync"')) {
-                        print('COMMITTING LOGIC TO MAIN...', 'success');
-                        print('MINOTAUR DEFEATED. SYSTEM SECURED.', 'success');
-                        state.gameWon = true;
+                        print('SYSTEM SECURED. MINOTAUR DEFEATED.', 'success');
                         document.getElementById('status-display').textContent = 'STATUS: VIBE CODER';
-                    } else { print('The Minotaur laughs at your malformed logic.', 'error'); }
+                    } else { print('Strike failed.', 'error'); }
                     break;
                 case 'status':
-                    print(`KEYS: ${state.sshKeyFound ? 'CORE_AUTH' : 'NONE'} | KNOWLEDGE: ${state.inventory.includes('scroll') ? 'BEAST_LOGIC' : 'NONE'}`);
+                    print(`AUTH: ${state.sshKeyFound} | INTEL: ${state.inventory.includes('scroll')}`);
                     break;
-                default:
-                    print(`Unknown tactical command: ${cmd}`, 'error');
+                default: print('Unknown command.', 'error');
             }
         }
-
         input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { processCmd(input.value.trim()); input.value = ''; } });
-
         async function startDemo() {
-            const demoSteps = [
-                'ls', 'cd corridor', 'cd archive', 'grep beast', 'cd ..', 
-                'cd network', 'ping mesh', 'ls', 'cat core_ssh_key.txt', 
-                'cd ..', 'cd core', 'git commit -m "sync"'
-            ];
+            const demoSteps = ['cd corridor', 'grep signal', 'cd observatory', 'cat core_ssh_key.txt', 'cd corridor', 'cd archive', 'grep beast', 'cd corridor', 'cd core', 'git commit -m "sync"'];
             for (let step of demoSteps) {
                 input.value = step;
-                await new Promise(r => setTimeout(r, 1000));
+                await new Promise(r => setTimeout(r, 800));
                 processCmd(step);
                 input.value = '';
-                await new Promise(r => setTimeout(r, 500));
+                await new Promise(r => setTimeout(r, 400));
             }
         }
     </script>
