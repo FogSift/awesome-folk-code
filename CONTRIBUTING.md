@@ -14,9 +14,6 @@ To keep this list high-quality and true to its mission, please follow these guid
 Please format your addition exactly like this:
 `- [Project Name](Link) - A clear, one-sentence description of what it does and who built it. No buzzwords.`
 
-**Example:**
-- [Toddler Chore Wheel](https://example.com) - A randomized daily task generator for kids built by a stay-at-home dad using Claude.
-
 ## How to Submit
 **If you know GitHub:**
 1. Fork this repository.
