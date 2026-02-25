@@ -2,52 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FOGSIFT // LABYRINTH_OF_LOGIC.v1</title>
+    <title>FOGSIFT // LABYRINTH_OF_LOGIC_v2</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #f5f0e6; --crt: #4a2c2a; --highlight: #e07b3c; --text: #4a2c2a;
-        }
-        body {
-            background-color: var(--bg); color: var(--text);
-            font-family: 'JetBrains Mono', monospace;
-            display: flex; flex-direction: column; height: 100vh; margin: 0; padding: 20px; box-sizing: border-box;
-            overflow: hidden;
-        }
-        #terminal {
-            flex-grow: 1; background: #fff; border: 3px solid var(--crt);
-            border-radius: 8px; padding: 20px; overflow-y: auto;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.1), 5px 5px 0 var(--crt);
-            position: relative;
-        }
-        #terminal::before {
-            content: " "; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-            z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none;
-        }
-        .input-line { display: flex; align-items: center; margin-top: 10px; }
-        .prompt { color: var(--highlight); font-weight: bold; margin-right: 10px; }
-        input {
-            background: transparent; border: none; color: var(--text);
-            font-family: inherit; font-size: 1rem; outline: none; flex-grow: 1;
-        }
-        .output { white-space: pre-wrap; margin-bottom: 5px; line-height: 1.4; }
-        .error { color: #dc2626; }
-        .success { color: #2a9d8f; font-weight: bold; }
-        .header { font-weight: bold; border-bottom: 2px solid var(--crt); margin-bottom: 10px; padding-bottom: 5px; }
+        :root { --bg: #f5f0e6; --crt: #4a2c2a; --highlight: #e07b3c; --text: #4a2c2a; --success: #2a9d8f; --error: #dc2626; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; display: flex; flex-direction: column; height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; overflow: hidden; }
+        #terminal { flex-grow: 1; background: #fff; border: 3px solid var(--crt); border-radius: 8px; padding: 20px; overflow-y: auto; box-shadow: inset 0 0 15px rgba(0,0,0,0.1), 8px 8px 0 var(--crt); position: relative; display: flex; flex-direction: column; }
+        #terminal::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%); background-size: 100% 4px; pointer-events: none; }
+        .input-line { display: flex; align-items: center; margin-top: 10px; flex-shrink: 0; }
+        .prompt { color: var(--highlight); font-weight: bold; margin-right: 10px; white-space: nowrap; }
+        input { background: transparent; border: none; color: var(--text); font-family: inherit; font-size: 1rem; outline: none; flex-grow: 1; }
+        .output { white-space: pre-wrap; margin-bottom: 8px; line-height: 1.4; animation: fadeIn 0.2s ease-out; }
+        .ascii { color: var(--crt); font-size: 10px; line-height: 1; margin-bottom: 15px; font-weight: bold; }
+        .error { color: var(--error); font-weight: bold; }
+        .success { color: var(--success); font-weight: bold; }
+        .header { font-weight: bold; border-bottom: 2px solid var(--crt); margin-bottom: 15px; padding-bottom: 5px; display: flex; justify-content: space-between; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <div class="header">FOGSIFT TACTICAL SYSTEMS // SUBJECT: LABYRINTH_ORIENTATION</div>
+    <div class="header">
+        <span>FOGSIFT TACTICAL SYSTEMS // ORIENTATION.EXE</span>
+        <span id="status-display">INITIATE_STATUS: ACTIVE</span>
+    </div>
     <div id="terminal">
         <div id="output-container">
-            <div class="output">Initializing Labyrinth Protocol...</div>
-            <div class="output">Welcome, Initiate. You are at the entrance of the Logic Maze.</div>
-            <div class="output">A Minotaur guards the core data. Use terminal commands to find him.</div>
-            <div class="output">Type 'help' if your vibe is lost.</div>
+            <div class="ascii">
+  __  __ ___ _   _  ___ _____  _   _   _ ____  
+ |  \/  |_ _| \ | |/ _ \_   _|/ \ | | | |  _ \ 
+ | |\/| || ||  \| | | | || | / _ \| | | | |_) |
+ | |  | || || |\  | |_| || |/ ___ \ |_| |  _ < 
+ |_|  |_|___|_| \_|\___/ |_/_/   \_\___/|_| \_\
+            </div>
+            <div class="output">Welcome to the FogSift Labyrinth, Initiate.</div>
+            <div class="output">A rogue AI (The Minotaur) has fragmented our supply chain data.</div>
+            <div class="output">Use your terminal to navigate the grid and re-sync the system.</div>
+            <div class="output">Type <span class="success">'help'</span> to see available tactical commands.</div>
         </div>
         <div class="input-line">
-            <span class="prompt">initiate@fogsift:~$</span>
+            <span class="prompt" id="current-prompt">initiate@fogsift:~/entrance$</span>
             <input type="text" id="cmd-input" autofocus autocomplete="off">
         </div>
     </div>
@@ -56,25 +49,26 @@
         const input = document.getElementById('cmd-input');
         const container = document.getElementById('output-container');
         const term = document.getElementById('terminal');
+        const prompt = document.getElementById('current-prompt');
 
         let state = {
             location: 'entrance',
-            hasScroll: false,
-            minotaurHealth: 100,
-            gitInitialized: false
+            inventory: [],
+            minotaurPhase: 0,
+            solvedPuzzles: []
         };
 
         const map = {
-            'entrance': { desc: 'The air is damp. Stone walls rise high.', exits: ['corridor'] },
-            'corridor': { desc: 'A long hall. Ancient blueprints are taped to the wall.', exits: ['entrance', 'archive', 'chamber'] },
-            'archive': { desc: 'Stacks of binary punch cards. A glowing scroll sits on a pedestal.', exits: ['corridor'] },
-            'chamber': { desc: 'The floor shakes. A massive shadow looms. THE MINOTAUR IS HERE.', exits: ['corridor'] }
+            'entrance': { desc: 'The system entry point. A grid of stone walls extends north.', exits: ['corridor'] },
+            'corridor': { desc: 'A junction of data nodes. To the WEST is the ARCHIVE. To the NORTH is the CORE.', exits: ['entrance', 'archive', 'core'] },
+            'archive': { desc: 'A room filled with raw data logs. There is a hidden file here: secret_code.log', exits: ['corridor'] },
+            'core': { desc: 'THE MINOTAUR ROOM. A massive creature of cables and logic looms.', exits: ['corridor'] }
         };
 
         function print(msg, cls = '') {
             const div = document.createElement('div');
             div.className = 'output ' + cls;
-            div.textContent = msg;
+            div.innerHTML = msg;
             container.appendChild(div);
             term.scrollTop = term.scrollHeight;
         }
@@ -84,51 +78,75 @@
                 const raw = input.value.trim();
                 const [cmd, ...args] = raw.toLowerCase().split(' ');
                 input.value = '';
-                print(`> ${raw}`);
+                print(`<span style="opacity: 0.5;">> ${raw}</span>`);
+
+                if (!cmd) return;
 
                 switch(cmd) {
                     case 'help':
-                        print('COMMANDS: ls (look around), cd [loc] (move), cat [file] (read), status (check self), attack (only in chamber)');
+                        print('TACTICAL COMMANDS:');
+                        print('  ls       - Scan local surroundings');
+                        print('  cd [loc] - Traverse to a different node');
+                        print('  cat [f]  - View content of a data fragment');
+                        print('  grep [w] - Search local logs for specific strings');
+                        print('  status   - Check gear and mission progress');
+                        print('  git [op] - Perform a version control spell (Requires Logic Scroll)');
                         break;
                     case 'ls':
-                        print(`Location: ${state.location}`);
-                        print(`Visible paths: ${map[state.location].exits.join(', ')}`);
-                        if (state.location === 'archive' && !state.hasScroll) print('File found: scroll.txt');
+                        print(`NODE: ${state.location.toUpperCase()}`);
+                        print(`AVAILABLE PATHS: ${map[state.location].exits.join(', ')}`);
+                        if (state.location === 'archive' && !state.inventory.includes('scroll')) {
+                            print('FRAGMENT FOUND: <span class="success">secret_code.log</span>');
+                        }
                         break;
                     case 'cd':
                         if (map[state.location].exits.includes(args[0])) {
                             state.location = args[0];
-                            print(`Moved to ${args[0]}.`);
+                            prompt.textContent = `initiate@fogsift:~/${state.location}$`;
+                            print(`TRAVERSING TO ${args[0].toUpperCase()}...`);
                             print(map[args[0]].desc);
                         } else {
-                            print('Error: Path blocked or non-existent.', 'error');
+                            print('ERROR: SIGNAL BLOCKED. Node unreachable.', 'error');
                         }
                         break;
-                    case 'cat':
-                        if (args[0] === 'scroll.txt' && state.location === 'archive') {
-                            state.hasScroll = true;
-                            print('--- ANCIENT DATA ---');
-                            print('To defeat the Beast, you must COMMIT your intent.');
-                            print('The beast fears the hash: git commit -m "kill"');
-                            print('--------------------', 'success');
+                    case 'grep':
+                        if (state.location === 'archive' && args[0] === 'beast') {
+                            state.inventory.push('scroll');
+                            print('SEARCH RESULTS: ...Fragment 404 Found...', 'success');
+                            print('THE BEAST WEARS A CRYPTO-SHIELD. ONLY A <span class="success">git commit -m "sync"</span> CAN BREAK IT.');
                         } else {
-                            print('Error: File not found.', 'error');
+                            print('ERROR: No matching patterns found in local buffer.', 'error');
                         }
                         break;
                     case 'status':
-                        print(`Subject: Initiate | Gear: ${state.hasScroll ? 'Logic Scroll' : 'Empty Hands'} | Health: 100`);
+                        print(`INITIATE GEAR: [${state.inventory.length ? state.inventory.join(', ') : 'NONE'}]`);
+                        print(`MISSION: RE-SYNC THE CORE.`);
                         break;
                     case 'git':
-                        if (args[0] === 'commit' && state.location === 'chamber') {
-                            print('CRYPTO-STRIKE! You stamp a permanent record into the beast.', 'success');
-                            print('THE MINOTAUR HAS BEEN DEFEATED.', 'success');
-                            print('CONGRATULATIONS. YOU ARE NO LONGER AN INITIATE. YOU ARE A VIBE CODER.');
+                        if (!state.inventory.includes('scroll')) {
+                            print('ERROR: You do not have the required LOGIC SCROLL to use Git spells.', 'error');
+                            break;
+                        }
+                        if (state.location !== 'core') {
+                            print('ERROR: No repo initialized at this location.', 'error');
+                            break;
+                        }
+                        if (args[0] === 'commit' && raw.includes('"sync"')) {
+                            print('HACKING... [||||||||||] 100%', 'success');
+                            print('MINOTAUR SHIELD DEACTIVATED. LOGIC SYNCED.', 'success');
+                            print('-----------------------------------------');
+                            print('VICTORY. YOU HAVE SECURED THE SUPPLY CHAIN.');
+                            print('YOU ARE NOW A CERTIFIED VIBE CODER.');
+                            document.getElementById('status-display').textContent = 'STATUS: VIBE CODER';
                         } else {
-                            print('Error: This is not the place for time-travel.', 'error');
+                            print('ERROR: Malformed spell. Check the scroll in the archive.', 'error');
                         }
                         break;
+                    case 'clear':
+                        container.innerHTML = '';
+                        break;
                     default:
-                        print(`Unknown command: ${cmd}`, 'error');
+                        print(`ERROR: Command '${cmd}' not recognized in this system.`, 'error');
                 }
             }
         });
