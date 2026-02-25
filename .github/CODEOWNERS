@@ -1,8 +1,6 @@
-# 👑 CODEOWNERS: The Gatekeepers of FogSift
+# FogSift Code Owners
+# Ensure the Architect reviews all core infrastructure changes.
 
-# The default rule: You (@ctavolazzi) must review EVERYTHING.
-# Whenever a PR is opened, GitHub will automatically ping you.
 * @ctavolazzi
-
-# (Future use) If you get a co-maintainer who only handles the website:
-# _config.yml @other-username
+.github/workflows/ @ctavolazzi
+assets/art/ @ctavolazzi
