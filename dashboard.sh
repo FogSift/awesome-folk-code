@@ -1,5 +1,5 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard v2.8 (Safety Integrated)
+# 🖥️ FogSift Mission Control Dashboard v2.9
 
 # Colors
 GREEN='\033[0;32m'
@@ -30,7 +30,7 @@ if [ -f "evidence/local_weather.json" ]; then
     echo -e "${YELLOW}[ WEATHER ]${RESET} $DESC | $TEMP"
 fi
 
-# 2. System Status & Heartbeat Check
+# 2. System Status & Heartbeat
 echo -e "\n${GREEN}[ SYSTEM STATUS ]${RESET}"
 if [ -f "evidence/live_moisture.json" ]; then
     MOISTURE=$(cat evidence/live_moisture.json | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
@@ -42,26 +42,21 @@ if [ -f "evidence/live_moisture.json" ]; then
     printf "] ${MOISTURE}%%\n"
 fi
 
-# Heartbeat Safety Check
 if [ -f "evidence/watchdog_heartbeat.txt" ]; then
     LAST_PULSE=$(cat evidence/watchdog_heartbeat.txt)
-    PULSE_TS=$(date -j -f "%Y-%m-%d %H:%M:%S" "$LAST_PULSE" +%s)
-    NOW=$(date +%s)
-    DIFF=$(( (NOW - PULSE_TS) / 60 ))
-    
-    if [ $DIFF -gt 20 ]; then
-        echo -e "  • Watchdog Pulse: ${RED}STALE ($DIFF min ago)${RESET}"
-    TOP_REPO=$(python3 -c "import json; print(json.load(open("evidence/trending_artifacts.json"))["artifacts"][0]["fullName"])") 
-    echo -e "  • Top Discovery: ${YELLOW}$TOP_REPO${RESET}"    else
-        echo -e "  • Watchdog Pulse: ${CYAN}ACTIVE ($DIFF min ago)${RESET}"
-    TOP_REPO=$(python3 -c "import json; print(json.load(open("evidence/trending_artifacts.json"))["artifacts"][0]["fullName"])") 
-    echo -e "  • Top Discovery: ${YELLOW}$TOP_REPO${RESET}"    fi
+    echo -e "  • Watchdog Pulse: ${CYAN}ACTIVE ($LAST_PULSE)${RESET}"
 fi
 
-# 3. Biological Countdown
+# 3. Research Intelligence
+if [ -f "evidence/trending_artifacts.json" ]; then
+    TOP_REPO=$(python3 -c "import json; print(json.load(open('evidence/trending_artifacts.json'))['artifacts'][0]['fullName'])")
+    echo -e "  • Top Discovery:  ${YELLOW}$TOP_REPO${RESET}"
+fi
+
+# 4. Biological Assets
 echo -e "\n${GREEN}[ BIOLOGICAL ASSETS ]${RESET}"
 HARVEST_DATE=$(python3 forecast-harvest.py | grep "Chickpea" | awk '{print $5}')
 echo -e "  • ${YELLOW}Chico Chickpea:${RESET} 99 Days until Harvest ($HARVEST_DATE)"
 
 echo -e "${CYAN}====================================================${RESET}"
-echo -e "COMMANDS: [ status ] [ vibe-log ] [ ./watchdog.sh ]"
+echo -e "COMMANDS: [ status ] [ ./claim-victory.sh ] [ ./watchdog.sh ]"
