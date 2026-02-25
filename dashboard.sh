@@ -1,5 +1,5 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard v3.7 (Intel Briefing)
+# 🖥️ FogSift Mission Control Dashboard v3.8 (Scoring Integrated)
 
 # Colors
 GREEN='\033[0;32m'
@@ -16,15 +16,18 @@ echo -e "${CYAN}====================================================${RESET}"
 # 1. System Status
 if [ -f "evidence/live_moisture.json" ]; then
     MOISTURE=$(cat evidence/live_moisture.json | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
-    echo -e "${GREEN}[ SYSTEM ]${RESET} Soil: ${MOISTURE}% | Status: $(cat evidence/guard_status.json | python3 -c "import json; print(json.load(open('evidence/guard_status.json'))['state'])")"
+    GUARD=$(cat evidence/guard_status.json | python3 -c "import json; print(json.load(open('evidence/guard_status.json'))['state'])")
+    echo -e "${GREEN}[ SYSTEM ]${RESET} Soil: ${MOISTURE}% | Guard: ${GUARD}"
 fi
 
-# 2. Latest Discovery Briefing
-echo -e "\n${YELLOW}[ LATEST INTEL BRIEF ]${RESET}"
+# 2. Intel Briefing
+echo -e "\n${YELLOW}[ TOP DISCOVERY BRIEF ]${RESET}"
 if [ -f "evidence/tech_context.txt" ]; then
-    cat evidence/tech_context.txt | sed 's/^/  • /'
+    while IFS= read -r line; do
+        echo -e "  • $line"
+    done < evidence/tech_context.txt
 else
-    echo "  • No intel gathered yet."
+    echo "  • Pulse lost. Re-run watchdog."
 fi
 
 # 3. Biological Assets

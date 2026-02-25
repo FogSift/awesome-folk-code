@@ -1,6 +1,27 @@
 {
-  "captured_at": "2026-02-25 15:25",
+  "captured_at": "2026-02-25 15:26",
   "artifacts": [
+    {
+      "description": "Profile README.md",
+      "fullName": "3bsalam-1/3bsalam-1",
+      "stargazersCount": 9,
+      "updatedAt": "2026-02-25T23:25:50Z",
+      "url": "https://github.com/3bsalam-1/3bsalam-1"
+    },
+    {
+      "description": "\ud83d\udd12 Build a trustless, metadata-free anonymity network with ZKS, advancing privacy beyond Tor through innovative triple-blind architecture.",
+      "fullName": "nicosplit/zks",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:25:24Z",
+      "url": "https://github.com/nicosplit/zks"
+    },
+    {
+      "description": "\ud83d\udcca Predict suitable academic minors for students using machine learning based on their skills, interests, and career goals.",
+      "fullName": "fabriad/Student-Minor-Prediction",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:25:17Z",
+      "url": "https://github.com/fabriad/Student-Minor-Prediction"
+    },
     {
       "description": "\ud83c\udfae Enhance your HarmonyOS apps with OHBridge SDK for features like sharing, media access, and sensor integration, simplifying native development.",
       "fullName": "OoufA123456/HarmonyOS-Inno",
@@ -14,27 +35,6 @@
       "stargazersCount": 1,
       "updatedAt": "2026-02-25T23:25:11Z",
       "url": "https://github.com/supratim1020/Cultural-Mini-Program"
-    },
-    {
-      "description": "\ud83d\ude97 Develop autonomous vehicle technologies for visual-based navigation in competitive environments. Enhance efficiency and safety in transportation.",
-      "fullName": "Puppleo/Autonomous-Vehicle-Visual-Cruise-Competition",
-      "stargazersCount": 2,
-      "updatedAt": "2026-02-25T23:25:07Z",
-      "url": "https://github.com/Puppleo/Autonomous-Vehicle-Visual-Cruise-Competition"
-    },
-    {
-      "description": "\ud83d\udee0\ufe0f Discover and manage personal Codex CLI skills with ease, organizing them in a simple catalog for quick access and efficient use.",
-      "fullName": "lancenunes/codex-skills",
-      "stargazersCount": 4,
-      "updatedAt": "2026-02-25T23:25:01Z",
-      "url": "https://github.com/lancenunes/codex-skills"
-    },
-    {
-      "description": "\ud83d\ude93 Search surveillance footage offline using AI. Analyze videos with natural language queries for enhanced privacy and security.",
-      "fullName": "gaga84700/police",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:24:53Z",
-      "url": "https://github.com/gaga84700/police"
     }
   ]
 }
