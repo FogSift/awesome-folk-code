@@ -1,50 +1,56 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard
+# 🖥️ FogSift Mission Control Dashboard v2.0
 
-# Colors for the vibe
+# Colors
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
 RESET='\033[0m'
 
 clear
+# ASCII Banner
+echo -e "${BLUE}"
+echo "  ______ ____   ______ _____ _____ ______ _______ "
+echo " |  ____/ __ \ / ____/ ____|_   _|  ____|__   __|"
+echo " | |__ | |  | | |  _| (___   | | | |__     | |   "
+echo " |  __|| |  | | | |_ \___ \  | | |  __|    | |   "
+echo " | |   | |__| | |__| |____) |_| |_| |       | |   "
+echo " |_|    \____/ \____|_____/|_____|_|       |_|   "
+echo -e "${RESET}"
+
 echo -e "${CYAN}====================================================${RESET}"
-echo -e "${CYAN}         🌫️  FOGSIFT REGISTRY: MISSION CONTROL       ${RESET}"
+echo -e "${CYAN}             ENVIRONMENTAL INTELLIGENCE             ${RESET}"
 echo -e "${CYAN}====================================================${RESET}"
 
-# 1. Identity Section
-USER=$(gh api user -q .login)
-echo -e "${YELLOW}[ ARCHITECT ]${RESET} @$USER"
+# 1. Local Weather (Chico, CA)
+echo -e "${YELLOW}[ LOCAL WEATHER ]${RESET}"
+# Using wttr.in for a quick, terminal-friendly weather snippet
+curl -s "wttr.in/Chico?format=3" || echo "  • Weather signal lost."
 
-# 2. System Vibe
-VIBE=$(tail -n 3 evidence/architect_logs.md | grep "Vibe:" | cut -d ':' -f 2)
-echo -e "${YELLOW}[ LAST VIBE ]${RESET} $VIBE"
-
-echo -e "${CYAN}----------------------------------------------------${RESET}"
-
-# 3. Biological Intelligence
-echo -e "${GREEN}[ BIOLOGICAL ASSETS ]${RESET}"
+# 2. Biological Countdown
+echo -e "\n${GREEN}[ BIOLOGICAL ASSETS ]${RESET}"
 if [ -f "evidence/seed_inventory.csv" ]; then
-    COUNT=$(tail -n +2 evidence/seed_inventory.csv | wc -l | xargs)
-    echo "  • Total Assets: $COUNT"
-    python3 forecast-harvest.py | grep "🌿" | sed 's/🌿/  •/'
+    # Calculate days remaining for the Chickpea specifically
+    HARVEST_DATE=$(python3 forecast-harvest.py | grep "Chickpea" | awk '{print $4}')
+    if [ -n "$HARVEST_DATE" ]; then
+        TODAY=$(date +%s)
+        TARGET=$(date -j -f "%Y-%m-%d" "$HARVEST_DATE" +%s 2>/dev/null || date -d "$HARVEST_DATE" +%s)
+        DIFF=$(( (TARGET - TODAY) / 86400 ))
+        echo -e "  • ${YELLOW}Chico Chickpea:${RESET} $DIFF Days until Harvest ($HARVEST_DATE)"
+    fi
 else
-    echo "  • No assets detected."
+    echo "  • No biological signals detected."
 fi
 
 echo -e "${CYAN}----------------------------------------------------${RESET}"
 
-# 4. Git & Sync Status
+# 3. Registry Health
 echo -e "${GREEN}[ REGISTRY HEALTH ]${RESET}"
 UNTRACKED=$(git status --porcelain | wc -l | xargs)
-if [ "$UNTRACKED" -eq "0" ]; then
-    echo -e "  • Status: ${GREEN}FULLY SYNCED${RESET}"
-else
-    echo -e "  • Status: ${YELLOW}$UNTRACKED UNCOMMITTED CHANGES${RESET}"
-fi
-
-LAST_SYNC=$(git log -1 --format=%cr)
-echo "  • Last Transmit: $LAST_SYNC"
+STATUS=$([ "$UNTRACKED" -eq "0" ] && echo -e "${GREEN}OPTIMAL${RESET}" || echo -e "${YELLOW}DIRTY ($UNTRACKED changes)${RESET}")
+echo -e "  • Node Status: $STATUS"
+echo "  • Last Transmit: $(git log -1 --format=%cr)"
 
 echo -e "${CYAN}====================================================${RESET}"
-echo -e "Commands: [ garage ] [ vibe-log ] [ shutdown ]"
+echo -e "LOGS: [ status ] [ vibe-log ] [ shutdown -y -m '...' ]"
