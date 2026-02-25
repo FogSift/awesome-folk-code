@@ -35,3 +35,6 @@ graph TD
     C --> D{Does the code work?}
     D -- "No, throw an error" --> C
     D -- "Yes, it's alive!" --> E[Submit to Awesome Folk Code]
+
+## Git for Vibe Coders
+Want to skip the confusing GitHub web interface? Read the [Git for Vibe Coders Guide](GIT_FOR_VIBE_CODERS.md) to learn how to use the terminal.
