@@ -1,0 +1,20 @@
+name: Welcome Initiates
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: "Greetings! 🧙‍♂️✨ Thanks for dropping this in. Whether it's a brilliant new idea or a broken spell, you're in the right place. A maintainer will take a look at this shortly. Keep vibe coding!"
+          pr-message: "Welcome to the Garage! 🛠️🎸 We see your Pull Request. If this is you passing The Trial, hell yes. If you are submitting a new project, please ensure you checked the boxes in the PR template. A maintainer will review this ASAP."
