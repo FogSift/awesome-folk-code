@@ -1,11 +1,12 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard v2.4 (Open-Meteo)
+# 🖥️ FogSift Mission Control Dashboard v2.5 (Actuation Awareness)
 
 # Colors
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
+RED='\033[0;31m'
 RESET='\033[0m'
 
 clear
@@ -22,20 +23,19 @@ echo -e "${CYAN}====================================================${RESET}"
 echo -e "${CYAN}             ENVIRONMENTAL INTELLIGENCE             ${RESET}"
 echo -e "${CYAN}====================================================${RESET}"
 
-# 1. Local Weather via Open-Meteo Bridge
+# 1. Local Weather
 echo -e "${YELLOW}[ LOCAL WEATHER ]${RESET}"
 python3 sensors/weather_bridge.py
 if [ -f "evidence/local_weather.json" ]; then
     TEMP=$(python3 -c "import json; print(json.load(open('evidence/local_weather.json'))['temp'])")
-    HUM=$(python3 -c "import json; print(json.load(open('evidence/local_weather.json'))['humidity'])")
     DESC=$(python3 -c "import json; print(json.load(open('evidence/local_weather.json'))['desc'])")
-    echo "  • Chico, CA: $DESC | $TEMP | Humidity: $HUM"
+    echo "  • Chico, CA: $DESC | $TEMP"
 else
     echo "  • Weather signal lost."
 fi
 
-# 2. Live Sensor Gauge
-echo -e "\n${GREEN}[ LIVE SENSOR DATA ]${RESET}"
+# 2. Live Sensor & Actuation
+echo -e "\n${GREEN}[ SYSTEM STATUS ]${RESET}"
 python3 sensors/bridge.py > /dev/null
 if [ -f "evidence/live_moisture.json" ]; then
     MOISTURE=$(cat evidence/live_moisture.json | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
@@ -45,6 +45,13 @@ if [ -f "evidence/live_moisture.json" ]; then
         if [ $i -lt $BAR_SIZE ]; then printf "${GREEN}#${RESET}"; else printf "."; fi
     done
     printf "] ${MOISTURE}%%\n"
+    
+    # Show Last Actuation
+    echo -e "  • Watchdog Pulse: ${CYAN}$(cat evidence/watchdog_heartbeat.txt)${RESET}"    if [ -f "evidence/actuation_history.md" ]; then
+        LAST_EVENT=$(tail -n 1 evidence/actuation_history.md)
+        EVENT_TIME=$(echo "$LAST_EVENT" | cut -d '|' -f 2 | xargs)
+        echo -e "  • Last Actuation: ${CYAN}$EVENT_TIME${RESET}"
+    echo -e "  • Watchdog Pulse: ${CYAN}$(cat evidence/watchdog_heartbeat.txt)${RESET}"    fi
 fi
 
 # 3. Biological Countdown
@@ -57,5 +64,5 @@ if [ -n "$HARVEST_DATE" ]; then
     echo -e "  • ${YELLOW}Chico Chickpea:${RESET} $DIFF Days until Harvest ($HARVEST_DATE)"
 fi
 
-echo -e "${CYAN}----------------------------------------------------${RESET}"
-echo -e "LOGS: [ status ] [ vibe-log ] [ shutdown -y -m '...' ]"
+echo -e "${CYAN}====================================================${RESET}"
+echo -e "LOGS: [ status ] [ vibe-log ] [ python3 actuate.py ]"
