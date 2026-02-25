@@ -5,7 +5,7 @@ from datetime import datetime
 
 # 🔍 FogSift GitHub Trend-Sifter
 # Targeting: Tools that empower local automation and "Awesome" lists
-QUERY = "topic:micropython OR topic:esp32 OR topic:sensor-data"
+QUERY = "topic:awesome AND (topic:micropython OR topic:esp32)"
 INTEL_FILE = "evidence/trending_artifacts.json"
 
 def sift_github():
