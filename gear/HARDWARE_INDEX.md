@@ -1,23 +1,23 @@
 # 📚 FogSift Hardware Index
-Last updated: Wed Feb 25 15:21:21 PST 2026
+Last updated: Wed Feb 25 15:24:17 PST 2026
 
-## FelipeDaza7/swarm-tools
-- **URL:** https://github.com/FelipeDaza7/swarm-tools
-- **Description:** 🐝 Boost productivity by coordinating AI agents that learn and adapt, breaking down tasks for efficient, parallel execution.
+## brayanvelasque/fullstackweekend-aparatus-v2
+- **URL:** https://github.com/brayanvelasque/fullstackweekend-aparatus-v2
+- **Description:** 🚀 Build a full-stack application quickly with Next.js. Explore features, optimize performance, and get started with ease.
 
-## david3c2004/CLR-Unhook
-- **URL:** https://github.com/david3c2004/CLR-Unhook
-- **Description:** 🛡️ Bypass EDR/AV hooks in .NET CLR by restoring the original `nLoadImage` function for seamless assembly loading without security inspection.
+## CharlotteJV/SwiftAnimPlayground
+- **URL:** https://github.com/CharlotteJV/SwiftAnimPlayground
+- **Description:** 🎨 Explore and compare SwiftUI animations interactively, adjusting parameters in real-time to enhance your app's visual appeal and understand animation behavior.
 
-## Inui30/PentestOPS
-- **URL:** https://github.com/Inui30/PentestOPS
-- **Description:** 🚀 Manage penetration testing projects efficiently with PentestOPS, a powerful dashboard for tasks, findings, clients, and assets.
+## i-Greque/paimon-cpp
+- **URL:** https://github.com/i-Greque/paimon-cpp
+- **Description:** 🚀 Build high-performance applications with Paimon C++, a native implementation for efficient access to the Paimon datalake format.
 
-## hossainma/Poker-Club
-- **URL:** https://github.com/hossainma/Poker-Club
-- **Description:** ♠️ Build a robust Texas Hold'em poker club app with multi-language support, featuring friends' tables, leagues, and a stable Unity+C++ codebase.
+## ji-mi-alice/reddit-universal-scraper
+- **URL:** https://github.com/ji-mi-alice/reddit-universal-scraper
+- **Description:** 🤖 Scrape Reddit posts and comments effortlessly with this full-featured tool, offering an analytics dashboard, REST API, and no API keys needed.
 
-## xatier/rc-files
-- **URL:** https://github.com/xatier/rc-files
-- **Description:** rc-files, configuration files, ...etc since 2012.
+## tututdwitoto2703/BadgeForge
+- **URL:** https://github.com/tututdwitoto2703/BadgeForge
+- **Description:** 🎨 Create and customize Discord badges effortlessly with BadgeForge, leveraging the power of discord.py for a seamless user experience.
 

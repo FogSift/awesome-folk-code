@@ -1,41 +1,30 @@
 import json
 import os
-from datetime import datetime
 
-# 💧 FogSift Actuation Bridge v1.0
+GUARD_FILE = "evidence/guard_status.json"
 MOISTURE_FILE = "evidence/live_moisture.json"
-ACTUATION_LOG = "evidence/actuation_history.md"
-THRESHOLD = 40  # Trigger pump if moisture drops below 40%
+THRESHOLD = 70  # Chickpea Baseline
 
-def check_and_actuate():
-    if not os.path.exists(MOISTURE_FILE):
-        print("⚠️ No moisture data detected. Actuation suspended.")
+def decide():
+    if not os.path.exists(GUARD_FILE):
+        print("⚠️ No Guard signal. Defaulting to SAFE/OFF.")
+        return
+
+    with open(GUARD_FILE, 'r') as f:
+        guard = json.load(f)
+
+    if guard['state'] == "PANIC":
+        print(f"🚨 ACTUATION LOCKED: {guard['reason']}")
         return
 
     with open(MOISTURE_FILE, 'r') as f:
-        data = json.load(f)
-    
-    moisture = data['moisture_pct']
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
-    print(f"🔍 Analyzing Moisture: {moisture}% (Threshold: {THRESHOLD}%)")
+        moisture = json.load(f)['moisture_pct']
 
     if moisture < THRESHOLD:
-        trigger_pump(moisture, timestamp)
+        print(f"🌊 MOISTURE LOW ({moisture}%). TRIGGERING PUMP.")
+        # Physical command to ESP32 would go here
     else:
-        print("✅ Moisture optimal. Pump remains IDLE.")
-
-def trigger_pump(val, time):
-    log_entry = f"| {time} | {val}% | 🌊 PUMP TRIGGERED |"
-    print(f"🌊 ALERT: {log_entry}")
-    
-    # Write to local history
-    if not os.path.exists(ACTUATION_LOG):
-        with open(ACTUATION_LOG, 'w') as f:
-            f.write("# 🌊 FogSift Actuation History\n| Timestamp | Moisture | Action |\n| :--- | :--- | :--- |\n")
-    
-    with open(ACTUATION_LOG, 'a') as f:
-        f.write(log_entry + "\n")
+        print(f"✅ MOISTURE OPTIMAL ({moisture}%). IDLE.")
 
 if __name__ == "__main__":
-    check_and_actuate()
+    decide()

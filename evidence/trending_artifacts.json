@@ -1,40 +1,40 @@
 {
-  "captured_at": "2026-02-25 15:21",
+  "captured_at": "2026-02-25 15:24",
   "artifacts": [
     {
-      "description": "\ud83d\udc1d Boost productivity by coordinating AI agents that learn and adapt, breaking down tasks for efficient, parallel execution.",
-      "fullName": "FelipeDaza7/swarm-tools",
-      "stargazersCount": 3,
-      "updatedAt": "2026-02-25T23:20:46Z",
-      "url": "https://github.com/FelipeDaza7/swarm-tools"
-    },
-    {
-      "description": "\ud83d\udee1\ufe0f Bypass EDR/AV hooks in .NET CLR by restoring the original `nLoadImage` function for seamless assembly loading without security inspection.",
-      "fullName": "david3c2004/CLR-Unhook",
+      "description": "\ud83d\ude80 Build a full-stack application quickly with Next.js. Explore features, optimize performance, and get started with ease.",
+      "fullName": "brayanvelasque/fullstackweekend-aparatus-v2",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:20:29Z",
-      "url": "https://github.com/david3c2004/CLR-Unhook"
+      "updatedAt": "2026-02-25T23:24:13Z",
+      "url": "https://github.com/brayanvelasque/fullstackweekend-aparatus-v2"
     },
     {
-      "description": "\ud83d\ude80 Manage penetration testing projects efficiently with PentestOPS, a powerful dashboard for tasks, findings, clients, and assets.",
-      "fullName": "Inui30/PentestOPS",
+      "description": "\ud83c\udfa8 Explore and compare SwiftUI animations interactively, adjusting parameters in real-time to enhance your app's visual appeal and understand animation behavior.",
+      "fullName": "CharlotteJV/SwiftAnimPlayground",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:20:12Z",
-      "url": "https://github.com/Inui30/PentestOPS"
+      "updatedAt": "2026-02-25T23:23:50Z",
+      "url": "https://github.com/CharlotteJV/SwiftAnimPlayground"
     },
     {
-      "description": "\u2660\ufe0f Build a robust Texas Hold'em poker club app with multi-language support, featuring friends' tables, leagues, and a stable Unity+C++ codebase.",
-      "fullName": "hossainma/Poker-Club",
+      "description": "\ud83d\ude80 Build high-performance applications with Paimon C++, a native implementation for efficient access to the Paimon datalake format.",
+      "fullName": "i-Greque/paimon-cpp",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:17:26Z",
-      "url": "https://github.com/hossainma/Poker-Club"
+      "updatedAt": "2026-02-25T23:23:14Z",
+      "url": "https://github.com/i-Greque/paimon-cpp"
     },
     {
-      "description": "rc-files, configuration files, ...etc since 2012.",
-      "fullName": "xatier/rc-files",
-      "stargazersCount": 12,
-      "updatedAt": "2026-02-25T23:16:50Z",
-      "url": "https://github.com/xatier/rc-files"
+      "description": "\ud83e\udd16 Scrape Reddit posts and comments effortlessly with this full-featured tool, offering an analytics dashboard, REST API, and no API keys needed.",
+      "fullName": "ji-mi-alice/reddit-universal-scraper",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:22:46Z",
+      "url": "https://github.com/ji-mi-alice/reddit-universal-scraper"
+    },
+    {
+      "description": "\ud83c\udfa8 Create and customize Discord badges effortlessly with BadgeForge, leveraging the power of discord.py for a seamless user experience.",
+      "fullName": "tututdwitoto2703/BadgeForge",
+      "stargazersCount": 0,
+      "updatedAt": "2026-02-25T23:22:28Z",
+      "url": "https://github.com/tututdwitoto2703/BadgeForge"
     }
   ]
 }
