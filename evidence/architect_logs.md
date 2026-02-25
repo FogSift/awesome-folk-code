@@ -100,3 +100,8 @@
 * **Vibe:** Automated
 * **Entry:** Physical layer ready for deployment. Watchdog now prioritizes real hardware.
 ---
+
+## 2026-02-25 15:20
+* **Vibe:** Automated
+* **Entry:** UI restored. Signal Source correctly identifies data origin.
+---

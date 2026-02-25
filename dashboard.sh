@@ -1,5 +1,5 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard v3.4 (BOM Aware)
+# 🖥️ FogSift Mission Control Dashboard v3.5 (Hardened)
 
 # Colors
 GREEN='\033[0;32m'
@@ -33,12 +33,14 @@ fi
 echo -e "\n${GREEN}[ SYSTEM STATUS ]${RESET}"
 if [ -f "evidence/live_moisture.json" ]; then
     MOISTURE=$(cat evidence/live_moisture.json | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
+    SOURCE=$(python3 -c "import json; print(json.load(open('evidence/live_moisture.json'))['sensor_id'])")
+    
     printf "  • Soil Moisture: ["
-    SOURCE=$(python3 -c "import json; print(json.load(open("evidence/live_moisture.json"))["sensor_id"])") 
-    echo -e "  • Signal Source:  ${CYAN}$SOURCE${RESET}"    BAR_SIZE=$(( MOISTURE / 5 ))
+    BAR_SIZE=$(( MOISTURE / 5 ))
     for ((i=0; i<BAR_SIZE; i++)); do printf "#"; done
     for ((i=BAR_SIZE; i<20; i++)); do printf "."; done
     printf "] ${MOISTURE}%%\n"
+    echo -e "  • Signal Source:  ${CYAN}$SOURCE${RESET}"
 fi
 
 # 3. Research & BOM Insight
@@ -48,10 +50,6 @@ if [ -f "evidence/trending_artifacts.json" ]; then
     
     if [ -f "evidence/tech_context.txt" ]; then
         echo -e "  • Tech Found:     ${BLUE}$(cat evidence/tech_context.txt)${RESET}"
-    fi
-    
-    if [ -f "evidence/shopping_list.txt" ]; then
-        echo -e "  • BOM Estimate:   ${GREEN}$(cat evidence/shopping_list.txt | tr '\n' ',' | sed 's/,$//')${RESET}"
     fi
 fi
 
