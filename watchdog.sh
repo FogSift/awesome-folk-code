@@ -13,7 +13,7 @@ run_cycle() {
     
     # 2. Update Soil Data (Sense)
     python3 sensors/probe_serial.py    python3 sensors/bridge.py
-    
+    python3 sensors/guard.py    
     # 3. Decision Logic (Actuate)
     python3 actuate.py
     python3 trend-sifter.py 
