@@ -31,3 +31,6 @@ submit:
 	@echo "   git commit -m 'Add [Your Project Name]'"
 	@echo "   git push -u origin HEAD"
 	@echo "5. Use the GitHub CLI to open a PR: gh pr create"
+
+stats:
+	@python3 update-stats.py
