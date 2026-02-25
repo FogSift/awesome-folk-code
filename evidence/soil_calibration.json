@@ -1,0 +1,7 @@
+{
+  "sensor_type": "Capacitive_v1.2",
+  "adc_min": 1400,
+  "adc_max": 3200,
+  "units": "percentage",
+  "chico_baseline": 70
+}
