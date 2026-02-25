@@ -1,26 +1,24 @@
 import json
 import os
+from datetime import datetime
 
-INTEL_FILE = "evidence/trending_artifacts.json"
-MARKDOWN_FILE = "evidence/INTEL_REPORT.md"
+BRIEF_FILE = "evidence/tech_context.txt"
+JOURNAL_FILE = "evidence/research_journal.md"
 
-def generate_report():
-    if not os.path.exists(INTEL_FILE):
-        return
-
-    with open(INTEL_FILE, 'r') as f:
-        data = json.load(f)
-
-    report = [f"### 📡 Latest Intelligence [ {data['captured_at']} ]\n"]
-    for repo in data['artifacts']:
-        desc = repo['description'] if repo['description'] else "No description provided."
-        report.append(f"* **[{repo['fullName']}]({repo['url']})** ")
-        report.append(f"  _{desc}_ (⭐ {repo['stargazersCount']})\n")
-
-    with open(MARKDOWN_FILE, 'w') as f:
-        f.writelines(report)
+def journal_intel():
+    if not os.path.exists(BRIEF_FILE): return
     
-    print(f"🏺 Intel Report curated at {MARKDOWN_FILE}")
+    with open(BRIEF_FILE, 'r') as f:
+        brief_data = f.read()
+
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M")
+    
+    with open(JOURNAL_FILE, 'a') as f:
+        f.write(f"\n### 📡 Entry: {timestamp}\n")
+        f.write(brief_data + "\n")
+        f.write("---\n")
+    
+    print(f"🏺 Intel archived in {JOURNAL_FILE}")
 
 if __name__ == "__main__":
-    generate_report()
+    journal_intel()

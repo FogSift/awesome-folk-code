@@ -14,7 +14,7 @@ run_cycle() {
     # 2. Atomic Intelligence Gathering
     python3 trend-sifter.py
     python3 extract-context.py
-    python3 artifact-harvester.py
+    python3 curate-intel.py    python3 artifact-harvester.py
 
     echo "$TIMESTAMP" > evidence/watchdog_heartbeat.txt
     echo "🐕 Cycle Complete."

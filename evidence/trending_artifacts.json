@@ -1,6 +1,20 @@
 {
-  "captured_at": "2026-02-25 15:29",
+  "captured_at": "2026-02-25 15:30",
   "artifacts": [
+    {
+      "description": "\ud83d\udda5\ufe0f Configure and customize your development environment with these dotfiles for macOS, Arch Linux, and Fedora, optimizing aesthetics and functionality.",
+      "fullName": "yaafi183307/dotfiles",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:30:05Z",
+      "url": "https://github.com/yaafi183307/dotfiles"
+    },
+    {
+      "description": "\ud83c\udfb6 Discover and access a curated collection of GitHub repositories featuring MIDI files for your music projects and experiments.",
+      "fullName": "NouilleOrque/awesome-midi-repos",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:29:42Z",
+      "url": "https://github.com/NouilleOrque/awesome-midi-repos"
+    },
     {
       "description": "\ud83e\udde0 Discover and evaluate advanced benchmark datasets for Large Language Model agents to enhance performance assessment in real-world tasks.",
       "fullName": "axxafo/awesome-agent-benchmarks",
@@ -21,20 +35,6 @@
       "stargazersCount": 3,
       "updatedAt": "2026-02-25T23:29:03Z",
       "url": "https://github.com/shanjul/the-book-of-secret-knowledge"
-    },
-    {
-      "description": "\ud83d\udcdd Summarize text using LLMs to generate structured insights from research titles or abstracts, making data easy to understand and reuse.",
-      "fullName": "judy-kyalo/llm-structured-summary",
-      "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:28:48Z",
-      "url": "https://github.com/judy-kyalo/llm-structured-summary"
-    },
-    {
-      "description": "\ud83d\uddc4\ufe0f Manage your personal dotfiles effortlessly with yadm, featuring configs for Zsh, Neovim, terminal emulators, and more for a streamlined workflow.",
-      "fullName": "sam-pet-ux/dotfiles",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:28:43Z",
-      "url": "https://github.com/sam-pet-ux/dotfiles"
     }
   ]
 }
