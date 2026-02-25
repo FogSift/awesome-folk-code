@@ -10,13 +10,13 @@
 ---
 
 ## Home & Family
-* (Add your first link here)
+- [Toddler Translation Matrix](https://github.com/FogSift/awesome-folk-code) - An iOS shortcut that logs toddler babble, runs it through Claude, and guesses what they actually want for a snack. Built by a tired dad.
 
 ## Work & Trade
-* (Add your first link here)
+- [Contractor Bid Scanner](https://github.com/FogSift/awesome-folk-code) - A script that extracts materials from PDF blueprints and outputs an Excel spreadsheet of estimated costs. Built by an electrician.
 
 ## Hobbies & Crafts
-* (Add your first link here)
+- [The Moon Water Calendar](https://github.com/FogSift/awesome-folk-code) - A vibe-coded web app that texts you when the moon phase is optimal for charging crystals. Built by a practicing astrologer.
 
 ---
 
