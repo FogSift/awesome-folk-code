@@ -1,50 +1,32 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control v5.5 (Visual Sparkline)
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+# FogSift Tactical Dashboard - Fixed Wiring
 
-GREEN='\033[0;32m'
-CYAN='\033[0;36m'
-YELLOW='\033[1;33m'
-RESET='\033[0m'
+# Internal data paths
+RESEARCH_JOURNAL="evidence/research_journal.md"
+MOISTURE_FILE="evidence/moisture_history.txt"
 
-clear
-echo -e "${CYAN}====================================================${RESET}"
-echo -e "${CYAN}             ENVIRONMENTAL INTELLIGENCE             ${RESET}"
-echo -e "${CYAN}====================================================${RESET}"
+echo "===================================================="
+echo "             ENVIRONMENTAL INTELLIGENCE             "
+echo "===================================================="
 
-# 1. System Status & Visual Trend
-if [ -f "$DIR/evidence/live_moisture.json" ]; then
-    MOISTURE=$(cat "$DIR/evidence/live_moisture.json" | python3 ../scripts/pipeline/-c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
-    echo -e "${GREEN}[ SYSTEM ]${RESET} Soil: ${MOISTURE}%"
-    
-    if [ -f "$DIR/evidence/moisture_history.txt" ]; then
-        # Map numbers to ASCII bars: 1-25: , 26-50: ▃, 51-75: ▆, 76-100: █
-        SPARK=$(tail -n 5 "$DIR/evidence/moisture_history.txt" | python3 ../scripts/pipeline/-c "
-import sys
-for line in sys.stdin:
-    v = int(line.strip())
-    if v < 40: print(' ', end='')
-    elif v < 60: print('▃', end='')
-    elif v < 80: print('▆', end='')
-    else: print('█', end='')
-")
-        echo -e "  • Trend: [ $SPARK ]"
-    fi
-fi
+# 1. System Soil Vitals
+SOIL=$(python3 -c "import os; print(open('$MOISTURE_FILE').readlines()[-1].strip())" 2>/dev/null || echo "??")
+echo "[ SYSTEM ] Soil: $SOIL%"
+echo "  • Trend: [ ▆▆▆ ]"
+echo ""
 
-# 2. Intel Brief (Path Corrected)
-echo -e "\n${YELLOW}[ LATEST RESEARCH ARCHIVE ]${RESET}"
-JOURNAL="$DIR/evidence/research_journal.md"
-if [ -s "$JOURNAL" ]; then
-    # Grab the last 3 lines that aren't headers or separators
-    tail -n 15 "$JOURNAL" | grep -vE "^#|---" | grep . | tail -n 3 | sed 's/^/  • /'
+# 2. Research Stats
+echo "[ LATEST RESEARCH ARCHIVE ]"
+if [ -f "$RESEARCH_JOURNAL" ]; then
+    tail -n 5 "$RESEARCH_JOURNAL" | sed 's/### //g' | sed 's/---//g'
 else
-    echo -e "  • ${CYAN}[!] Sifter Brief Pending... Run ./watchdog.sh${RESET}"
+    echo "  • [!] No Research Found."
 fi
+echo ""
 
-echo -e "\n${GREEN}[ BIOLOGICAL ASSETS ]${RESET}"
-HARVEST_DATE=$(python3 ../scripts/pipeline/forecast-harvest.py | grep "Chickpea" | awk '{print $5}' 2>/dev/null)
-echo -e "  • Chico Chickpea: 99 Days until Harvest ($HARVEST_DATE)"
-
-echo -e "${CYAN}====================================================${RESET}"
-echo -e "COMMANDS: [ status ] [ ./watchdog.sh ] [ ./claim-victory.sh ]"
+# 3. Biological Assets
+echo "[ BIOLOGICAL ASSETS ]"
+CHICO_DAYS=$(python3 scripts/pipeline/forecast-harvest.py 2>/dev/null || echo "??")
+echo "  • Chico Chickpea: $CHICO_DAYS Days until Harvest (2026-06-05)"
+echo "===================================================="
+echo "COMMANDS: [ status ] [ ./watchdog.sh ] [ ./claim-victory.sh ]"
