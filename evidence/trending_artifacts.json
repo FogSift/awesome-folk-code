@@ -1,40 +1,40 @@
 {
-  "captured_at": "2026-02-25 15:18",
+  "captured_at": "2026-02-25 15:21",
   "artifacts": [
     {
-      "description": "\ud83c\udf21\ufe0f Monitor temperature and humidity with a DHT22 sensor and display the data on a SSD1306 OLED using MicroPython on an ESP8266 board.",
-      "fullName": "Daneslack455/ESP8266-DHT22-SSD1306-OLED-Temperature-Humidity-Monitor-MicroPython-",
+      "description": "\ud83d\udc1d Boost productivity by coordinating AI agents that learn and adapt, breaking down tasks for efficient, parallel execution.",
+      "fullName": "FelipeDaza7/swarm-tools",
+      "stargazersCount": 3,
+      "updatedAt": "2026-02-25T23:20:46Z",
+      "url": "https://github.com/FelipeDaza7/swarm-tools"
+    },
+    {
+      "description": "\ud83d\udee1\ufe0f Bypass EDR/AV hooks in .NET CLR by restoring the original `nLoadImage` function for seamless assembly loading without security inspection.",
+      "fullName": "david3c2004/CLR-Unhook",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T22:57:17Z",
-      "url": "https://github.com/Daneslack455/ESP8266-DHT22-SSD1306-OLED-Temperature-Humidity-Monitor-MicroPython-"
+      "updatedAt": "2026-02-25T23:20:29Z",
+      "url": "https://github.com/david3c2004/CLR-Unhook"
     },
     {
-      "description": "\ud83c\udfae Control your Linux framebuffer in real-time with an analog joystick, featuring automatic calibration and dynamic range expansion for smooth cursor movement.",
-      "fullName": "my2account28/analog-joystick",
+      "description": "\ud83d\ude80 Manage penetration testing projects efficiently with PentestOPS, a powerful dashboard for tasks, findings, clients, and assets.",
+      "fullName": "Inui30/PentestOPS",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:20:12Z",
+      "url": "https://github.com/Inui30/PentestOPS"
+    },
+    {
+      "description": "\u2660\ufe0f Build a robust Texas Hold'em poker club app with multi-language support, featuring friends' tables, leagues, and a stable Unity+C++ codebase.",
+      "fullName": "hossainma/Poker-Club",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T22:46:05Z",
-      "url": "https://github.com/my2account28/analog-joystick"
+      "updatedAt": "2026-02-25T23:17:26Z",
+      "url": "https://github.com/hossainma/Poker-Club"
     },
     {
-      "description": "",
-      "fullName": "kartik-singh-droid/SGD-Smart-Gas-Detector",
-      "stargazersCount": 0,
-      "updatedAt": "2026-02-25T22:17:58Z",
-      "url": "https://github.com/kartik-singh-droid/SGD-Smart-Gas-Detector"
-    },
-    {
-      "description": "Stubs of most MicroPython ports, boards and versions to make writing code that much simpler.",
-      "fullName": "Josverl/micropython-stubs",
-      "stargazersCount": 288,
-      "updatedAt": "2026-02-25T22:08:15Z",
-      "url": "https://github.com/Josverl/micropython-stubs"
-    },
-    {
-      "description": "\u26a1 Accelerate speaker diarization with Senko, processing 1 hour of audio in just 5 seconds on powerful hardware\u2014boost your audio analysis efficiency.",
-      "fullName": "engasd999/senko",
-      "stargazersCount": 2,
-      "updatedAt": "2026-02-25T22:06:46Z",
-      "url": "https://github.com/engasd999/senko"
+      "description": "rc-files, configuration files, ...etc since 2012.",
+      "fullName": "xatier/rc-files",
+      "stargazersCount": 12,
+      "updatedAt": "2026-02-25T23:16:50Z",
+      "url": "https://github.com/xatier/rc-files"
     }
   ]
 }
