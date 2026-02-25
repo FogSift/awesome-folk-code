@@ -41,3 +41,6 @@ Want to skip the confusing GitHub web interface? Read the [Git for Vibe Coders G
 
 ## Git for Vibe Coders
 Want to skip the confusing GitHub web interface? Read the [Git for Vibe Coders Guide](GIT_FOR_VIBE_CODERS.md) to learn how to use the terminal.
+
+## AI Coding Safety
+Want to know how to keep your project safe when AI goes off the rails? Read our [AI Chain of Custody Guide](AI_CHAIN_OF_CUSTODY.md).
