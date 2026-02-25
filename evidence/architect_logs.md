@@ -70,3 +70,8 @@
 * **Vibe:** Automated
 * **Entry:** The node now distinguishes between standard Python and MicroPython hardware projects.
 ---
+
+## 2026-02-25 15:14
+* **Vibe:** Automated
+* **Entry:** Node is now identifying garage-ready hardware projects.
+---
