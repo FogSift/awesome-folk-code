@@ -6,4 +6,4 @@
 | [Soil-Sync-Beta](./soil-sync-beta/README.md) | A local Python script that pings ESP32 moisture sensors and alerts via Claude. | 🟢 ACTIVE |
 
 ---
-*Last updated: Wed Feb 25 13:25:31 PST 2026*
+*Last updated: Wed Feb 25 13:40:45 PST 2026*
