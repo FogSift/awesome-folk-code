@@ -16,7 +16,8 @@ run_cycle() {
     
     # 3. Decision Logic (Actuate)
     python3 actuate.py
-    
+    python3 trend-sifter.py 
+    python3 curate-intel.py    
     # 4. Record Heartbeat
     echo "$TIMESTAMP" > evidence/watchdog_heartbeat.txt
     echo "🐕 Cycle Complete. Sleeping for $INTERVAL seconds."
