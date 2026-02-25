@@ -1,23 +1,23 @@
 # 📚 FogSift Hardware Index
-Last updated: Wed Feb 25 15:29:34 PST 2026
+Last updated: Wed Feb 25 15:40:28 PST 2026
 
-## axxafo/awesome-agent-benchmarks
-- **URL:** https://github.com/axxafo/awesome-agent-benchmarks
-- **Description:** 🧠 Discover and evaluate advanced benchmark datasets for Large Language Model agents to enhance performance assessment in real-world tasks.
+## oliverquaye23/claude-hooks
+- **URL:** https://github.com/oliverquaye23/claude-hooks
+- **Description:** 🛡️ Enhance Claude Code with security and utility hooks to prevent prompt injection and extend functionality through custom scripts.
 
-## magdytarek11/ai-growth-stack
-- **URL:** https://github.com/magdytarek11/ai-growth-stack
-- **Description:** 🌐 Optimize your website and boost growth with this collection of AI-driven APIs for SEO, conversions, and social media engagement.
+## Wtstudy1/Software-Engineering-Interview
+- **URL:** https://github.com/Wtstudy1/Software-Engineering-Interview
+- **Description:** 🚀 Master software engineering interviews with curated questions, answers, and tips to boost your chances of landing your dream job.
 
-## shanjul/the-book-of-secret-knowledge
-- **URL:** https://github.com/shanjul/the-book-of-secret-knowledge
-- **Description:** 📚 Discover essential lists, manuals, and tools to enhance your skills and boost productivity in everyday tasks.
+## VonKrystoff/Pod
+- **URL:** https://github.com/VonKrystoff/Pod
+- **Description:** 📊 Discover and analyze podcasts easily with Podscan's intelligent transcription, indexing, and real-time search across millions of episodes.
 
-## judy-kyalo/llm-structured-summary
-- **URL:** https://github.com/judy-kyalo/llm-structured-summary
-- **Description:** 📝 Summarize text using LLMs to generate structured insights from research titles or abstracts, making data easy to understand and reuse.
+## Sunil6512/awesome-ai-vibe-coding
+- **URL:** https://github.com/Sunil6512/awesome-ai-vibe-coding
+- **Description:** 🌊 Embrace Vibe Coding to streamline development, focusing on creative expression and AI collaboration for seamless product creation.
 
-## sam-pet-ux/dotfiles
-- **URL:** https://github.com/sam-pet-ux/dotfiles
-- **Description:** 🗄️ Manage your personal dotfiles effortlessly with yadm, featuring configs for Zsh, Neovim, terminal emulators, and more for a streamlined workflow.
+## CJ6XU3JP4/Claude-Code-Auditor-Enhanced
+- **URL:** https://github.com/CJ6XU3JP4/Claude-Code-Auditor-Enhanced
+- **Description:** 💻 Simplify code reviews with an AI-assisted framework for risk classification, syntax validation, and efficient approval workflows.
 

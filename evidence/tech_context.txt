@@ -1,0 +1,3 @@
+REPO: OzoneAnim/employee-api [🛠️ MED]
+TASK: Check README for setup
+LINK: https://github.com/OzoneAnim/employee-api

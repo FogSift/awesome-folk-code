@@ -1,40 +1,40 @@
 {
-  "captured_at": "2026-02-25 15:37",
+  "captured_at": "2026-02-25 15:47",
   "artifacts": [
     {
-      "description": "\ud83e\uddee Access over 40 offline tools for daily calculations, ensuring privacy and convenience for managing life\u2019s tasks directly in your browser.",
-      "fullName": "Stephhkz/life-calculators",
+      "description": "\ud83c\udfe2 Manage employee data efficiently with this RESTful API featuring full CRUD operations using Node.js, Express.js, and Azure SQL Database.",
+      "fullName": "OzoneAnim/employee-api",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:37:00Z",
-      "url": "https://github.com/Stephhkz/life-calculators"
+      "updatedAt": "2026-02-25T23:46:31Z",
+      "url": "https://github.com/OzoneAnim/employee-api"
     },
     {
-      "description": "\ud83d\udd0d Explore proof of concept exploits for software vulnerabilities I've discovered and responsibly disclosed, aimed at educational use.",
-      "fullName": "Halim45/PoCs",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:36:59Z",
-      "url": "https://github.com/Halim45/PoCs"
-    },
-    {
-      "description": "\ud83d\ude80 Execute commands in Go with ease using command buffers that integrate smoothly with standard I/O operations.",
-      "fullName": "rahmann75tt/command",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:36:50Z",
-      "url": "https://github.com/rahmann75tt/command"
-    },
-    {
-      "description": "\ud83e\udd16 Discover top AI tools for developers in 2026. Explore resources for coding, content, media, and analytics to enhance your projects effectively.",
-      "fullName": "sonic1bx/awesome-ai-tools-2026",
-      "stargazersCount": 3,
-      "updatedAt": "2026-02-25T23:36:37Z",
-      "url": "https://github.com/sonic1bx/awesome-ai-tools-2026"
-    },
-    {
-      "description": "\ud83e\uddee Access over 40 practical offline calculators for daily life. Perform calculations privately and securely on any device, all without internet.",
-      "fullName": "NamwokoyiBashir/life-calculators",
+      "description": "\ud83d\udd0d Filter Facebook Marketplace listings easily by finding new sellers with shipping, while removing duplicates and non-qualifying entries.",
+      "fullName": "mhr0007/G-SORTER",
       "stargazersCount": 0,
-      "updatedAt": "2026-02-25T23:36:34Z",
-      "url": "https://github.com/NamwokoyiBashir/life-calculators"
+      "updatedAt": "2026-02-25T23:45:59Z",
+      "url": "https://github.com/mhr0007/G-SORTER"
+    },
+    {
+      "description": "",
+      "fullName": "Jayden-HH/Birth-of-a-Mind",
+      "stargazersCount": 0,
+      "updatedAt": "2026-02-25T23:45:58Z",
+      "url": "https://github.com/Jayden-HH/Birth-of-a-Mind"
+    },
+    {
+      "description": "\ud83e\udd16 Explore and manage skills in the open agent ecosystem with this powerful CLI tool, supporting multiple agents including Opencode and Codex.",
+      "fullName": "Apolinariolanga/skills",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:45:39Z",
+      "url": "https://github.com/Apolinariolanga/skills"
+    },
+    {
+      "description": "\ud83d\udcc8 Calculate rewards efficiently for yield farming and liquidity mining platforms with DeFiYield Farming. Optimize your returns seamlessly.",
+      "fullName": "toji-lang/DeFiYield-Farming",
+      "stargazersCount": 0,
+      "updatedAt": "2026-02-25T23:44:41Z",
+      "url": "https://github.com/toji-lang/DeFiYield-Farming"
     }
   ]
 }
