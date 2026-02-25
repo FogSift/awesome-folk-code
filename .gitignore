@@ -1,0 +1,21 @@
+# 🛑 The Ignore List: Files Git should never track
+
+# Mac OS junk files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment variables (Never upload passwords or API keys!)
+.env
+.env.local
+
+# Python/Node (In case people add scripts later)
+__pycache__/
+*.pyc
+node_modules/
