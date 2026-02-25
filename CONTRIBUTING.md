@@ -22,3 +22,6 @@ Please format your addition exactly like this:
 
 **If you are new to GitHub:**
 Don't worry about Pull Requests! Just click on the **Issues** tab at the top of this page, click "New Issue", and drop the link and description there. We will format it and add it for you.
+
+## ⚠️ Mandatory Prerequisite
+Before submitting a project, all new contributors **must** pass [The Trial](THE_TRIAL.md) to prove they know how to safely use Git. We will not accept project submissions from users who have not signed the Ledger.
