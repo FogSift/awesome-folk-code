@@ -51,9 +51,11 @@ if [ -f "evidence/watchdog_heartbeat.txt" ]; then
     
     if [ $DIFF -gt 20 ]; then
         echo -e "  • Watchdog Pulse: ${RED}STALE ($DIFF min ago)${RESET}"
-    else
+    TOP_REPO=$(python3 -c "import json; print(json.load(open("evidence/trending_artifacts.json"))["artifacts"][0]["fullName"])") 
+    echo -e "  • Top Discovery: ${YELLOW}$TOP_REPO${RESET}"    else
         echo -e "  • Watchdog Pulse: ${CYAN}ACTIVE ($DIFF min ago)${RESET}"
-    fi
+    TOP_REPO=$(python3 -c "import json; print(json.load(open("evidence/trending_artifacts.json"))["artifacts"][0]["fullName"])") 
+    echo -e "  • Top Discovery: ${YELLOW}$TOP_REPO${RESET}"    fi
 fi
 
 # 3. Biological Countdown
