@@ -1,0 +1,23 @@
+name: Broken Spell Responder
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  reply:
+    if: contains(github.event.issue.labels.*.name, 'Broken Spell 🐛')
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Post comment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "Greetings! 🌫️ It looks like your AI is hallucinating. While a maintainer reviews this, check out our [Tactical Git Guide](https://github.com/FogSift/awesome-folk-code/wiki/Tactical-Git-Guide) to learn how to revert time and fix the error yourself!"
+            })
