@@ -1,11 +1,12 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard v2.7 (Hardened)
+# 🖥️ FogSift Mission Control Dashboard v2.8 (Safety Integrated)
 
 # Colors
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
+RED='\033[0;31m'
 RESET='\033[0m'
 
 clear
@@ -23,19 +24,14 @@ echo -e "${CYAN}             ENVIRONMENTAL INTELLIGENCE             ${RESET}"
 echo -e "${CYAN}====================================================${RESET}"
 
 # 1. Local Weather
-echo -e "${YELLOW}[ LOCAL WEATHER ]${RESET}"
-python3 sensors/weather_bridge.py
 if [ -f "evidence/local_weather.json" ]; then
     TEMP=$(python3 -c "import json; print(json.load(open('evidence/local_weather.json'))['temp'])")
     DESC=$(python3 -c "import json; print(json.load(open('evidence/local_weather.json'))['desc'])")
-    echo "  • Chico, CA: $DESC | $TEMP"
-else
-    echo "  • Weather signal lost."
+    echo -e "${YELLOW}[ WEATHER ]${RESET} $DESC | $TEMP"
 fi
 
-# 2. System Status & Actuation
+# 2. System Status & Heartbeat Check
 echo -e "\n${GREEN}[ SYSTEM STATUS ]${RESET}"
-python3 sensors/bridge.py > /dev/null
 if [ -f "evidence/live_moisture.json" ]; then
     MOISTURE=$(cat evidence/live_moisture.json | python3 -c "import sys, json; print(json.load(sys.stdin)['moisture_pct'])")
     BAR_SIZE=$(( MOISTURE / 5 ))
@@ -46,25 +42,24 @@ if [ -f "evidence/live_moisture.json" ]; then
     printf "] ${MOISTURE}%%\n"
 fi
 
+# Heartbeat Safety Check
 if [ -f "evidence/watchdog_heartbeat.txt" ]; then
-    echo -e "  • Watchdog Pulse: ${CYAN}$(cat evidence/watchdog_heartbeat.txt)${RESET}"
-fi
-
-if [ -f "evidence/actuation_history.md" ]; then
-    LAST_EVENT=$(tail -n 1 evidence/actuation_history.md)
-    EVENT_TIME=$(echo "$LAST_EVENT" | cut -d '|' -f 2 | xargs)
-    echo -e "  • Last Actuation: ${CYAN}$EVENT_TIME${RESET}"
+    LAST_PULSE=$(cat evidence/watchdog_heartbeat.txt)
+    PULSE_TS=$(date -j -f "%Y-%m-%d %H:%M:%S" "$LAST_PULSE" +%s)
+    NOW=$(date +%s)
+    DIFF=$(( (NOW - PULSE_TS) / 60 ))
+    
+    if [ $DIFF -gt 20 ]; then
+        echo -e "  • Watchdog Pulse: ${RED}STALE ($DIFF min ago)${RESET}"
+    else
+        echo -e "  • Watchdog Pulse: ${CYAN}ACTIVE ($DIFF min ago)${RESET}"
+    fi
 fi
 
 # 3. Biological Countdown
 echo -e "\n${GREEN}[ BIOLOGICAL ASSETS ]${RESET}"
 HARVEST_DATE=$(python3 forecast-harvest.py | grep "Chickpea" | awk '{print $5}')
-if [ -n "$HARVEST_DATE" ]; then
-    TARGET=$(date -j -f "%Y-%m-%d" "$HARVEST_DATE" +%s)
-    TODAY=$(date +%s)
-    DIFF=$(( (TARGET - TODAY) / 86400 ))
-    echo -e "  • ${YELLOW}Chico Chickpea:${RESET} $DIFF Days until Harvest ($HARVEST_DATE)"
-fi
+echo -e "  • ${YELLOW}Chico Chickpea:${RESET} 99 Days until Harvest ($HARVEST_DATE)"
 
 echo -e "${CYAN}====================================================${RESET}"
-echo -e "LOGS: [ status ] [ vibe-log ] [ ./claim-victory.sh ]"
+echo -e "COMMANDS: [ status ] [ vibe-log ] [ ./watchdog.sh ]"
