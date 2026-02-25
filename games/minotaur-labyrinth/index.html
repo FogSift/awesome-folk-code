@@ -2,42 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FOGSIFT // LABYRINTH_OF_LOGIC_v2</title>
+    <title>FOGSIFT // TACTICAL_SIMULATOR_v3</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #f5f0e6; --crt: #4a2c2a; --highlight: #e07b3c; --text: #4a2c2a; --success: #2a9d8f; --error: #dc2626; }
         body { background-color: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; display: flex; flex-direction: column; height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; overflow: hidden; }
         #terminal { flex-grow: 1; background: #fff; border: 3px solid var(--crt); border-radius: 8px; padding: 20px; overflow-y: auto; box-shadow: inset 0 0 15px rgba(0,0,0,0.1), 8px 8px 0 var(--crt); position: relative; display: flex; flex-direction: column; }
-        #terminal::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%); background-size: 100% 4px; pointer-events: none; }
+        #terminal::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.02) 50%); background-size: 100% 4px; pointer-events: none; }
         .input-line { display: flex; align-items: center; margin-top: 10px; flex-shrink: 0; }
         .prompt { color: var(--highlight); font-weight: bold; margin-right: 10px; white-space: nowrap; }
         input { background: transparent; border: none; color: var(--text); font-family: inherit; font-size: 1rem; outline: none; flex-grow: 1; }
-        .output { white-space: pre-wrap; margin-bottom: 8px; line-height: 1.4; animation: fadeIn 0.2s ease-out; }
+        .output { white-space: pre-wrap; margin-bottom: 8px; line-height: 1.4; animation: fadeIn 0.1s ease-out; }
         .ascii { color: var(--crt); font-size: 10px; line-height: 1; margin-bottom: 15px; font-weight: bold; }
         .error { color: var(--error); font-weight: bold; }
         .success { color: var(--success); font-weight: bold; }
-        .header { font-weight: bold; border-bottom: 2px solid var(--crt); margin-bottom: 15px; padding-bottom: 5px; display: flex; justify-content: space-between; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .header { font-weight: bold; border-bottom: 2px solid var(--crt); margin-bottom: 15px; padding-bottom: 5px; display: flex; justify-content: space-between; align-items: center; }
+        
+        .demo-btn { 
+            background: var(--highlight); color: #fff; border: 2px solid var(--crt); 
+            padding: 4px 12px; border-radius: 4px; cursor: pointer; font-family: inherit; 
+            font-size: 12px; font-weight: bold; text-transform: uppercase; transition: transform 0.1s;
+        }
+        .demo-btn:hover { background: var(--crt); }
+        .demo-btn:active { transform: translateY(2px); }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
     <div class="header">
-        <span>FOGSIFT TACTICAL SYSTEMS // ORIENTATION.EXE</span>
+        <span>FOGSIFT TACTICAL SYSTEMS // v3.0_STABLE</span>
+        <button class="demo-btn" onclick="startDemo()">[ SYSTEM_OVERRIDE / DEMO ]</button>
         <span id="status-display">INITIATE_STATUS: ACTIVE</span>
     </div>
     <div id="terminal">
         <div id="output-container">
             <div class="ascii">
-  __  __ ___ _   _  ___ _____  _   _   _ ____  
- |  \/  |_ _| \ | |/ _ \_   _|/ \ | | | |  _ \ 
- | |\/| || ||  \| | | | || | / _ \| | | | |_) |
- | |  | || || |\  | |_| || |/ ___ \ |_| |  _ < 
- |_|  |_|___|_| \_|\___/ |_/_/   \_\___/|_| \_\
+  _____ ___   ____ ____ ___ _____ _____ 
+ |  ___/ _ \ / ___/ ___|_ _|  ___|_   _|
+ | |_ | | | | |  _\___ \ | || |_    | |  
+ |  _|| |_| | |_| |___) || ||  _|   | |  
+ |_|   \___/ \____|____/|___|_|     |_|  
             </div>
             <div class="output">Welcome to the FogSift Labyrinth, Initiate.</div>
-            <div class="output">A rogue AI (The Minotaur) has fragmented our supply chain data.</div>
-            <div class="output">Use your terminal to navigate the grid and re-sync the system.</div>
-            <div class="output">Type <span class="success">'help'</span> to see available tactical commands.</div>
+            <div class="output">Mission: Re-sync the fragmented Global Mesh and defeat the Minotaur AI.</div>
+            <div class="output">If you are lost, trigger the <span class="success">SYSTEM_OVERRIDE</span> button above.</div>
         </div>
         <div class="input-line">
             <span class="prompt" id="current-prompt">initiate@fogsift:~/entrance$</span>
@@ -54,15 +63,17 @@
         let state = {
             location: 'entrance',
             inventory: [],
-            minotaurPhase: 0,
-            solvedPuzzles: []
+            meshPinging: false,
+            sshKeyFound: false,
+            gameWon: false
         };
 
         const map = {
-            'entrance': { desc: 'The system entry point. A grid of stone walls extends north.', exits: ['corridor'] },
-            'corridor': { desc: 'A junction of data nodes. To the WEST is the ARCHIVE. To the NORTH is the CORE.', exits: ['entrance', 'archive', 'core'] },
-            'archive': { desc: 'A room filled with raw data logs. There is a hidden file here: secret_code.log', exits: ['corridor'] },
-            'core': { desc: 'THE MINOTAUR ROOM. A massive creature of cables and logic looms.', exits: ['corridor'] }
+            'entrance': { desc: 'Entry point. Grid nodes extend North.', exits: ['corridor'] },
+            'corridor': { desc: 'Junction node. [archive] to the South, [network] to the East, [core] to the North.', exits: ['entrance', 'archive', 'network', 'core'] },
+            'archive': { desc: 'Data logs. A hidden scroll is buried here.', exits: ['corridor'] },
+            'network': { desc: 'Satellite relay. System is offline. Maybe try to "ping" the mesh?', exits: ['corridor'] },
+            'core': { desc: 'The AI sanctum. The Minotaur looms. Security: SSH_REQUIRED.', exits: ['corridor'] }
         };
 
         function print(msg, cls = '') {
@@ -73,83 +84,84 @@
             term.scrollTop = term.scrollHeight;
         }
 
-        input.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                const raw = input.value.trim();
-                const [cmd, ...args] = raw.toLowerCase().split(' ');
-                input.value = '';
-                print(`<span style="opacity: 0.5;">> ${raw}</span>`);
+        async function processCmd(raw) {
+            const [cmd, ...args] = raw.toLowerCase().split(' ');
+            print(`<span style="opacity: 0.5;">> ${raw}</span>`);
+            if (!cmd) return;
 
-                if (!cmd) return;
-
-                switch(cmd) {
-                    case 'help':
-                        print('TACTICAL COMMANDS:');
-                        print('  ls       - Scan local surroundings');
-                        print('  cd [loc] - Traverse to a different node');
-                        print('  cat [f]  - View content of a data fragment');
-                        print('  grep [w] - Search local logs for specific strings');
-                        print('  status   - Check gear and mission progress');
-                        print('  git [op] - Perform a version control spell (Requires Logic Scroll)');
-                        break;
-                    case 'ls':
-                        print(`NODE: ${state.location.toUpperCase()}`);
-                        print(`AVAILABLE PATHS: ${map[state.location].exits.join(', ')}`);
-                        if (state.location === 'archive' && !state.inventory.includes('scroll')) {
-                            print('FRAGMENT FOUND: <span class="success">secret_code.log</span>');
-                        }
-                        break;
-                    case 'cd':
-                        if (map[state.location].exits.includes(args[0])) {
-                            state.location = args[0];
-                            prompt.textContent = `initiate@fogsift:~/${state.location}$`;
-                            print(`TRAVERSING TO ${args[0].toUpperCase()}...`);
-                            print(map[args[0]].desc);
-                        } else {
-                            print('ERROR: SIGNAL BLOCKED. Node unreachable.', 'error');
-                        }
-                        break;
-                    case 'grep':
-                        if (state.location === 'archive' && args[0] === 'beast') {
-                            state.inventory.push('scroll');
-                            print('SEARCH RESULTS: ...Fragment 404 Found...', 'success');
-                            print('THE BEAST WEARS A CRYPTO-SHIELD. ONLY A <span class="success">git commit -m "sync"</span> CAN BREAK IT.');
-                        } else {
-                            print('ERROR: No matching patterns found in local buffer.', 'error');
-                        }
-                        break;
-                    case 'status':
-                        print(`INITIATE GEAR: [${state.inventory.length ? state.inventory.join(', ') : 'NONE'}]`);
-                        print(`MISSION: RE-SYNC THE CORE.`);
-                        break;
-                    case 'git':
-                        if (!state.inventory.includes('scroll')) {
-                            print('ERROR: You do not have the required LOGIC SCROLL to use Git spells.', 'error');
-                            break;
-                        }
-                        if (state.location !== 'core') {
-                            print('ERROR: No repo initialized at this location.', 'error');
-                            break;
-                        }
-                        if (args[0] === 'commit' && raw.includes('"sync"')) {
-                            print('HACKING... [||||||||||] 100%', 'success');
-                            print('MINOTAUR SHIELD DEACTIVATED. LOGIC SYNCED.', 'success');
-                            print('-----------------------------------------');
-                            print('VICTORY. YOU HAVE SECURED THE SUPPLY CHAIN.');
-                            print('YOU ARE NOW A CERTIFIED VIBE CODER.');
-                            document.getElementById('status-display').textContent = 'STATUS: VIBE CODER';
-                        } else {
-                            print('ERROR: Malformed spell. Check the scroll in the archive.', 'error');
-                        }
-                        break;
-                    case 'clear':
-                        container.innerHTML = '';
-                        break;
-                    default:
-                        print(`ERROR: Command '${cmd}' not recognized in this system.`, 'error');
-                }
+            switch(cmd) {
+                case 'help':
+                    print('TACTICAL COMMANDS: ls, cd [loc], cat [file], grep [term], ping [node], ssh [node], status, git commit -m "msg"');
+                    break;
+                case 'ls':
+                    print(`NODE: ${state.location.toUpperCase()}`);
+                    print(`PATHS: ${map[state.location].exits.join(', ')}`);
+                    if (state.location === 'archive' && !state.inventory.includes('scroll')) print('FOUND: scroll.log');
+                    if (state.location === 'network' && state.meshPinging && !state.sshKeyFound) print('SATELLITE DATA: <span class="success">core_ssh_key.txt</span>');
+                    break;
+                case 'cd':
+                    if (args[0] === 'core' && !state.sshKeyFound) {
+                        print('ERROR: ACCESS DENIED. SSH key required for Core Node.', 'error');
+                    } else if (map[state.location].exits.includes(args[0])) {
+                        state.location = args[0];
+                        prompt.textContent = `initiate@fogsift:~/${state.location}$`;
+                        print(`MOVING TO ${args[0].toUpperCase()}...`);
+                        print(map[args[0]].desc);
+                    } else {
+                        print('ERROR: Node unreachable.', 'error');
+                    }
+                    break;
+                case 'grep':
+                    if (state.location === 'archive' && args[0] === 'beast') {
+                        state.inventory.push('scroll');
+                        print('DECODED: The beast fears "sync" logic.', 'success');
+                    } else { print('No results.'); }
+                    break;
+                case 'ping':
+                    if (state.location === 'network' && args[0] === 'mesh') {
+                        state.meshPinging = true;
+                        print('PING mesh (39.7285, -121.8375): SUCCESS.', 'success');
+                        print('Satellite data stream initialized. Try "ls".');
+                    } else { print('PING: Destination unreachable.', 'error'); }
+                    break;
+                case 'cat':
+                    if (state.location === 'network' && args[0] === 'core_ssh_key.txt') {
+                        state.sshKeyFound = true;
+                        print('SSH KEY STORED. Access to Core authorized.', 'success');
+                    } else { print('Error: File not found.', 'error'); }
+                    break;
+                case 'git':
+                    if (state.location === 'core' && raw.includes('"sync"')) {
+                        print('COMMITTING LOGIC TO MAIN...', 'success');
+                        print('MINOTAUR DEFEATED. SYSTEM SECURED.', 'success');
+                        state.gameWon = true;
+                        document.getElementById('status-display').textContent = 'STATUS: VIBE CODER';
+                    } else { print('The Minotaur laughs at your malformed logic.', 'error'); }
+                    break;
+                case 'status':
+                    print(`KEYS: ${state.sshKeyFound ? 'CORE_AUTH' : 'NONE'} | KNOWLEDGE: ${state.inventory.includes('scroll') ? 'BEAST_LOGIC' : 'NONE'}`);
+                    break;
+                default:
+                    print(`Unknown tactical command: ${cmd}`, 'error');
             }
-        });
+        }
+
+        input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { processCmd(input.value.trim()); input.value = ''; } });
+
+        async function startDemo() {
+            const demoSteps = [
+                'ls', 'cd corridor', 'cd archive', 'grep beast', 'cd ..', 
+                'cd network', 'ping mesh', 'ls', 'cat core_ssh_key.txt', 
+                'cd ..', 'cd core', 'git commit -m "sync"'
+            ];
+            for (let step of demoSteps) {
+                input.value = step;
+                await new Promise(r => setTimeout(r, 1000));
+                processCmd(step);
+                input.value = '';
+                await new Promise(r => setTimeout(r, 500));
+            }
+        }
     </script>
 </body>
 </html>
