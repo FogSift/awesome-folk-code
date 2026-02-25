@@ -4,7 +4,7 @@ import re
 import os
 
 def generate_brief():
-    artifact_path = "evidence/trending_artifacts.json"
+    artifact_path = "../../evidence/trending_artifacts.json"
     if not os.path.exists(artifact_path):
         print("❌ No trending artifacts found.")
         return
@@ -50,7 +50,7 @@ def generate_brief():
         f"LINK: {s['url']}"
     ]
 
-    with open("evidence/tech_context.txt", "w") as f:
+    with open("../../evidence/tech_context.txt", "w") as f:
         f.write("\n".join(brief))
     print(f"✅ Tech Brief secured at tech_context.txt")
 
