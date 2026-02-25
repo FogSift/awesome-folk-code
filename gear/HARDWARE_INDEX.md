@@ -1,23 +1,23 @@
 # 📚 FogSift Hardware Index
-Last updated: Wed Feb 25 15:28:49 PST 2026
+Last updated: Wed Feb 25 15:29:34 PST 2026
 
-## mowael07/Awesome-RAG-Production
-- **URL:** https://github.com/mowael07/Awesome-RAG-Production
-- **Description:** 🚀 Build and scale reliable Retrieval-Augmented Generation (RAG) systems with this curated collection of tools, frameworks, and best practices.
+## axxafo/awesome-agent-benchmarks
+- **URL:** https://github.com/axxafo/awesome-agent-benchmarks
+- **Description:** 🧠 Discover and evaluate advanced benchmark datasets for Large Language Model agents to enhance performance assessment in real-world tasks.
 
-## Barbarossada/Practice_Review
-- **URL:** https://github.com/Barbarossada/Practice_Review
-- **Description:** 📚 Build a modern exam practice system with features like question management, smart exercises, and performance analysis for effective learning.
+## magdytarek11/ai-growth-stack
+- **URL:** https://github.com/magdytarek11/ai-growth-stack
+- **Description:** 🌐 Optimize your website and boost growth with this collection of AI-driven APIs for SEO, conversions, and social media engagement.
 
-## freitasp1/claude-code-skills
-- **URL:** https://github.com/freitasp1/claude-code-skills
-- **Description:** 🚀 Build production-tested Claude Code skills for B2B SaaS using TypeScript, enhancing workflows and ensuring GDPR compliance in AI development.
+## shanjul/the-book-of-secret-knowledge
+- **URL:** https://github.com/shanjul/the-book-of-secret-knowledge
+- **Description:** 📚 Discover essential lists, manuals, and tools to enhance your skills and boost productivity in everyday tasks.
 
-## XXDBOXY/Gist
-- **URL:** https://github.com/XXDBOXY/Gist
-- **Description:** 📄 Create, share, and discover code snippets effortlessly with Gist, your go-to tool for managing short pieces of code and notes.
+## judy-kyalo/llm-structured-summary
+- **URL:** https://github.com/judy-kyalo/llm-structured-summary
+- **Description:** 📝 Summarize text using LLMs to generate structured insights from research titles or abstracts, making data easy to understand and reuse.
 
-## Kanis04/cursor-unchained
-- **URL:** https://github.com/Kanis04/cursor-unchained
-- **Description:** 🛠️ Reverse engineer Cursor's Tab complete to integrate its top features seamlessly into other IDEs, enhancing user efficiency and experience.
+## sam-pet-ux/dotfiles
+- **URL:** https://github.com/sam-pet-ux/dotfiles
+- **Description:** 🗄️ Manage your personal dotfiles effortlessly with yadm, featuring configs for Zsh, Neovim, terminal emulators, and more for a streamlined workflow.
 

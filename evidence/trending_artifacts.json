@@ -1,40 +1,40 @@
 {
-  "captured_at": "2026-02-25 15:28",
+  "captured_at": "2026-02-25 15:29",
   "artifacts": [
     {
-      "description": "\ud83d\ude80 Build and scale reliable Retrieval-Augmented Generation (RAG) systems with this curated collection of tools, frameworks, and best practices.",
-      "fullName": "mowael07/Awesome-RAG-Production",
+      "description": "\ud83e\udde0 Discover and evaluate advanced benchmark datasets for Large Language Model agents to enhance performance assessment in real-world tasks.",
+      "fullName": "axxafo/awesome-agent-benchmarks",
+      "stargazersCount": 3,
+      "updatedAt": "2026-02-25T23:29:14Z",
+      "url": "https://github.com/axxafo/awesome-agent-benchmarks"
+    },
+    {
+      "description": "\ud83c\udf10 Optimize your website and boost growth with this collection of AI-driven APIs for SEO, conversions, and social media engagement.",
+      "fullName": "magdytarek11/ai-growth-stack",
       "stargazersCount": 2,
-      "updatedAt": "2026-02-25T23:28:00Z",
-      "url": "https://github.com/mowael07/Awesome-RAG-Production"
+      "updatedAt": "2026-02-25T23:29:06Z",
+      "url": "https://github.com/magdytarek11/ai-growth-stack"
     },
     {
-      "description": "\ud83d\udcda Build a modern exam practice system with features like question management, smart exercises, and performance analysis for effective learning.",
-      "fullName": "Barbarossada/Practice_Review",
+      "description": "\ud83d\udcda Discover essential lists, manuals, and tools to enhance your skills and boost productivity in everyday tasks.",
+      "fullName": "shanjul/the-book-of-secret-knowledge",
+      "stargazersCount": 3,
+      "updatedAt": "2026-02-25T23:29:03Z",
+      "url": "https://github.com/shanjul/the-book-of-secret-knowledge"
+    },
+    {
+      "description": "\ud83d\udcdd Summarize text using LLMs to generate structured insights from research titles or abstracts, making data easy to understand and reuse.",
+      "fullName": "judy-kyalo/llm-structured-summary",
+      "stargazersCount": 0,
+      "updatedAt": "2026-02-25T23:28:48Z",
+      "url": "https://github.com/judy-kyalo/llm-structured-summary"
+    },
+    {
+      "description": "\ud83d\uddc4\ufe0f Manage your personal dotfiles effortlessly with yadm, featuring configs for Zsh, Neovim, terminal emulators, and more for a streamlined workflow.",
+      "fullName": "sam-pet-ux/dotfiles",
       "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:27:48Z",
-      "url": "https://github.com/Barbarossada/Practice_Review"
-    },
-    {
-      "description": "\ud83d\ude80 Build production-tested Claude Code skills for B2B SaaS using TypeScript, enhancing workflows and ensuring GDPR compliance in AI development.",
-      "fullName": "freitasp1/claude-code-skills",
-      "stargazersCount": 6,
-      "updatedAt": "2026-02-25T23:27:44Z",
-      "url": "https://github.com/freitasp1/claude-code-skills"
-    },
-    {
-      "description": "\ud83d\udcc4 Create, share, and discover code snippets effortlessly with Gist, your go-to tool for managing short pieces of code and notes.",
-      "fullName": "XXDBOXY/Gist",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:27:37Z",
-      "url": "https://github.com/XXDBOXY/Gist"
-    },
-    {
-      "description": "\ud83d\udee0\ufe0f Reverse engineer Cursor's Tab complete to integrate its top features seamlessly into other IDEs, enhancing user efficiency and experience.",
-      "fullName": "Kanis04/cursor-unchained",
-      "stargazersCount": 1,
-      "updatedAt": "2026-02-25T23:27:01Z",
-      "url": "https://github.com/Kanis04/cursor-unchained"
+      "updatedAt": "2026-02-25T23:28:43Z",
+      "url": "https://github.com/sam-pet-ux/dotfiles"
     }
   ]
 }

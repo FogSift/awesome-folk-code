@@ -1,5 +1,5 @@
 #!/bin/bash
-# 🖥️ FogSift Mission Control Dashboard v4.0 (Action Oriented)
+# 🖥️ FogSift Mission Control Dashboard v4.1 (Atomic Fix)
 
 # Colors
 GREEN='\033[0;32m'
@@ -20,13 +20,12 @@ if [ -f "evidence/live_moisture.json" ]; then
     echo -e "${GREEN}[ SYSTEM ]${RESET} Soil: ${MOISTURE}% | Guard: ${GUARD}"
 fi
 
-# 2. Intel Action Brief
+# 2. Intel Action Brief (Path Hardened)
 echo -e "\n${YELLOW}[ TOP RESEARCH ACTION ]${RESET}"
 if [ -f "evidence/tech_context.txt" ]; then
-    # Cat the file directly to avoid pulse-lost timing issues
-    cat evidence/tech_context.txt | sed 's/^/  • /'
+    sed 's/^/  • /' evidence/tech_context.txt
 else
-    echo "  • [!] Researcher is still sifting GitHub..."
+    echo -e "  • ${BLUE}[!] Sifter active. Run ./watchdog.sh to refresh.${RESET}"
 fi
 
 # 3. Biological Assets
@@ -35,4 +34,4 @@ HARVEST_DATE=$(python3 forecast-harvest.py | grep "Chickpea" | awk '{print $5}')
 echo -e "  • Chico Chickpea: 99 Days until Harvest ($HARVEST_DATE)"
 
 echo -e "${CYAN}====================================================${RESET}"
-echo -e "COMMANDS: [ status ] [ ./watchdog.sh ] [ ./claim-victory.sh ]"
+echo -e "COMMANDS: [ status ] [ ./watchdog.sh ]"

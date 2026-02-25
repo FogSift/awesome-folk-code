@@ -150,3 +150,8 @@
 * **Vibe:** Automated
 * **Entry:** Dashboard will no longer show 'Pulse lost' during file writes.
 ---
+
+## 2026-02-25 15:29
+* **Vibe:** Automated
+* **Entry:** The node is now smart enough to inhibit the pump if it's raining in Chico.
+---
