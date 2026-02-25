@@ -1,0 +1,7 @@
+# Apply 'Home & Family' label if the PR touches that section
+home-family:
+  - any:
+    - changed-files:
+      - any-glob: '**/*'
+
+# You can add more specific rules here later as the repo grows
