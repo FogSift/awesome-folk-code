@@ -1,0 +1,35 @@
+name: Weekly Intelligence Report
+
+on:
+  schedule:
+    - cron: '0 15 * * 1' # Every Monday at 8 AM PST
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Generate Report
+        run: |
+          chmod +x generate-newsletter.sh
+          ./generate-newsletter.sh > report.txt
+
+      - name: Create Issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('report.txt', 'utf8');
+            const date = new Date().toISOString().split('T')[0];
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `📡 FogSift Intelligence Report [${date}]`,
+              body: body,
+              labels: ['Strategic Intel 🔭']
+            })
