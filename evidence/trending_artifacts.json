@@ -2,6 +2,20 @@
   "captured_at": "2026-02-25 15:30",
   "artifacts": [
     {
+      "description": "Profile README.md",
+      "fullName": "3bsalam-1/3bsalam-1",
+      "stargazersCount": 9,
+      "updatedAt": "2026-02-25T23:30:30Z",
+      "url": "https://github.com/3bsalam-1/3bsalam-1"
+    },
+    {
+      "description": "\ud83d\udc05 Discover resources for TigerStyle, a coding philosophy that enhances safety, performance, and developer experience in software engineering.",
+      "fullName": "Beriberi12/awesome-tigerstyle",
+      "stargazersCount": 1,
+      "updatedAt": "2026-02-25T23:30:31Z",
+      "url": "https://github.com/Beriberi12/awesome-tigerstyle"
+    },
+    {
       "description": "\ud83d\udda5\ufe0f Configure and customize your development environment with these dotfiles for macOS, Arch Linux, and Fedora, optimizing aesthetics and functionality.",
       "fullName": "yaafi183307/dotfiles",
       "stargazersCount": 1,
@@ -21,20 +35,6 @@
       "stargazersCount": 3,
       "updatedAt": "2026-02-25T23:29:14Z",
       "url": "https://github.com/axxafo/awesome-agent-benchmarks"
-    },
-    {
-      "description": "\ud83c\udf10 Optimize your website and boost growth with this collection of AI-driven APIs for SEO, conversions, and social media engagement.",
-      "fullName": "magdytarek11/ai-growth-stack",
-      "stargazersCount": 2,
-      "updatedAt": "2026-02-25T23:29:06Z",
-      "url": "https://github.com/magdytarek11/ai-growth-stack"
-    },
-    {
-      "description": "\ud83d\udcda Discover essential lists, manuals, and tools to enhance your skills and boost productivity in everyday tasks.",
-      "fullName": "shanjul/the-book-of-secret-knowledge",
-      "stargazersCount": 3,
-      "updatedAt": "2026-02-25T23:29:03Z",
-      "url": "https://github.com/shanjul/the-book-of-secret-knowledge"
     }
   ]
 }
