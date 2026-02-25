@@ -2,45 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FOGSIFT // TACTICAL_SIMULATOR_v4.0</title>
+    <title>FOGSIFT // TACTICAL_SIMULATOR_v5.0</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #f5f0e6; --crt: #4a2c2a; --highlight: #e07b3c; --text: #4a2c2a; --success: #2a9d8f; --error: #dc2626; }
         body { background-color: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; display: flex; flex-direction: column; height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; overflow: hidden; }
         #terminal { flex-grow: 1; background: #fff; border: 3px solid var(--crt); border-radius: 8px; padding: 20px; overflow-y: auto; box-shadow: inset 0 0 15px rgba(0,0,0,0.1), 8px 8px 0 var(--crt); position: relative; display: flex; flex-direction: column; }
-        #terminal::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.02) 50%); background-size: 100% 4px; pointer-events: none; }
         .input-line { display: flex; align-items: center; margin-top: 10px; flex-shrink: 0; }
         .prompt { color: var(--highlight); font-weight: bold; margin-right: 10px; white-space: nowrap; }
         input { background: transparent; border: none; color: var(--text); font-family: inherit; font-size: 1rem; outline: none; flex-grow: 1; }
         .output { white-space: pre-wrap; margin-bottom: 8px; line-height: 1.4; }
-        .boss-art { color: var(--error); font-size: 14px; line-height: 1.1; text-align: center; margin: 20px 0; font-weight: 900; white-space: pre; }
-        .header { font-weight: bold; border-bottom: 2px solid var(--crt); margin-bottom: 15px; padding-bottom: 5px; display: flex; justify-content: space-between; align-items: center; }
-        .hud { display: flex; gap: 20px; font-size: 12px; color: var(--muted); margin-bottom: 10px; border-bottom: 1px dashed var(--crt); padding-bottom: 5px; }
-        .progress-bar { width: 100px; height: 10px; border: 1px solid var(--crt); border-radius: 2px; position: relative; }
+        .hud { display: flex; gap: 20px; font-size: 12px; margin-bottom: 10px; border-bottom: 1px dashed var(--crt); padding-bottom: 5px; }
+        .progress-bar { width: 100px; height: 10px; border: 1px solid var(--crt); border-radius: 2px; }
         .progress-fill { height: 100%; background: var(--success); width: 0%; transition: width 0.3s; }
         .success { color: var(--success); font-weight: bold; }
         .error { color: var(--error); font-weight: bold; }
-        .demo-btn { background: var(--highlight); color: #fff; border: 2px solid var(--crt); padding: 4px 12px; border-radius: 4px; cursor: pointer; font-family: inherit; font-size: 10px; font-weight: bold; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <span>FOGSIFT TACTICAL SYSTEMS // v4.0_GOLD</span>
-        <button class="demo-btn" onclick="startDemo()">[ SYSTEM_OVERRIDE ]</button>
-        <span id="status-display">STATUS: ACTIVE</span>
-    </div>
     <div id="terminal">
         <div class="hud">
             <span>SYNC_PROGRESS:</span>
             <div class="progress-bar"><div id="p-fill" class="progress-fill"></div></div>
             <span id="p-text">0%</span>
             <span>| KEYS: <span id="key-stat">0/1</span></span>
-            <span>| INTEL: <span id="intel-stat">0/1</span></span>
         </div>
         <div id="output-container">
-            <div class="output">Tactical HUD initialized. Mission parameters updated.</div>
+            <div class="output">Labyrinth v5.0 Online. <span class="success">Social Gate Engaged.</span></div>
         </div>
-        <div id="boss-display" class="boss-art"></div>
         <div class="input-line">
             <span class="prompt" id="current-prompt">initiate@fogsift:~/entrance$</span>
             <input type="text" id="cmd-input" autofocus autocomplete="off">
@@ -51,8 +40,6 @@
         const input = document.getElementById('cmd-input');
         const container = document.getElementById('output-container');
         const term = document.getElementById('terminal');
-        const prompt = document.getElementById('current-prompt');
-        const bossDiv = document.getElementById('boss-display');
         const pFill = document.getElementById('p-fill');
         const pText = document.getElementById('p-text');
 
@@ -60,21 +47,20 @@
 
         function updateHUD() {
             let score = 0;
-            if (state.sshKeyFound) score += 33;
-            if (state.inventory.includes('scroll')) score += 33;
+            if (state.sshKeyFound) score += 50;
             if (state.gameWon) score = 100;
             pFill.style.width = score + '%';
             pText.textContent = score + '%';
             document.getElementById('key-stat').textContent = (state.sshKeyFound ? 1 : 0) + "/1";
-            document.getElementById('intel-stat').textContent = (state.inventory.includes('scroll') ? 1 : 0) + "/1";
         }
 
         const map = {
             'entrance': { desc: 'Entry point.', exits: ['corridor'] },
             'corridor': { desc: 'Junction. [archive] (S), [network] (E), [core] (N).', exits: ['entrance', 'archive', 'network', 'core'] },
             'archive': { desc: 'Logs. Seek "beast" logic.', exits: ['corridor'] },
-            'network': { desc: 'Relay. Ping the "mesh".', exits: ['corridor'] },
-            'core': { desc: 'THE SANCTUM.', exits: ['corridor'] }
+            'network': { desc: 'Relay.', exits: ['corridor'] },
+            'core': { desc: 'THE SANCTUM.', exits: ['corridor'] },
+            'observatory': { desc: 'SECRET NODE. SSH KEY RETRIEVED.', exits: ['corridor'] }
         };
 
         function print(msg, cls = '') {
@@ -94,40 +80,31 @@
                     break;
                 case 'cd':
                     let dest = args[0] === '..' ? (state.history[state.history.length-2] || 'entrance') : args[0];
+                    if (dest === 'observatory') {
+                        let code = prompt("Enter the Sync Code found in GitHub Discussions:");
+                        if (code === "FOG_SHIFT_2026") {
+                            state.sshKeyFound = true;
+                            state.location = dest;
+                            print("SIGNAL DECODED: Access to [observatory] granted.", "success");
+                            updateHUD();
+                        } else { print("ERROR: Invalid Sync Code.", "error"); return; }
+                    }
                     if (map[dest]) {
                         state.location = dest; state.history.push(dest);
-                        prompt.textContent = `initiate@fogsift:~/${dest}$`;
+                        document.getElementById('current-prompt').textContent = `initiate@fogsift:~/${dest}$`;
                         print(`MOVING... ${map[dest].desc}`);
                     } else { print('ERROR: Path blocked.', 'error'); }
                     break;
-                case 'grep':
-                    if (state.location === 'archive' && args[0] === 'beast') {
-                        state.inventory.push('scroll'); print('DECODED: Beast fears "sync".', 'success');
-                        updateHUD();
-                    }
-                    break;
-                case 'ping':
-                    if (state.location === 'network' && args[0] === 'mesh') {
-                        state.sshKeyFound = true; print('MESH PING SUCCESS. SSH KEY RETRIEVED.', 'success');
-                        updateHUD();
-                    }
-                    break;
                 case 'git':
-                    if (state.location === 'core' && raw.includes('"sync"')) {
+                    if (state.location === 'core' && raw.includes('"sync"') && state.sshKeyFound) {
                         state.gameWon = true; print('MINOTAUR PURGED. SYSTEM SECURED.', 'success');
-                        document.getElementById('status-display').textContent = 'STATUS: VIBE CODER';
                         updateHUD();
-                    }
+                    } else { print('STRIKE FAILED. Logic or Keys missing.', 'error'); }
                     break;
-                case 'help': print('ls, cd, grep, ping, git commit, diag, repair'); break;
                 default: print('Command unknown.', 'error');
             }
         }
         input.addEventListener('keydown', (e) => { if (e.key === 'Enter') { processCmd(input.value.trim()); input.value = ''; } });
-        async function startDemo() {
-            const steps = ['cd corridor', 'cd archive', 'grep beast', 'cd ..', 'cd network', 'ping mesh', 'cd ..', 'cd core', 'git commit -m "sync"'];
-            for (let s of steps) { input.value = s; await new Promise(r => setTimeout(r, 800)); processCmd(s); input.value = ''; }
-        }
     </script>
 </body>
 </html>
