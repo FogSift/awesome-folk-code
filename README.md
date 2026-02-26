@@ -1,3 +1,4 @@
+![Node Status](assets/art/moisture_badge.svg)
 # Awesome Folk Code 🏺
 
 A curated list of awesome, everyday software and tools built by regular folk (non-engineers) using AI and vibe coding.

@@ -25,3 +25,12 @@ echo "[ BIOLOGICAL ASSETS ]"
 echo "  • Chico Chickpea: 100 Days until Harvest (2026-06-05)"
 echo "===================================================="
 echo "COMMANDS: [ status ] [ ./core/run_actuation.sh ] [ ./core/claim-victory.sh ]"
+
+# --- DAEMON STATUS ---
+if [ -f "evidence/daemon_heartbeat.txt" ]; then
+    LAST_BEAT=$(cat evidence/daemon_heartbeat.txt)
+    echo "🫀 Auto-Daemon: [ ACTIVE ] (Last Check: $LAST_BEAT)"
+else
+    echo "🫀 Auto-Daemon: [ OFFLINE ]"
+fi
+echo "===================================================="

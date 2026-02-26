@@ -19,3 +19,5 @@ else
     # Fall back to standard threshold check
     python3 scripts/pipeline/actuate.py
 fi
+python3 core/generate_badge.py
+python3 core/generate_badge.py
