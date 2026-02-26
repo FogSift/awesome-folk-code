@@ -1,12 +1,12 @@
 #!/bin/bash
-# 🌫️ FogSift Sovereign Dashboard v5.1 (Live-Sync)
+# 🌫️ FogSift Sovereign Dashboard v5.2 (Fixed & Handover Ready)
 
-# 1. Update the "World"
+# Update the "World"
 python3 core/climate_sim.py > /dev/null
 RISK_OUT=$(python3 scripts/pipeline/analyze_risk.py 2>&1)
 
-# 2. Extract LIVE Data (Not Stale)
-LIVE_MOISTURE=$(grep -oE '[0-9]+' evidence/live_moisture.json | head -1)
+# Extract LIVE Moisture (Targets the value specifically to avoid Sensor ID collisions)
+LIVE_MOISTURE=$(grep -oE '"moisture_pct": [0-9]+' evidence/live_moisture.json | grep -oE '[0-9]+')
 
 echo "===================================================="
 echo "             ENVIRONMENTAL INTELLIGENCE"
@@ -15,7 +15,7 @@ echo "[ SYSTEM ] Soil: $LIVE_MOISTURE%"
 echo "$RISK_OUT"
 echo "----------------------------------------------------"
 
-# 3. Call the visualizer
+# Call the visualizer
 if [ -f "core/visualizer.py" ]; then
     python3 core/visualizer.py
 fi
