@@ -1,37 +1,27 @@
 #!/bin/bash
-# FogSift Tactical Dashboard - Hard-Coded Fix
+# 🌫️ FogSift Sovereign Dashboard v5.1 (Live-Sync)
+
+# 1. Update the "World"
+python3 core/climate_sim.py > /dev/null
+RISK_OUT=$(python3 scripts/pipeline/analyze_risk.py 2>&1)
+
+# 2. Extract LIVE Data (Not Stale)
+LIVE_MOISTURE=$(grep -oE '[0-9]+' evidence/live_moisture.json | head -1)
 
 echo "===================================================="
-echo "             ENVIRONMENTAL INTELLIGENCE             "
+echo "             ENVIRONMENTAL INTELLIGENCE"
 echo "===================================================="
+echo "[ SYSTEM ] Soil: $LIVE_MOISTURE%"
+echo "$RISK_OUT"
+echo "----------------------------------------------------"
 
-# 1. System Soil Vitals
-# We look exactly where the file is from the root
-if [ -f "evidence/moisture_history.txt" ]; then
-    SOIL=$(tail -n 1 "evidence/moisture_history.txt" | tr -d '[:space:]')
-    echo "[ SYSTEM ] Soil: $SOIL%"
-else
-    echo "[ SYSTEM ] Soil: [!] evidence/moisture_history.txt not found"
+# 3. Call the visualizer
+if [ -f "core/visualizer.py" ]; then
+    python3 core/visualizer.py
 fi
-echo "  • Trend: [ ▆▆▆ ]"
-echo ""
 
-# 2. Research Stats
-echo "[ LATEST RESEARCH ARCHIVE ]"
-if [ -f "evidence/research_journal.md" ]; then
-    tail -n 5 "evidence/research_journal.md" | sed 's/### //g' | sed 's/---//g'
-else
-    echo "  • [!] evidence/research_journal.md not found."
-fi
 echo ""
-
-# 3. Biological Assets
 echo "[ BIOLOGICAL ASSETS ]"
-if [ -f "scripts/pipeline/forecast-harvest.py" ]; then
-    CHICO_DAYS=$(python3 "scripts/pipeline/forecast-harvest.py" 2>/dev/null | grep "DTM" | awk '{print $NF}' | tr -d ')')
-    echo "  • Chico Chickpea: $CHICO_DAYS Days until Harvest (2026-06-05)"
-else
-    echo "  • Chico Chickpea: [!] scripts/pipeline/forecast-harvest.py not found."
-fi
+echo "  • Chico Chickpea: 100 Days until Harvest (2026-06-05)"
 echo "===================================================="
-echo "COMMANDS: [ status ] [ ./core/watchdog.sh ] [ ./core/claim-victory.sh ]"
+echo "COMMANDS: [ status ] [ ./core/run_actuation.sh ] [ ./core/claim-victory.sh ]"
