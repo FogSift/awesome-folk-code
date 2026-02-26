@@ -1,42 +1,36 @@
 import json
+import urllib.request
 import os
 from datetime import datetime
 
-# Files
-GUARD_FILE = "evidence/guard_status.json"
+SIM_URL = "http://localhost:8080/ACTUATE_PUMP"
 MOISTURE_FILE = "evidence/live_moisture.json"
-HARVEST_FILE = "evidence/harvest_forecast.json" # We'll ensure this exists
+LOG = "evidence/actuation_history.md"
 
-def get_dynamic_threshold():
-    # Default baseline
-    days_left = 99
-    if os.path.exists(HARVEST_FILE):
-        with open(HARVEST_FILE, 'r') as f:
-            days_left = json.load(f).get('days_to_harvest', 99)
-    
-    # 🧬 Biological Logic
-    if days_left > 85:
-        return 75  # Germination: Keep it wet
-    elif days_left > 40:
-        return 65  # Vegetative: Let roots hunt
-    else:
-        return 55  # Ripening: Stress the plant for better yield
+def trigger_actuator():
+    print(f"📡 Signaling Actuator at {SIM_URL}...")
+    try:
+        req = urllib.request.Request(SIM_URL, method='POST')
+        with urllib.request.urlopen(req, timeout=2) as response:
+            return response.getcode() == 200
+    except Exception as e:
+        print(f"❌ Actuator Link Offline: {e}")
+        return False
 
-def decide():
-    threshold = get_dynamic_threshold()
-    
-    with open(GUARD_FILE, 'r') as f:
-        if json.load(f)['state'] == "PANIC": return
-
+def main():
+    if not os.path.exists(MOISTURE_FILE): return
     with open(MOISTURE_FILE, 'r') as f:
-        moisture = json.load(f)['moisture_pct']
+        data = json.load(f)
 
-    print(f"🌱 Life Stage Check: {threshold}% Threshold required.")
-    
-    if moisture < threshold:
-        print(f"🌊 MOISTURE LOW ({moisture}%). TRIGGERING PUMP.")
-    else:
-        print(f"✅ MOISTURE OPTIMAL ({moisture}%). IDLE.")
+    moisture = data.get('moisture_pct', 100)
+    if moisture < 40:
+        print(f"🌊 CRITICAL: Moisture at {moisture}%.")
+        if trigger_actuator():
+            ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            with open(LOG, 'a') as f:
+                f.write(f"| {ts} | {moisture}% | 🛰️ SIMULATED ACTUATION SUCCESS |\n")
+        else:
+            print("⚠ Failed to reach Actuator.")
 
 if __name__ == "__main__":
-    decide()
+    main()
