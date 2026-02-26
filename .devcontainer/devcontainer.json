@@ -1,0 +1,16 @@
+{
+    "name": "FogSift Node",
+    "image": "mcr.microsoft.com/devcontainers/universal:2",
+    "features": {
+        "ghcr.io/devcontainers/features/github-cli:1": {}
+    },
+    "postCreateCommand": "chmod +x scripts/intelligence/*.sh && chmod +x scripts/pipeline/*.sh",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "GitHub.vscode-pull-request-github",
+                "mhutchie.mermaid-editor"
+            ]
+        }
+    }
+}
