@@ -17,7 +17,7 @@ echo "----------------------------------------------------"
 
 # Call the visualizer
 if [ -f "core/visualizer.py" ]; then
-    python3 core/visualizer.py
+    python3 core/visualizer_v2.py
 fi
 
 echo ""
