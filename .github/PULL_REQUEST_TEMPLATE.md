@@ -1,12 +1,14 @@
-### Description
-Please explain briefly what this project is and why it belongs on the Awesome Folk Code list. 
+## 🏺 Vibe Code Submission
 
-### Submission Checklist
-- [ ] I have read the `CONTRIBUTING.md` guidelines.
-- [ ] The project was primarily built by a non-engineer using AI/vibe-coding.
-- [ ] The project is free to use or open-source.
-- [ ] The link is formatted correctly and placed in alphabetical order within its category.
-- [ ] The description is objective and contains no marketing buzzwords.
+**Project Name:** **Author:** **Category:** (Home / Work / Hobbies)
 
-### Origin Story (Optional but encouraged!)
-Tell us a little bit about who built this and what AI tools they used.
+### 🌫️ The Human Story
+*Explain the problem this solved for you in plain English.*
+
+### 🧪 Vibe Check
+- [ ] I have tested this code locally.
+- [ ] All links are functional.
+- [ ] This project was built/assisted by AI (Folk Code).
+
+---
+*By submitting, you agree to pass The Trial. Maintain watch.*
