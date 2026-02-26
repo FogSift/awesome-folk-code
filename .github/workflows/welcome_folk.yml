@@ -1,0 +1,37 @@
+name: 🏺 Welcome to the Fog
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Send Welcome Message
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const isIssue = !!context.payload.issue;
+            const user = isIssue ? context.payload.issue.user.login : context.payload.pull_request.user.login;
+            const message = `## Welcome to the Fog, @${user}! 🌫️🏺\n\nThanks for joining the **Awesome Folk Code** movement. Whether you're a tired dad, a local electrician, or an aspiring vibe-coder, we're glad you're here.\n\n### Next Steps:\n1. 🎮 **Practice:** Try the [Labyrinth of Logic](https://fogsift.github.io/awesome-folk-code/games/minotaur-labyrinth/) to sharpen your terminal skills.\n2. 🧪 **The Trial:** Read our [GIT_FOR_VIBE_CODERS.md](https://github.com/FogSift/awesome-folk-code/blob/main/GIT_FOR_VIBE_CODERS.md) manual.\n3. 🏺 **Build:** Check the [Project Board](https://github.com/orgs/FogSift/projects) for open Missions.\n\nMaintain watch.`;
+            
+            if (isIssue) {
+              github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.issue.number,
+                body: message
+              });
+            } else {
+              github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                body: message
+              });
+            }
