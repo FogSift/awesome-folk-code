@@ -1,0 +1,22 @@
+name: 🧪 Vibe Checker
+on: [pull_request]
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check for Dead Links
+        uses: lycheeverse/lychee-action@v1.9.0
+        with:
+          args: --verbose --no-progress --exclude-mail "README.md"
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Report Vibe Status
+        if: failure()
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --body "⚠️ **VIBE CHECK FAILED:** One or more links in your submission are dead. Please verify your links and update the PR."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
