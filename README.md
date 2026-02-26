@@ -15,6 +15,7 @@ A curated list of awesome, everyday software and tools built by regular folk (no
 
 ---
 
+> 🏺 **MISSION BOARD:** [View Open Tasks](https://github.com/orgs/FogSift/projects/2)
 ## 🏗️ Contents
 * [Home & Family](#home--family)
 * [Work & Trade](#work--trade)
