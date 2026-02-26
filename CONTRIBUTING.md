@@ -1,27 +1,17 @@
-# Contributing to Awesome Folk Code
+# 🏺 How to Contribute to Awesome Folk Code
 
-First off, thank you for considering contributing! This list is all about celebrating the cool, everyday tools built by regular people using AI and vibe coding.
+We use a "Terminal-First" workflow. If you want to help curate the list, follow these steps:
 
-To keep this list high-quality and true to its mission, please follow these guidelines when submitting a new project:
+## 1. Scouting Missions
+Check the [Mission Board](https://github.com/orgs/FogSift/projects/2) for open tasks. These are projects we've identified but haven't written "Vibe Descriptions" for yet.
 
-## The Rules for Inclusion
-1. **Built by "Folk":** The project should primarily be built by a non-traditional developer (hobbyist, dad, mom, truck driver, etc.) using AI tools (Cursor, Claude, ChatGPT, etc.).
-2. **It Actually Works:** The project must be functional and accessible (either open-source on GitHub, or a live free tool). No waitlists or broken links.
-3. **Solves a Real Problem:** We love niche! Whether it tracks sourdough hydration or automates fantasy football, it should have a clear use case.
-4. **No Enterprise/Corporate Shills:** This is for indie, grassroots, vibe-coded projects. No VC-funded startups thinly veiled as indie projects.
+## 2. Using the Curation Tool
+If you are running a local node, you can automate your PRs using the provided script:
+\`\`\`bash
+./scripts/intelligence/curate_mission.sh
+\`\`\`
 
-## How to Format Your Entry
-Please format your addition exactly like this:
-`- [Project Name](Link) - A clear, one-sentence description of what it does and who built it. No buzzwords.`
+## 3. Submitting New Projects
+If you have a project of your own, use the [New Submission Form](https://github.com/FogSift/awesome-folk-code/issues/new/choose).
 
-## How to Submit
-**If you know GitHub:**
-1. Fork this repository.
-2. Add your link to the appropriate category in the `README.md` (keep it in alphabetical order!).
-3. Submit a Pull Request (PR) with a brief note about the project.
-
-**If you are new to GitHub:**
-Don't worry about Pull Requests! Just click on the **Issues** tab at the top of this page, click "New Issue", and drop the link and description there. We will format it and add it for you.
-
-## ⚠️ Mandatory Prerequisite
-Before submitting a project, all new contributors **must** pass [The Trial](THE_TRIAL.md) to prove they know how to safely use Git. We will not accept project submissions from users who have not signed the Ledger.
+Maintain watch. 🌫️
