@@ -26,6 +26,7 @@ A curated list of awesome, everyday software and tools built by regular folk (no
 * **Toddler Translation Matrix** - An iOS shortcut that logs toddler babble, runs it through Claude, and guesses what they actually want for a snack. Built by a tired dad.
 
 ## Work & Trade
+* [Shubhs1303/webgpu-claude-skill](https://github.com/Shubhs1303/webgpu-claude-skill) - Test it again
 * **Contractor Bid Scanner** - A script that extracts materials from PDF blueprints and outputs an Excel spreadsheet of estimated costs. Built by an electrician.
 
 ## Hobbies & Crafts
