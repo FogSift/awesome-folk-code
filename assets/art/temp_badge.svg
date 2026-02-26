@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="30" viewBox="0 0 180 30">
+  <rect width="180" height="30" rx="4" fill="#1a1a1a"/>
+  <rect width="60" height="30" rx="4" fill="#333333"/>
+  <text x="30" y="20" fill="#ffffff" font-family="monospace" font-size="14" text-anchor="middle">TEMP</text>
+  <text x="120.0" y="20" fill="#ff7700" font-family="monospace" font-size="14" font-weight="bold" text-anchor="middle">105.2°F</text>
+</svg>

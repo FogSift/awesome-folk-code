@@ -2,5 +2,5 @@
   <rect width="180" height="30" rx="4" fill="#1a1a1a"/>
   <rect width="60" height="30" rx="4" fill="#333333"/>
   <text x="30" y="20" fill="#ffffff" font-family="monospace" font-size="14" text-anchor="middle">SOIL</text>
-  <text x="120" y="20" fill="#00ffcc" font-family="monospace" font-size="14" font-weight="bold" text-anchor="middle">82%</text>
+  <text x="120.0" y="20" fill="#00ffcc" font-family="monospace" font-size="14" font-weight="bold" text-anchor="middle">82%</text>
 </svg>

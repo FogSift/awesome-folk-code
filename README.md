@@ -1,4 +1,4 @@
-![Node Status](assets/art/moisture_badge.svg)
+![Soil](assets/art/moisture_badge.svg) ![Temp](assets/art/temp_badge.svg) ![Risk](assets/art/risk_badge.svg)
 # Awesome Folk Code 🏺
 
 A curated list of awesome, everyday software and tools built by regular folk (non-engineers) using AI and vibe coding.
