@@ -1,0 +1,24 @@
+name: 📡 Mission Radar
+on:
+  push:
+    paths:
+      - 'README.md'
+    branches:
+      - main
+
+jobs:
+  scout-intel:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Extract and Generate Missions
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          chmod +x scripts/intelligence/generate_missions.sh
+          ./scripts/intelligence/generate_missions.sh
