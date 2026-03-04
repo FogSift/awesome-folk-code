@@ -20,7 +20,7 @@ jobs:
           ./generate-newsletter.sh > report.txt
 
       - name: Create Issue
-        uses: actions/github-script@v6
+        uses: actions/github-script@v8
         with:
           script: |
             const fs = require('fs');
