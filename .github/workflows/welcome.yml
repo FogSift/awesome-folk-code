@@ -13,7 +13,7 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-      - uses: actions/first-interaction@v1
+      - uses: actions/first-interaction@v3
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           issue-message: "Greetings! 🧙‍♂️✨ Thanks for dropping this in. Whether it's a brilliant new idea or a broken spell, you're in the right place. A maintainer will take a look at this shortly. Keep vibe coding!"
