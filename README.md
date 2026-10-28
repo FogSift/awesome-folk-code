@@ -24,6 +24,7 @@ A curated list of awesome, everyday software and tools built by regular folk (no
 * [Work & Trade](#work--trade)
 * [Hobbies & Crafts](#hobbies--crafts)
 
+- [Ideoy](https://ideoy.ai) - Remake this week's viral meme videos from one selfie (AI image-to-video, 9:16, freemium).
 ## Home & Family
 * Toddler Translation Matrix - An iOS shortcut that logs toddler babble, runs it through Claude, and guesses what they actually want for a snack. Built by a tired dad.
 
